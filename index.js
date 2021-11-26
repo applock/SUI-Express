@@ -12,8 +12,8 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 
 var options = {
-	key: fs.readFileSync('ssl-key.pem'),
-	cert: fs.readFileSync('ssl-cert.pem')
+	key: fs.readFileSync('./certs/ssl-key.pem'),
+	cert: fs.readFileSync('./certs/ssl-cert.pem')
 };
 
 // defining the Express app
