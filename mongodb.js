@@ -9,7 +9,7 @@ module.exports = {
       (error, result) => {
         if (error) throw error;
         db = result.db("bdo");
-        console.log("Connected to DB via MongoDB 1");
+        console.log("Connected to DB via MongoDB");
       }
     );
   },

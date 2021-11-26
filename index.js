@@ -34,7 +34,7 @@ app.use(cors());
 // Connecting mongo without orm
 mongodb.connectToServer((err, result) => {
 	    if (err) throw err
-	    console.log('Connected to DB via MongoDB')
+	    console.log('Connected to DB..')
 })
 mdb = mongodb.getDb();
 
