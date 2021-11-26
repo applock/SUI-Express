@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request');
+const mongodb = require('../mongodb')
+
+const fs = require('fs');
+var data = fs.readFileSync('./static/count.json', 'utf8');
+data = JSON.parse(data);
 
 // Get all counts
 router.get('/all', (req, res) => {
@@ -10,7 +15,61 @@ router.get('/all', (req, res) => {
 // Get by date range
 router.get('/count/:from/:to', (req, res) => {
     console.log('From - '+req.params.from+' To - '+req.params.to)
-    
+    try {
+        mongodb.getDb().collection('incubator').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count * ' + JSON.stringify(result.length))
+            data.Incubator = result.length
+        })
+
+        mongodb.getDb().collection('individuals').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count ** ' + JSON.stringify(result.length))
+            data.Individual = result.length
+        })
+
+        mongodb.getDb().collection('investors').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count *** ' + JSON.stringify(result.length))
+            data.Investor = result.length
+        })
+
+        mongodb.getDb().collection('startups').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count **** ' + JSON.stringify(result.length))
+            data.Startup = result.length
+        })
+
+        mongodb.getDb().collection('mentor').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count ***** ' + JSON.stringify(result.length))
+            data.Mentor = result.length
+        })
+
+        mongodb.getDb().collection('governmentbody').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count ****** ' + JSON.stringify(result.length))
+            data.GovernmentBody = result.length
+        })
+
+        mongodb.getDb().collection('corporates').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+            console.log('Count ******* ' + JSON.stringify(result.length))
+            data.Corporate = result.length
+        })
+
+        console.log('Fetching accelerators..')
+        mongodb.getDb().collection('accelerators').find({ createdOn: { $lt: new Date(req.params.from), $gt: new Date(req.params.to) } }).toArray((err, result) => {
+            if (err) throw err
+
+            //console.log('Fetched startups ' + JSON.stringify(result))
+            console.log('Count ******** ' + JSON.stringify(result.length))
+            data.Accelerator = result.length
+            res.send(data)
+        })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
 // defining an endpoint to return all ads

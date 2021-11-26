@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose')
 const https = require('https')
 const fs = require('fs')
+const mongodb = require('./mongodb')
+var mdb;
 
 var options = {
 	key: fs.readFileSync('ssl-key.pem'),
@@ -26,6 +28,13 @@ app.use(helmet());
 
 // enabling CORS for all requests
 app.use(cors());
+
+// Connecting mongo without orm
+mongodb.connectToServer((err, result) => {
+	    if (err) throw err
+	    console.log('Connected to DB via MongoDB')
+})
+mdb = mongodb.getDb();
 
 // adding morgan to log HTTP requests
 app.use(morgan('combined'));
