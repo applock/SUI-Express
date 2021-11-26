@@ -6,7 +6,7 @@
     "description": "Start-Up India API Documentation"
   },
   "host": "localhost:443",
-  "basePath": "/startup",
+  "basePath": "/",
   "tags": [],
   "schemes": [
     "https"
@@ -18,7 +18,7 @@
     "application/json"
   ],
   "paths": {
-    "/count/{from}/{to}": {
+    "/startup/count/{from}/{to}": {
       "get": {
         "tags": [
           "Counts"
@@ -45,39 +45,22 @@
         }
       }
     },
-    "/count/all": {
+    "/startup/count/all": {
       "get": {
         "tags": [
           "Counts"
         ],
-        "description": "",
+        "description": "Get India level startup count from inception",
         "parameters": [],
         "responses": {}
       }
     },
-    "/stages/{state}": {
-      "get": {
-        "tags": [
-          "Geography"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "state",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/sectors/{state}": {
+    "/startup/stages/{state}": {
       "get": {
         "tags": [
           "Business"
         ],
-        "description": "",
+        "description": "Get state-wise stages",
         "parameters": [
           {
             "name": "state",
@@ -89,23 +72,117 @@
         "responses": {}
       }
     },
-    "/recognisedcount/all": {
+    "/startup/sectors/{state}": {
+      "get": {
+        "tags": [
+          "Business"
+        ],
+        "description": "Get state-wise sectors",
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/startup/recognisedcount/all": {
       "get": {
         "tags": [
           "Counts"
         ],
-        "description": "",
+        "description": "Count of recognised startups",
         "parameters": [],
         "responses": {}
       }
     },
-    "/dpiit/states": {
+    "/startup/dpiit/states": {
       "get": {
         "tags": [
           "Geography"
         ],
-        "description": "",
+        "description": "List of all dpiit states",
         "parameters": [],
+        "responses": {}
+      }
+    },
+    "/startup/states": {
+      "get": {
+        "tags": [
+          "Geography"
+        ],
+        "description": "List of all state with state id",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/startup/districts/{stateId}": {
+      "get": {
+        "tags": [
+          "Geography"
+        ],
+        "description": "List of all districts by state id",
+        "parameters": [
+          {
+            "name": "stateId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/startup/industry/all": {
+      "get": {
+        "tags": [
+          "Industry"
+        ],
+        "description": "List of all industries category in India",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/startup/subIndustry/{industryId}": {
+      "get": {
+        "tags": [
+          "Industry"
+        ],
+        "description": "List of sub-industries by industry id",
+        "parameters": [
+          {
+            "name": "industryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/data/table/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {}
       }
     }

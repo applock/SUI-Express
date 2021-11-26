@@ -1,7 +1,7 @@
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger_output.json";
-const endpointsFiles = ["./routes/landing.js"];
+const endpointsFiles = ["./routes/landing.js", "./routes/datatable.js"];
 
 const doc = {
   info: {
@@ -10,7 +10,7 @@ const doc = {
     description: "Start-Up India API Documentation",
   },
   host: "localhost:443",
-  basePath: "/startup",
+  basePath: "/",
   schemes: ["https"],
   consumes: ["application/json"],
   produces: ["application/json"],

@@ -10,6 +10,7 @@ data = JSON.parse(data);
 // Get by date range
 router.get("/count/:from/:to", (req, res) => {
   // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/count/{from}/{to}'
   // #swagger.description = 'Endpoint for date range wise count - India level'
 
   console.log("From - " + req.params.from + " To - " + req.params.to);
@@ -145,26 +146,27 @@ router.get("/count/:from/:to", (req, res) => {
 // defining an endpoint to return all ads
 router.get("/count/all", (req, resp) => {
   // #swagger.tags = ['Counts']
-  request(
-    "https://api-uat.startupindia.gov.in/sih/api/noauth/search/profiles/count",
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(body);
-      console.log(res);
-      //return res
-      resp.send(res.body.data);
+  // #swagger.path = '/startup/count/all'
+  // #swagger.description = 'Get India level startup count from inception'
+
+  request(process.env.COUNT_ALL_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
     }
-  );
+    console.log(body);
+    console.log(res);
+    //return res
+    resp.send(res.body.data);
+  });
 });
 
 router.get("/stages/:state", (req, resp) => {
-  // #swagger.tags = ['Geography']
+  // #swagger.tags = ['Business']
+  // #swagger.path = '/startup/stages/{state}'
+  // #swagger.description = 'Get state-wise stages'
+
   request(
-    "https://api-uat.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/" +
-      req.params.state,
+    process.env.STAGES_URL + req.params.state,
     { json: true },
     (err, res, body) => {
       if (err) {
@@ -179,9 +181,11 @@ router.get("/stages/:state", (req, resp) => {
 
 router.get("/sectors/:state", (req, resp) => {
   // #swagger.tags = ['Business']
+  // #swagger.path = '/startup/sectors/{state}'
+  // #swagger.description = 'Get state-wise sectors'
+
   request(
-    "https://api-uat.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/sectorWise/" +
-      req.params.state,
+    process.env.SECTORS_URL + req.params.state,
     { json: true },
     (err, res, body) => {
       if (err) {
@@ -196,8 +200,11 @@ router.get("/sectors/:state", (req, resp) => {
 
 router.get("/recognisedcount/all", (req, resp) => {
   // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/recognisedcount/all'
+  // #swagger.description = 'Count of recognised startups'
+
   request(
-    "https://api-uat.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/recognized/count",
+    process.env.RECOGNISED_COUNT_URL,
     { json: true },
     (err, res, body) => {
       if (err) {
@@ -212,8 +219,75 @@ router.get("/recognisedcount/all", (req, resp) => {
 
 router.get("/dpiit/states", (req, resp) => {
   // #swagger.tags = ['Geography']
+  // #swagger.path = '/startup/dpiit/states'
+  // #swagger.description = 'List of all dpiit states'
+
+  request(process.env.DPIIT_STATES_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body);
+    console.log(res);
+    resp.send(res.body.data);
+  });
+});
+
+router.get("/states", (req, resp) => {
+  // #swagger.tags = ['Geography']
+  // #swagger.path = '/startup/states'
+  // #swagger.description = 'List of all state with state id'
+
+  request(process.env.STATES_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body);
+    console.log(res);
+    resp.send(res.body.data);
+  });
+});
+
+router.get("/districts/:stateId", (req, resp) => {
+  // #swagger.tags = ['Geography']
+  // #swagger.path = '/startup/districts/{stateId}'
+  // #swagger.description = 'List of all districts by state id'
+
   request(
-    "https://api-uat.startupindia.gov.in:443/sih/api/noauth/dpiit/services/list/states",
+    process.env.DISTRICT_URL + req.params.stateId,
+    { json: true },
+    (err, res, body) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(body);
+      console.log(res);
+      resp.send(res.body.data);
+    }
+  );
+});
+
+router.get("/industry/all", (req, resp) => {
+  // #swagger.tags = ['Industry']
+  // #swagger.path = '/startup/industry/all'
+  // #swagger.description = 'List of all industries category in India'
+
+  request(process.env.INDUSTRY_ALL_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body);
+    console.log(res);
+    resp.send(res.body.data);
+  });
+});
+
+router.get("/subIndustry/:industryId", (req, resp) => {
+  // #swagger.tags = ['Industry']
+  // #swagger.path = '/startup/subIndustry/{industryId}'
+  // #swagger.description = 'List of sub-industries by industry id'
+
+  request(
+    process.env.SUB_INDUSTRY_URL + req.params.industryId,
     { json: true },
     (err, res, body) => {
       if (err) {
