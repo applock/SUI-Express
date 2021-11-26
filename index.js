@@ -8,6 +8,8 @@ const https = require('https')
 const fs = require('fs')
 const mongodb = require('./mongodb')
 var mdb;
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 
 var options = {
 	key: fs.readFileSync('ssl-key.pem'),
@@ -54,3 +56,4 @@ https.createServer(options, app).listen(443, () => {
 	console.log('listening on port 443');
 });
 
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
