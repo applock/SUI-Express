@@ -58,4 +58,10 @@ https.createServer(options, app).listen(443, () => {
   console.log("listening on port 443");
 });
 
+// Swagger endpoint - /doc
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+// Redirect basepath to Swagger
+app.get("/", (req, res) => {
+  res.redirect("/doc");
+});
