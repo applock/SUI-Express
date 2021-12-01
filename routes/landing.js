@@ -300,4 +300,19 @@ router.get("/subIndustry/:industryId", (req, resp) => {
   );
 });
 
+router.get("/badges", (req, resp) => {
+  // #swagger.tags = ['Recognition']
+  // #swagger.path = '/startup/badges'
+  // #swagger.description = 'List of badges'
+
+  request(process.env.BADGES_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body);
+    console.log(res);
+    resp.send(res.body.data);
+  });
+});
+
 module.exports = router;
