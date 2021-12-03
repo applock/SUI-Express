@@ -13,7 +13,7 @@ const doc = {
     title: "Start-Up India API",
     description: "Start-Up India API Documentation",
   },
-  host: "localhost:443",
+  host: process.env.HOST + ":443",
   basePath: "/",
   schemes: ["https"],
   consumes: ["application/json"],
