@@ -6,6 +6,8 @@ const mongodb = require("../mongodb");
 const fs = require("fs");
 var data = fs.readFileSync("./static/count.json", "utf8");
 data = JSON.parse(data);
+var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
+stateMap = JSON.parse(stateMap);
 
 // Get by date range
 router.get("/count/:from/:to", (req, res) => {
@@ -243,7 +245,12 @@ router.get("/states", (req, resp) => {
     }
     console.log(body);
     console.log(res);
-    resp.send(res.body.data);
+    var apiData = res.body.data;
+    for (var state in apiData) {
+      var stateid = apiData[state].id;
+      apiData[state].d = stateMap[stateid];
+    }
+    resp.send(apiData);
   });
 });
 

@@ -48,6 +48,8 @@ const landingRouter = require("./routes/landing");
 app.use("/startup", landingRouter);
 const datatableRouter = require("./routes/datatable");
 app.use("/data", datatableRouter);
+const staticDataRouter = require("./routes/staticData");
+app.use("/static", staticDataRouter);
 
 // starting the server
 //app.listen(process.env.PORT, () => {
