@@ -312,14 +312,30 @@ router.get("/badges", (req, resp) => {
   // #swagger.path = '/startup/badges'
   // #swagger.description = 'List of badges'
 
-  request(process.env.BADGES_URL, { json: true }, (err, res, body) => {
-    if (err) {
-      return console.log(err);
+  request(
+    {
+      headers: {
+        "sec-fetch-site": "same-site",
+        authority: "api.startupindia.gov.in",
+        "sec-ch-ua":
+          '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+        origin: "https://www.startupindia.gov.in",
+        "sec-fetch-mode": "cors",
+        "sec-ch-ua-platform": "Linux",
+        referer: "https://www.startupindia.gov.in/",
+      },
+      url: process.env.BADGES_URL,
+    },
+    { json: true },
+    (err, res, body) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(body);
+      console.log(res);
+      resp.send(res.body.data);
     }
-    console.log(body);
-    console.log(res);
-    resp.send(res.body.data);
-  });
+  );
 });
 
 module.exports = router;

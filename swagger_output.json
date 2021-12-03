@@ -163,12 +163,45 @@
         "responses": {}
       }
     },
+    "/startup/badges": {
+      "get": {
+        "tags": [
+          "Recognition"
+        ],
+        "description": "List of badges",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/data/table/{from}/{to}": {
       "get": {
         "tags": [
           "Data Tables"
         ],
         "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/data/startups/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise startups table",
         "parameters": [
           {
             "name": "from",
