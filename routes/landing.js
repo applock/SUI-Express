@@ -312,30 +312,37 @@ router.get("/badges", (req, resp) => {
   // #swagger.path = '/startup/badges'
   // #swagger.description = 'List of badges'
 
-  request(
-    {
-      headers: {
-        "sec-fetch-site": "same-site",
-        authority: "api.startupindia.gov.in",
-        "sec-ch-ua":
-          '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-        origin: "https://www.startupindia.gov.in",
-        "sec-fetch-mode": "cors",
-        "sec-ch-ua-platform": "Linux",
-        referer: "https://www.startupindia.gov.in/",
-      },
-      url: process.env.BADGES_URL,
+  var options = {
+    method: "POST",
+    url: "https://api.startupindia.gov.in/sih/api/noauth/search/badge/get",
+    headers: {
+      authority: "api.startupindia.gov.in",
+      "sec-ch-ua":
+        '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+      accept: "application/json",
+      lang: "",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+      "sec-ch-ua-platform": '"Linux"',
+      "content-type": "application/json",
+      origin: "https://www.startupindia.gov.in",
+      "sec-fetch-site": "same-site",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      referer: "https://www.startupindia.gov.in/",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
     },
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(body);
-      console.log(res);
-      resp.send(res.body.data);
+    body: JSON.stringify({}),
+  };
+
+  request(options, (err, res, body) => {
+    if (err) {
+      return console.log(err);
     }
-  );
+    console.log(body);
+    resp.send(JSON.parse(res.body));
+  });
 });
 
 module.exports = router;
