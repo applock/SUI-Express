@@ -157,6 +157,7 @@ router.get("/count/all", (req, resp) => {
     }
     console.log(body);
     console.log(res);
+    res.body.data.maxRange = 2000;
     //return res
     resp.send(res.body.data);
   });
