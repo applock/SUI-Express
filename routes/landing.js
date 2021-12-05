@@ -163,6 +163,24 @@ router.get("/count/all", (req, resp) => {
   });
 });
 
+router.post("/count/filter", (req, resp) => {
+  // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/count/filter'
+  // #swagger.description = 'Get filtered multi-level startup count'
+  console.log(req.body);
+
+  request(process.env.COUNT_ALL_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body);
+    console.log(res);
+    res.body.data.maxRange = 2000;
+    //return res
+    resp.send(res.body.data);
+  });
+});
+
 router.get("/stages/:state", (req, resp) => {
   // #swagger.tags = ['Business']
   // #swagger.path = '/startup/stages/{state}'
@@ -233,6 +251,46 @@ router.get("/dpiit/states", (req, resp) => {
     console.log(res);
     resp.send(res.body.data);
   });
+});
+
+router.get("/dpiit/count/all", async (req, resp) => {
+  // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/dpiit/count/all'
+  // #swagger.description = 'Count of India level dpiit startups'
+
+  try {
+    const countAll = await mongodb.getDb().collection("startups").count({
+      "publish.startup.dippCertified": true,
+    });
+    console.log("DPIIT Count all startups - " + countAll);
+    resp.json(countAll);
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/dpiit/count/:from/:to", async (req, resp) => {
+  // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/dpiit/count/{from}/{to}'
+  // #swagger.description = 'Count of India level dpiit startups with date range'
+
+  console.log("From - " + req.params.from + " To - " + req.params.to);
+  try {
+    const countAll = await mongodb
+      .getDb()
+      .collection("startups")
+      .count({
+        "publish.startup.dippCertified": true,
+        createdOn: {
+          $lt: new Date(req.params.from),
+          $gt: new Date(req.params.to),
+        },
+      });
+    console.log("DPIIT Count all startups with date range - " + countAll);
+    resp.json(countAll);
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
 });
 
 router.get("/states", (req, resp) => {
