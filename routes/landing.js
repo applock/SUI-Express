@@ -8,6 +8,13 @@ var data = fs.readFileSync("./static/count.json", "utf8");
 data = JSON.parse(data);
 var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
 stateMap = JSON.parse(stateMap);
+var allStages = fs.readFileSync("./static/allStages.json", "utf8");
+allStages = JSON.parse(allStages);
+var blankFilterQuery = fs.readFileSync(
+  "./static/blankFilterQuery.json",
+  "utf8"
+);
+blankFilterQuery = JSON.parse(blankFilterQuery);
 
 // Get by date range
 router.get("/count/:from/:to", (req, res) => {
@@ -179,6 +186,13 @@ router.post("/count/filter", (req, resp) => {
     //return res
     resp.send(res.body.data);
   });
+});
+
+router.get("/stages/all", (req, resp) => {
+  // #swagger.tags = ['Business']
+  // #swagger.path = '/startup/stages/all'
+  // #swagger.description = 'Get all stages'
+  resp.json(allStages);
 });
 
 router.get("/stages/:state", (req, resp) => {
