@@ -170,9 +170,9 @@ router.get("/count/all", (req, resp) => {
   });
 });
 
-router.post("/count/filter", (req, resp) => {
+router.post("/filter", (req, resp) => {
   // #swagger.tags = ['Filter']
-  // #swagger.path = '/startup/count/filter'
+  // #swagger.path = '/startup/filter'
   // #swagger.description = 'Get filtered multi-level startup count'
   console.log(req.body);
 
@@ -188,9 +188,9 @@ router.post("/count/filter", (req, resp) => {
   });
 });
 
-router.post("/count/filter/defaults", (req, resp) => {
+router.post("/filter/defaults", (req, resp) => {
   // #swagger.tags = ['Filter']
-  // #swagger.path = '/startup/count/filter/defaults'
+  // #swagger.path = '/startup/filter/defaults'
   // #swagger.description = 'Get all filterable items'
 
   var options = {
