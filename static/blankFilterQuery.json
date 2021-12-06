@@ -1,0 +1,22 @@
+{
+  "query": "",
+  "focusSector": false,
+  "industries": [],
+  "sectors": [],
+  "states": [],
+  "cities": [],
+  "stages": [],
+  "badges": [],
+  "roles": [],
+  "page": 0,
+  "sort": {
+    "orders": [
+      {
+        "field": "registeredOn",
+        "direction": "DESC"
+      }
+    ]
+  },
+  "dpiitRecogniseUser": false,
+  "internationalUser": false
+}
