@@ -280,15 +280,6 @@ router.post("/filter/defaults", (req, resp) => {
   });
 });
 
-/*
-router.get("/stages/all", (req, resp) => {
-  // #swagger.tags = ['Business']
-  // #swagger.path = '/startup/stages/all'
-  // #swagger.description = 'Get all stages'
-  resp.json(allStages);
-});
-*/
-
 router.get("/stages/:state", (req, resp) => {
   // #swagger.tags = ['Business']
   // #swagger.path = '/startup/stages/{state}'
