@@ -173,18 +173,57 @@ router.get("/count/all", (req, resp) => {
 router.post("/filter", (req, resp) => {
   // #swagger.tags = ['Filter']
   // #swagger.path = '/startup/filter'
-  // #swagger.description = 'Get filtered multi-level startup count'
-  console.log(req.body);
+  // #swagger.description = 'Get filtered multi-level startup details'
+  /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$industries": [],
+          "$sectors": [],
+          "$states": [],
+          "$stages": [],
+          "$badges": [],
+        }
+    } */
+  console.log("Filter request - " + JSON.stringify(req.body));
+  var query = JSON.parse(JSON.stringify(blankFilterQuery));
+  query.industries = req.body.industries;
+  query.sectors = req.body.sectors;
+  query.states = req.body.states;
+  query.stages = req.body.stages;
+  query.badges = req.body.badges;
 
-  request(process.env.COUNT_ALL_URL, { json: true }, (err, res, body) => {
+  var options = {
+    method: "POST",
+    url: process.env.BLANK_FILTER_URL,
+    headers: {
+      authority: "api.startupindia.gov.in",
+      "sec-ch-ua":
+        '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+      accept: "application/json",
+      lang: "",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+      "sec-ch-ua-platform": '"Linux"',
+      "content-type": "application/json",
+      origin: "https://www.startupindia.gov.in",
+      "sec-fetch-site": "same-site",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      referer: "https://www.startupindia.gov.in/",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
+    },
+    body: JSON.stringify(query),
+  };
+
+  request(options, (err, res, body) => {
     if (err) {
       return console.log(err);
     }
-    console.log(body);
-    console.log(res);
-    res.body.data.maxRange = 2000;
-    //return res
-    resp.send(res.body.data);
+    //console.log(body);
+    var allItems = JSON.parse(body).content;
+    resp.send(allItems);
   });
 });
 
