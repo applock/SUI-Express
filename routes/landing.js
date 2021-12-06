@@ -171,7 +171,7 @@ router.get("/count/all", (req, resp) => {
 });
 
 router.post("/count/filter", (req, resp) => {
-  // #swagger.tags = ['Counts']
+  // #swagger.tags = ['Filter']
   // #swagger.path = '/startup/count/filter'
   // #swagger.description = 'Get filtered multi-level startup count'
   console.log(req.body);
@@ -185,6 +185,59 @@ router.post("/count/filter", (req, resp) => {
     res.body.data.maxRange = 2000;
     //return res
     resp.send(res.body.data);
+  });
+});
+
+router.post("/count/filter/defaults", (req, resp) => {
+  // #swagger.tags = ['Filter']
+  // #swagger.path = '/startup/count/filter/defaults'
+  // #swagger.description = 'Get all filterable items'
+
+  var options = {
+    method: "POST",
+    url: process.env.BLANK_FILTER_URL,
+    headers: {
+      authority: "api.startupindia.gov.in",
+      "sec-ch-ua":
+        '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+      accept: "application/json",
+      lang: "",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+      "sec-ch-ua-platform": '"Linux"',
+      "content-type": "application/json",
+      origin: "https://www.startupindia.gov.in",
+      "sec-fetch-site": "same-site",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      referer: "https://www.startupindia.gov.in/",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
+    },
+    body: JSON.stringify(blankFilterQuery),
+  };
+
+  request(options, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    var output = {};
+    //console.log(body);
+    var allFilterableItems = JSON.parse(body).allFacets;
+    var allIndustriesArr = allFilterableItems[0].content;
+    var allSectorsArr = allFilterableItems[1].content;
+    var allStatesArr = allFilterableItems[3].content;
+    var allStagesArr = allFilterableItems[6].content;
+    var allBadgesArr = allFilterableItems[7].content;
+    var allDpiitCertifiedsArr = allFilterableItems[8].content;
+
+    output.states = allStatesArr.map(transformData);
+    output.sectors = allSectorsArr.map(transformData);
+    output.industries = allIndustriesArr.map(transformData);
+    output.stages = allStagesArr.map(transformData);
+    output.badges = allBadgesArr.map(transformData);
+    output.dpiitStatus = allDpiitCertifiedsArr.map(transformData);
+    resp.send(output);
   });
 });
 
@@ -417,5 +470,12 @@ router.get("/badges", (req, resp) => {
     resp.send(JSON.parse(res.body));
   });
 });
+
+function transformData(data) {
+  var o = {};
+  o.id = data.value;
+  o.value = data.key.value;
+  return o;
+}
 
 module.exports = router;
