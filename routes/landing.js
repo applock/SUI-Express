@@ -337,6 +337,22 @@ router.get("/recognisedcount/all", (req, resp) => {
   );
 });
 
+router.get("/startupCount/:type", (req, resp) => {
+  // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/startupCount/{type}'
+  // #swagger.description = 'Count for a given startup type'
+
+  resp.json(1234);
+});
+
+router.get("/startupCount/:type/:from/:to", (req, resp) => {
+  // #swagger.tags = ['Counts']
+  // #swagger.path = '/startup/startupCount/{type}/{from}/{to}'
+  // #swagger.description = 'Count for a given startup type with date range'
+
+  resp.json(1234);
+});
+
 router.get("/dpiit/states", (req, resp) => {
   // #swagger.tags = ['Geography']
   // #swagger.path = '/startup/dpiit/states'
