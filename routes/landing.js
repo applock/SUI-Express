@@ -223,6 +223,20 @@ router.post("/filter", (req, resp) => {
     }
     //console.log(body);
     var allItems = JSON.parse(body).content;
+
+    // add available logos
+    if (allItems) {
+      const l = allItems.length;
+      const lu = process.env.PROFILE_LOGO_URL;
+      for (let i = 0; i < l; i++) {
+        let itm = allItems[i];
+        if (itm.pic) {
+          itm.logo = lu + itm.role + "?fileName=" + itm.pic;
+          allItems[i] = itm;
+        }
+      }
+    }
+
     resp.send(allItems);
   });
 });
