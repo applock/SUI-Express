@@ -50,6 +50,8 @@ const datatableRouter = require("./routes/datatable");
 app.use("/data", datatableRouter);
 const staticDataRouter = require("./routes/staticData");
 app.use("/static", staticDataRouter);
+const insightsRouter = require("./routes/insights");
+app.use("/insight", insightsRouter);
 
 // starting the server
 //app.listen(process.env.PORT, () => {
