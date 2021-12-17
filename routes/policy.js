@@ -6,18 +6,18 @@ const fs = require("fs");
 var stateIdNameMap = fs.readFileSync("./static/stateIdNameMap.json", "utf8");
 stateIdNameMap = JSON.parse(stateIdNameMap);
 
-router.get("/:state", async (req, resp) => {
+router.get("/byStateName/:state", async (req, resp) => {
   // #swagger.tags = ['Policy']
-  // #swagger.path = '/policy/{state}'
+  // #swagger.path = '/policy/byStateName/{state}'
   // #swagger.description = 'State Policy by state name'
   var results = await getStatePolicyPromise(req.params.state);
   console.log("RESULTS - " + JSON.stringify(results));
   resp.send(results);
 });
 
-router.get("/:stateId", (req, resp) => {
+router.get("/byStateId/:stateId", (req, resp) => {
   // #swagger.tags = ['Policy']
-  // #swagger.path = '/policy/{stateId}'
+  // #swagger.path = '/policy/byStateId/{stateId}'
   // #swagger.description = 'State Policy by state id'
   var output = {};
   var state = JSON.parse(stateIdNameMap).filter(function (entry) {
