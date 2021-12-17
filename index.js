@@ -10,6 +10,7 @@ const mongodb = require("./mongodb");
 var mdb;
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
+const jobs = require("./routes/jobs");
 
 var options = {
   key: fs.readFileSync("./certs/ssl-key.pem"),
@@ -52,6 +53,8 @@ const staticDataRouter = require("./routes/staticData");
 app.use("/static", staticDataRouter);
 const insightsRouter = require("./routes/insights");
 app.use("/insight", insightsRouter);
+const policyRouter = require("./routes/policy");
+app.use("/policy", policyRouter);
 
 // starting the server
 //app.listen(process.env.PORT, () => {
@@ -60,6 +63,7 @@ app.use("/insight", insightsRouter);
 
 https.createServer(options, app).listen(443, () => {
   console.log("listening on port 443");
+  jobs.start();
 });
 
 // Swagger endpoint - /doc
