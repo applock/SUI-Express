@@ -20,10 +20,10 @@ router.get("/byStateId/:stateId", (req, resp) => {
   // #swagger.path = '/policy/byStateId/{stateId}'
   // #swagger.description = 'State Policy by state id'
   var output = {};
-  var state = JSON.parse(stateIdNameMap).filter(function (entry) {
-    return entry.id === req.params.stateId;
+  var state = stateIdNameMap.filter((entry) => {
+    entry.id === req.params.stateId;
   });
-
+  console.log("State name by Id - " + JSON.stringify(state));
   resp.send(getStatePolicy(state.name));
 });
 
@@ -41,45 +41,45 @@ function getStatePolicy(stateName) {
       }
       console.log("Sectorwise - " + JSON.stringify(body));
       output.sectors = res.body.data;
+      request(
+        "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/awards/" +
+          stateName,
+        { json: true },
+        (err, res, body) => {
+          if (err) {
+            return console.log(err);
+          }
+          console.log("StagewiseAwards - " + JSON.stringify(body));
+          output.stagewiseAwards = res.body.data;
+          request(
+            "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/funding/" +
+              stateName,
+            { json: true },
+            (err, res, body) => {
+              if (err) {
+                return console.log(err);
+              }
+              console.log("StagewiseFundings - " + JSON.stringify(body));
+              output.stagewiseFundings = res.body.data;
+              request(
+                "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/" +
+                  stateName,
+                { json: true },
+                (err, res, body) => {
+                  if (err) {
+                    return console.log(err);
+                  }
+                  console.log("Stages - " + JSON.stringify(body));
+                  output.stages = res.body.data;
+                  return output;
+                }
+              );
+            }
+          );
+        }
+      );
     }
   );
-  request(
-    "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/awards/" +
-      stateName,
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log("StagewiseAwards - " + JSON.stringify(body));
-      output.stagewiseAwards = res.body.data;
-    }
-  );
-  request(
-    "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/funding/" +
-      stateName,
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log("StagewiseFundings - " + JSON.stringify(body));
-      output.stagewiseFundings = res.body.data;
-    }
-  );
-  request(
-    "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/" +
-      stateName,
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log("Stages - " + JSON.stringify(body));
-      output.stages = res.body.data;
-    }
-  );
-  return output;
 }
 
 async function getStatePolicyPromise(stateName) {
