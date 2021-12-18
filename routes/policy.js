@@ -10,24 +10,27 @@ router.get("/byStateName/:state", async (req, resp) => {
   // #swagger.tags = ['Policy']
   // #swagger.path = '/policy/byStateName/{state}'
   // #swagger.description = 'State Policy by state name'
-  var results = await getStatePolicyPromise(req.params.state);
-  console.log("RESULTS - " + JSON.stringify(results));
-  resp.send(results);
+
+  var output = await getStatePolicyPromise(req.params.state);
+  resp.send(output);
 });
 
-router.get("/byStateId/:stateId", (req, resp) => {
+router.get("/byStateId/:stateId", async (req, resp) => {
   // #swagger.tags = ['Policy']
   // #swagger.path = '/policy/byStateId/{stateId}'
   // #swagger.description = 'State Policy by state id'
   var output = {};
   var state = stateIdNameMap.filter((entry) => {
-    entry.id === req.params.stateId;
+    return entry.id == req.params.stateId;
   });
   console.log("State name by Id - " + JSON.stringify(state));
-  resp.send(getStatePolicy(state.name));
+  //resp.send(await getStatePolicy(state[0].name));
+  output = await getStatePolicyPromise(state[0].name);
+  //console.log("State output - " + JSON.stringify(output));
+  resp.send(output);
 });
 
-function getStatePolicy(stateName) {
+async function getStatePolicy(stateName) {
   console.log("Getting state policy for " + stateName);
   var output = {};
 
@@ -80,6 +83,21 @@ function getStatePolicy(stateName) {
       );
     }
   );
+}
+
+async function getAllUrls(urls) {
+  try {
+    var data = await Promise.all(
+      urls.map((url) =>
+        request(url, (error, response, body) => response.body.data)
+      )
+    );
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
 async function getStatePolicyPromise(stateName) {
@@ -147,12 +165,10 @@ async function getStatePolicyPromise(stateName) {
     );
   });
 
-  Promise.all([proA, proB, proC, proD])
+  return Promise.all([proA, proB, proC, proD])
     .then((values) => {
-      // ["First", "Second", "Third"]
-      console.log(values);
-      //return output;
-      return values;
+      console.log("All promises resolved");
+      return output;
     })
     .catch((reason) => {
       console.log(reason);
