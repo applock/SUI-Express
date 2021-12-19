@@ -183,6 +183,7 @@ router.post("/filter", (req, resp) => {
           "$states": [],
           "$stages": [],
           "$badges": [],
+          "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
           "$fromDate": "",
           "$toDate": ""
         }
@@ -194,6 +195,7 @@ router.post("/filter", (req, resp) => {
   query.states = req.body.states;
   query.stages = req.body.stages;
   query.badges = req.body.badges;
+  query.roles = req.body.roles;
 
   var options = {
     method: "POST",
