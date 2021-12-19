@@ -7,10 +7,10 @@ const fs = require("fs");
 var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
 stateMap = JSON.parse(stateMap);
 
-router.get("/all", (req, resp) => {
+router.get("/:geographicalEntity/:entityId/:from/:to", (req, resp) => {
   // #swagger.tags = ['Insights']
-  // #swagger.path = '/insight/all'
-  // #swagger.description = 'State-wise insights'
+  // #swagger.path = '/insight/{geographicalEntity}/{entityId}/{from}/{to}'
+  // #swagger.description = 'Insights'
 
   var options = {
     method: "POST",

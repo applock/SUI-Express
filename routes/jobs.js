@@ -200,23 +200,22 @@ async function prepareStateWiseCounts() {
         }
         //console.log(body);
         var facetResult = JSON.parse(body).facetResultPages;
+        var industryBasedNumbers = facetResult[0].content;
+        var sectorBasedNumbers = facetResult[1].content;
         var roleBasedNumbers = facetResult[5].content;
+        var stageBasedNumbers = facetResult[6].content;
 
-        var counts = fs.readFileSync("./static/stateWiseCount.json", "utf8");
-        counts = JSON.parse(counts);
+        var stateDetailsObj = {};
+        var stateDetails = fs.readFileSync(
+          "./static/stateWiseCount.json",
+          "utf8"
+        );
+        stateDetails = JSON.parse(stateDetails);
+
         var template = JSON.parse(JSON.stringify(stateCountJson));
-
         for (const role of roleBasedNumbers) {
           template[role.value] = role.valueCount;
         }
-        /*template.Startup = facetResult[5].content[0].valueCount;
-        template.Mentor = facetResult[5].content[1].valueCount;
-        template.Incubator = facetResult[5].content[2].valueCount;
-        template.Accelerator = facetResult[5].content[3].valueCount;
-        template.Corporate = facetResult[5].content[4].valueCount;
-        template.Investor = facetResult[5].content[5].valueCount;
-        template.GovernmentBody = facetResult[5].content[6].valueCount;
-        */
         template.DpiitCertified = _.isUndefined(
           facetResult[8].content[1].valueCount
         )
@@ -226,35 +225,81 @@ async function prepareStateWiseCounts() {
           ? 0
           : facetResult[9].content[1].valueCount;
         template.WomenLed = womenLedStartups[currentState.id];
-        counts[currentState.id] = template;
+
+        // Storing statistics
+        stateDetailsObj.statistics = template;
+
+        // Storing Industries
+        var industryArr = [];
+        var totalIndustriesOfState = 0;
+        for (const ind of industryBasedNumbers) {
+          industryArr.push({
+            id: ind.value,
+            text: ind.field.value,
+            count: ind.valueCount,
+          });
+          totalIndustriesOfState += ind.valueCount;
+        }
+        stateDetailsObj.industry = industryArr;
+        stateDetailsObj.TotalIndustry = totalIndustriesOfState;
+
+        // Storing Sectors
+        var sectorArr = [];
+        var totalSectorsOfState = 0;
+        for (const sec of sectorBasedNumbers) {
+          sectorArr.push({
+            id: sec.value,
+            text: sec.field.value,
+            count: sec.valueCount,
+          });
+          totalSectorsOfState += sec.valueCount;
+        }
+        stateDetailsObj.sector = sectorArr;
+        stateDetailsObj.TotalSector = totalSectorsOfState;
+
+        // Storing Stages
+        var stageArr = [];
+        var totalStagesOfState = 0;
+        for (const stg of stageBasedNumbers) {
+          stageArr.push({
+            id: stg.value,
+            text: stg.field.value,
+            count: stg.valueCount,
+          });
+          totalStagesOfState += stg.valueCount;
+        }
+        stateDetailsObj.stage = stageArr;
+        stateDetailsObj.TotalStage = totalStagesOfState;
+
+        stateDetails[currentState.id] = stateDetailsObj;
 
         // Checking max counts
-        counts.maxStartups = maxStartups =
+        stateDetails.maxStartups = maxStartups =
           template.Startup > maxStartups ? template.Startup : maxStartups;
-        counts.maxMentors = maxMentors =
+        stateDetails.maxMentors = maxMentors =
           template.Mentor > maxMentors ? template.Mentor : maxMentors;
-        counts.maxIncubators = maxIncubators =
+        stateDetails.maxIncubators = maxIncubators =
           template.Incubator > maxIncubators
             ? template.Incubator
             : maxIncubators;
-        counts.maxAccelarators = maxAccelarators =
+        stateDetails.maxAccelarators = maxAccelarators =
           template.maxAccelarators > maxAccelarators
             ? template.maxAccelarators
             : maxAccelarators;
-        counts.maxCorporates = maxCorporates =
+        stateDetails.maxCorporates = maxCorporates =
           template.Corporate > maxCorporates
             ? template.Corporate
             : maxCorporates;
-        counts.maxInvestors = maxInvestors =
+        stateDetails.maxInvestors = maxInvestors =
           template.Investor > maxInvestors ? template.Investor : maxInvestors;
-        counts.maxGovernmentBodys = maxGovernmentBodys =
+        stateDetails.maxGovernmentBodys = maxGovernmentBodys =
           template.GovernmentBody > maxGovernmentBodys
             ? template.GovernmentBody
             : maxGovernmentBodys;
 
         fs.writeFileSync(
           "./static/stateWiseCount.json",
-          JSON.stringify(counts, null, 4),
+          JSON.stringify(stateDetails, null, 4),
           function (err) {
             if (err) {
               return console.error(err);

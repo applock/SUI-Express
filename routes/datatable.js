@@ -39,7 +39,8 @@ router.get(
         }
         var apiData = res.body.data;
         for (var state in apiData) {
-          apiData[state].statistics = stateWiseCount[apiData[state].id];
+          apiData[state].statistics =
+            stateWiseCount[apiData[state].id].statistics;
         }
         output.data = apiData;
         resp.send(output);
