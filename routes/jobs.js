@@ -92,6 +92,15 @@ router.get("/populateWomenLedStartupMap", (req, resp) => {
   resp.json("DONE");
 });
 
+router.get("/prepareIndiaLevelCounts", (req, resp) => {
+  // #swagger.tags = ['Jobs']
+  // #swagger.path = '/jobs/prepareIndiaLevelCounts'
+  // #swagger.description = 'DO NOT USE - Manual Job to prepare India level Counts'
+
+  prepareIndiaLevelCounts();
+  resp.json("DONE");
+});
+
 async function populateStateIdNameMap() {
   // Pre-process State List
   request(process.env.STATES_URL, { json: true }, (err, res, body) => {
@@ -145,6 +154,113 @@ async function populateWomenLedStartupMap() {
       );
     }
   );
+}
+
+async function prepareIndiaLevelCounts() {
+  // Pre-process India Wise counts
+  var options = {
+    method: "POST",
+    url: process.env.BLANK_FILTER_URL,
+    headers: {
+      authority: "api.startupindia.gov.in",
+      "sec-ch-ua":
+        '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+      accept: "application/json",
+      lang: "",
+      "sec-ch-ua-mobile": "?0",
+      "user-agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+      "sec-ch-ua-platform": '"Linux"',
+      "content-type": "application/json",
+      origin: "https://www.startupindia.gov.in",
+      "sec-fetch-site": "same-site",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      referer: "https://www.startupindia.gov.in/",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
+    },
+    body: JSON.stringify(blankFilterQuery),
+  };
+
+  request(options, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    var facetResult = JSON.parse(body).facetResultPages;
+    var industryBasedNumbers = facetResult[0].content;
+    var sectorBasedNumbers = facetResult[1].content;
+    var roleBasedNumbers = facetResult[5].content;
+    var stageBasedNumbers = facetResult[6].content;
+
+    var template = JSON.parse(JSON.stringify(stateCountJson));
+    for (const role of roleBasedNumbers) {
+      template[role.value] = role.valueCount;
+    }
+    template.DpiitCertified = _.isUndefined(
+      facetResult[8].content[1].valueCount
+    )
+      ? 0
+      : facetResult[8].content[1].valueCount;
+    template.TaxExempted = _.isUndefined(facetResult[9].content[1])
+      ? 0
+      : facetResult[9].content[1].valueCount;
+    template.WomenLed = Object.values(womenLedStartups).reduce((a, b) => {
+      return a + b;
+    });
+
+    // Storing Industries
+    var industryArr = [];
+    var totalIndustriesOfState = 0;
+    for (const ind of industryBasedNumbers) {
+      industryArr.push({
+        id: ind.value,
+        text: ind.field.value,
+        count: ind.valueCount,
+      });
+      totalIndustriesOfState += ind.valueCount;
+    }
+    template.industry = industryArr;
+    template.TotalIndustry = totalIndustriesOfState;
+
+    // Storing Sectors
+    var sectorArr = [];
+    var totalSectorsOfState = 0;
+    for (const sec of sectorBasedNumbers) {
+      sectorArr.push({
+        id: sec.value,
+        text: sec.field.value,
+        count: sec.valueCount,
+      });
+      totalSectorsOfState += sec.valueCount;
+    }
+    template.sector = sectorArr;
+    template.TotalSector = totalSectorsOfState;
+
+    // Storing Stages
+    var stageArr = [];
+    var totalStagesOfState = 0;
+    for (const stg of stageBasedNumbers) {
+      stageArr.push({
+        id: stg.value,
+        text: stg.field.value,
+        count: stg.valueCount,
+      });
+      totalStagesOfState += stg.valueCount;
+    }
+    template.stage = stageArr;
+    template.TotalStage = totalStagesOfState;
+
+    fs.writeFileSync(
+      "./static/IndiaWiseCount.json",
+      JSON.stringify(template, null, 4),
+      function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        console.log("Data written successfully for India");
+      }
+    );
+  });
 }
 
 async function prepareStateWiseCounts() {
