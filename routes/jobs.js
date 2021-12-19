@@ -4,7 +4,6 @@ const request = require("request");
 const fs = require("fs");
 const router = express.Router();
 
-const fs = require("fs");
 var stateWiseCount = fs.readFileSync("./static/stateWiseCount.json", "utf8");
 stateWiseCount = JSON.parse(stateWiseCount);
 var stateMap = fs.readFileSync("./static/stateIdNameMap.json", "utf8");
