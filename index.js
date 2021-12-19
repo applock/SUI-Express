@@ -10,7 +10,7 @@ const mongodb = require("./mongodb");
 var mdb;
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
-const jobs = require("./routes/jobs");
+const cronJobs = require("./routes/jobs");
 
 var options = {
   key: fs.readFileSync("./certs/ssl-key.pem"),
@@ -55,15 +55,25 @@ const insightsRouter = require("./routes/insights");
 app.use("/insight", insightsRouter);
 const policyRouter = require("./routes/policy");
 app.use("/policy", policyRouter);
+const jobsRouter = require("./routes/jobs");
+const { request } = require("http");
+app.use("/jobs", jobsRouter);
 
-// starting the server
-//app.listen(process.env.PORT, () => {
-//  console.log('listening on port '+process.env.PORT);
-//});
-
+// Starting the server
 https.createServer(options, app).listen(443, () => {
   console.log("listening on port 443");
-  jobs.start();
+  request(
+    "http://localhost:443/jobs/triggerCron",
+    { json: true },
+    (err, res, body) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(
+        "Response after triggering all crons - " + JSON.stringify(body)
+      );
+    }
+  );
 });
 
 // Swagger endpoint - /doc

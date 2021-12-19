@@ -183,6 +183,8 @@ router.post("/filter", (req, resp) => {
           "$states": [],
           "$stages": [],
           "$badges": [],
+          "$fromDate": "",
+          "$toDate": ""
         }
     } */
   console.log("Filter request - " + JSON.stringify(req.body));
@@ -236,6 +238,8 @@ router.post("/filter", (req, resp) => {
         }
       }
     }
+    allItems.fromDate = req.body.fromDate;
+    allItems.toDate = req.body.toDate;
 
     resp.send(allItems);
   });
