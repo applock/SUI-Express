@@ -11,30 +11,46 @@ var blankFilterQuery = fs.readFileSync(
   "./static/blankFilterQuery.json",
   "utf8"
 );
+blankFilterQuery = JSON.parse(blankFilterQuery);
 
-router.get("/stateStatistics/:from/:to", (req, resp) => {
-  // #swagger.tags = ['Data Tables']
-  // #swagger.path = '/data/stateStatistics/{from}/{to}'
-  // #swagger.description = 'State-wise data table'
-  var output = {};
-  output.from = req.params.from;
-  output.to = req.params.to;
+router.get(
+  "/statistics/:geographicalEntity/:entityId/:from/:to",
+  (req, resp) => {
+    // #swagger.tags = ['Data Tables']
+    // #swagger.path = '/data/statistics/{geographicalEntity}/{entityId}/{from}/{to}'
+    // #swagger.exmaple = '/data/statistics/country/5f02e38c6f3de87babe20cd2/{from}/{to}'
+    // #swagger.description = 'State-wise data table'
+    var output = {};
+    output.from = req.params.from;
+    output.to = req.params.to;
 
-  request(process.env.STATES_URL, { json: true }, (err, res, body) => {
-    if (err) {
-      return console.log(err);
+    var result = [];
+    if (req.params.geographicalEntity == "country") {
+      // Country - India level
+      var stateWiseCount = fs.readFileSync(
+        "./static/stateWiseCount.json",
+        "utf8"
+      );
+      stateWiseCount = JSON.parse(stateWiseCount);
+
+      request(process.env.STATES_URL, { json: true }, (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        var apiData = res.body.data;
+        for (var state in apiData) {
+          apiData[state].statistics = stateWiseCount[apiData[state].id];
+        }
+        output.data = apiData;
+        resp.send(output);
+      });
+    } else if (req.params.geographicalEntity == "state") {
+      // State level
+    } else {
+      // City/District level
     }
-    console.log(body);
-    console.log(res);
-
-    var apiData = res.body.data;
-    for (var state in apiData) {
-      apiData[state].stateStatistics = stateStatistics;
-    }
-    output.data = apiData;
-    resp.send(output);
-  });
-});
+  }
+);
 
 router.get("/stateStatisticsLive/:from/:to", (req, resp) => {
   // #swagger.tags = ['Data Tables']

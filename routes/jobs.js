@@ -38,6 +38,10 @@ var stateCountJson = {
   DpiitCertified: 0,
   TaxExempted: 0,
   WomenLed: 0,
+  FFS: 0,
+  PatentStartup: 0,
+  SeedFundStartup: 0,
+  ShowcasedStartups: 0,
 };
 
 router.get("/triggerCron", (req, resp) => {

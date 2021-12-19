@@ -16,7 +16,11 @@
         "Accelerator": 14,
         "DpiitCertified": 3316,
         "TaxExempted": 22,
-        "WomenLed": 1541
+        "WomenLed": 1541,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "maxStartups": 31373,
     "maxMentors": 162,
@@ -42,7 +46,11 @@
         "Accelerator": 0,
         "DpiitCertified": 560,
         "TaxExempted": 1,
-        "WomenLed": 257
+        "WomenLed": 257,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb22": {
         "Exploring": 0,
@@ -61,7 +69,11 @@
         "Accelerator": 0,
         "DpiitCertified": 471,
         "TaxExempted": 1,
-        "WomenLed": 194
+        "WomenLed": 194,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb20": {
         "Exploring": 0,
@@ -80,7 +92,11 @@
         "Accelerator": 1,
         "DpiitCertified": 961,
         "TaxExempted": 2,
-        "WomenLed": 436
+        "WomenLed": 436,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb2f": {
         "Exploring": 0,
@@ -99,7 +115,11 @@
         "Accelerator": 0,
         "DpiitCertified": 1,
         "TaxExempted": 0,
-        "WomenLed": 1
+        "WomenLed": 1,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb24": {
         "Exploring": 0,
@@ -118,7 +138,11 @@
         "Accelerator": 0,
         "DpiitCertified": 220,
         "TaxExempted": 1,
-        "WomenLed": 99
+        "WomenLed": 99,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb1f": {
         "Exploring": 0,
@@ -137,7 +161,11 @@
         "Accelerator": 0,
         "DpiitCertified": 29,
         "TaxExempted": 0,
-        "WomenLed": 13
+        "WomenLed": 13,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3d": {
         "Exploring": 0,
@@ -156,7 +184,11 @@
         "Accelerator": 0,
         "DpiitCertified": 45,
         "TaxExempted": 0,
-        "WomenLed": 18
+        "WomenLed": 18,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb2a": {
         "Exploring": 0,
@@ -175,7 +207,11 @@
         "Accelerator": 0,
         "DpiitCertified": 148,
         "TaxExempted": 1,
-        "WomenLed": 52
+        "WomenLed": 52,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb42": {
         "Exploring": 0,
@@ -194,7 +230,11 @@
         "Accelerator": 0,
         "DpiitCertified": 24,
         "TaxExempted": 0,
-        "WomenLed": 9
+        "WomenLed": 9,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb2b": {
         "Exploring": 0,
@@ -213,7 +253,11 @@
         "Accelerator": 0,
         "DpiitCertified": 290,
         "TaxExempted": 1,
-        "WomenLed": 86
+        "WomenLed": 86,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb28": {
         "Exploring": 0,
@@ -232,7 +276,11 @@
         "Accelerator": 4,
         "DpiitCertified": 3909,
         "TaxExempted": 31,
-        "WomenLed": 1748
+        "WomenLed": 1748,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb2d": {
         "Exploring": 0,
@@ -251,7 +299,11 @@
         "Accelerator": 37,
         "DpiitCertified": 7666,
         "TaxExempted": 61,
-        "WomenLed": 3366
+        "WomenLed": 3366,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb32": {
         "Exploring": 0,
@@ -270,7 +322,11 @@
         "Accelerator": 0,
         "DpiitCertified": 63,
         "TaxExempted": 0,
-        "WomenLed": 29
+        "WomenLed": 29,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb25": {
         "Exploring": 0,
@@ -289,7 +345,11 @@
         "Accelerator": 0,
         "DpiitCertified": 645,
         "TaxExempted": 1,
-        "WomenLed": 267
+        "WomenLed": 267,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb21": {
         "Exploring": 0,
@@ -308,7 +368,11 @@
         "Accelerator": 0,
         "DpiitCertified": 8,
         "TaxExempted": 0,
-        "WomenLed": 3
+        "WomenLed": 3,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb41": {
         "Exploring": 0,
@@ -327,7 +391,11 @@
         "Accelerator": 0,
         "DpiitCertified": 1,
         "TaxExempted": 0,
-        "WomenLed": 1
+        "WomenLed": 1,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb36": {
         "Exploring": 0,
@@ -346,7 +414,11 @@
         "Accelerator": 0,
         "DpiitCertified": 1135,
         "TaxExempted": 4,
-        "WomenLed": 523
+        "WomenLed": 523,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb37": {
         "Exploring": 0,
@@ -365,7 +437,11 @@
         "Accelerator": 0,
         "DpiitCertified": 60,
         "TaxExempted": 0,
-        "WomenLed": 25
+        "WomenLed": 25,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb34": {
         "Exploring": 0,
@@ -384,7 +460,11 @@
         "Accelerator": 0,
         "DpiitCertified": 6,
         "TaxExempted": 0,
-        "WomenLed": 2
+        "WomenLed": 2,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb27": {
         "Exploring": 0,
@@ -403,7 +483,11 @@
         "Accelerator": 1,
         "DpiitCertified": 244,
         "TaxExempted": 2,
-        "WomenLed": 121
+        "WomenLed": 121,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3a": {
         "Exploring": 0,
@@ -422,7 +506,11 @@
         "Accelerator": 0,
         "DpiitCertified": 7,
         "TaxExempted": 0,
-        "WomenLed": 1
+        "WomenLed": 1,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb40": {
         "Exploring": 0,
@@ -441,7 +529,11 @@
         "Accelerator": 3,
         "DpiitCertified": 1828,
         "TaxExempted": 9,
-        "WomenLed": 902
+        "WomenLed": 902,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb23": {
         "Exploring": 0,
@@ -460,7 +552,11 @@
         "Accelerator": 0,
         "DpiitCertified": 991,
         "TaxExempted": 0,
-        "WomenLed": 425
+        "WomenLed": 425,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb35": {
         "Exploring": 0,
@@ -479,7 +575,11 @@
         "Accelerator": 0,
         "DpiitCertified": 19,
         "TaxExempted": 0,
-        "WomenLed": 11
+        "WomenLed": 11,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb31": {
         "Exploring": 0,
@@ -498,7 +598,11 @@
         "Accelerator": 33,
         "DpiitCertified": 11236,
         "TaxExempted": 95,
-        "WomenLed": 5416
+        "WomenLed": 5416,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb33": {
         "Exploring": 0,
@@ -517,7 +621,11 @@
         "Accelerator": 0,
         "DpiitCertified": 16,
         "TaxExempted": 0,
-        "WomenLed": 9
+        "WomenLed": 9,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3c": {
         "Exploring": 0,
@@ -536,7 +644,11 @@
         "Accelerator": 15,
         "DpiitCertified": 3206,
         "TaxExempted": 23,
-        "WomenLed": 1525
+        "WomenLed": 1525,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3e": {
         "Exploring": 0,
@@ -555,7 +667,11 @@
         "Accelerator": 0,
         "DpiitCertified": 473,
         "TaxExempted": 2,
-        "WomenLed": 220
+        "WomenLed": 220,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb2e": {
         "Exploring": 0,
@@ -574,7 +690,11 @@
         "Accelerator": 2,
         "DpiitCertified": 2779,
         "TaxExempted": 18,
-        "WomenLed": 1043
+        "WomenLed": 1043,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb26": {
         "Exploring": 0,
@@ -593,7 +713,11 @@
         "Accelerator": 32,
         "DpiitCertified": 7249,
         "TaxExempted": 53,
-        "WomenLed": 3403
+        "WomenLed": 3403,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3b": {
         "Exploring": 0,
@@ -612,7 +736,11 @@
         "Accelerator": 3,
         "DpiitCertified": 3209,
         "TaxExempted": 27,
-        "WomenLed": 1564
+        "WomenLed": 1564,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb39": {
         "Exploring": 0,
@@ -631,7 +759,11 @@
         "Accelerator": 0,
         "DpiitCertified": 1841,
         "TaxExempted": 9,
-        "WomenLed": 845
+        "WomenLed": 845,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb30": {
         "Exploring": 0,
@@ -650,7 +782,11 @@
         "Accelerator": 0,
         "DpiitCertified": 1699,
         "TaxExempted": 8,
-        "WomenLed": 721
+        "WomenLed": 721,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb38": {
         "Exploring": 0,
@@ -669,7 +805,11 @@
         "Accelerator": 0,
         "DpiitCertified": 573,
         "TaxExempted": 2,
-        "WomenLed": 283
+        "WomenLed": 283,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     },
     "5f48ce592a9bb065cdf9fb3f": {
         "Exploring": 0,
@@ -688,6 +828,10 @@
         "Accelerator": 10,
         "DpiitCertified": 5375,
         "TaxExempted": 19,
-        "WomenLed": 2634
+        "WomenLed": 2634,
+        "FFS": 0,
+        "PatentStartup": 0,
+        "SeedFundStartup": 0,
+        "ShowcasedStartups": 0
     }
 }
