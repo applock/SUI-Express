@@ -7,7 +7,9 @@ var _ = require("lodash/core");
 
 var stateWiseCount = fs.readFileSync("./static/stateWiseCount.json", "utf8");
 stateWiseCount = JSON.parse(stateWiseCount);
-var stateMap = fs.readFileSync("./static/stateIdNameMap.json", "utf8");
+var stateIdNameMap = fs.readFileSync("./static/stateIdNameMap.json", "utf8");
+stateIdNameMap = JSON.parse(stateIdNameMap);
+var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
 stateMap = JSON.parse(stateMap);
 var womenLedStartups = fs.readFileSync(
   "./static/womenLedStartups.json",
@@ -100,6 +102,45 @@ router.get("/prepareIndiaLevelCounts", (req, resp) => {
   prepareIndiaLevelCounts();
   resp.json("DONE");
 });
+
+router.get("/prepareStateCityMap", (req, resp) => {
+  // #swagger.tags = ['Jobs']
+  // #swagger.path = '/jobs/prepareStateCityMap'
+  // #swagger.description = 'DO NOT USE - Manual Job to prepare State to City Map'
+
+  prepareStateCityMap();
+  resp.json("DONE");
+});
+
+async function prepareStateCityMap() {
+  // Pre-process State to City Map
+  var stateArr = Object.keys(stateMap);
+  var stateCityMap = fs.readFileSync("./static/stateCityMap.json", "utf8");
+  stateCityMap = JSON.parse(stateCityMap);
+
+  for (let i = 0, l = stateArr.length; i < l; i++) {
+    request(
+      process.env.DISTRICT_URL + stateArr[i],
+      { json: true },
+      (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        stateCityMap[stateArr[i]] = res.body.data;
+        fs.writeFileSync(
+          "./static/stateCityMap.json",
+          JSON.stringify(stateCityMap, null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("Data written successfully!");
+          }
+        );
+      }
+    );
+  }
+}
 
 async function populateStateIdNameMap() {
   // Pre-process State List
@@ -278,9 +319,9 @@ async function prepareStateWiseCounts() {
     var maxInvestors = 0;
     var maxGovernmentBodys = 0;
 
-    for (let i = 0, l = stateMap.length; i < l; i++) {
+    for (let i = 0, l = stateIdNameMap.length; i < l; i++) {
       var query = JSON.parse(JSON.stringify(blankFilterQuery));
-      let currentState = stateMap[i];
+      let currentState = stateIdNameMap[i];
       console.log(
         "prepareStateWiseCounts :: Processing for " + currentState.name
       );
