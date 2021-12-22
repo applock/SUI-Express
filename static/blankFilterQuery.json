@@ -18,5 +18,8 @@
     ]
   },
   "dpiitRecogniseUser": false,
-  "internationalUser": false
+  "is80iacExempted": false,
+  "internationalUser": false,
+  "registrationFrom": "",
+  "registrationTo": ""
 }

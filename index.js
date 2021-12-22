@@ -60,7 +60,6 @@ const { request } = require("http");
 app.use("/jobs", jobsRouter);
 
 // Starting the server
-/*
 https.createServer(options, app).listen(443, () => {
   console.log("listening on port 443");
   request(
@@ -76,11 +75,12 @@ https.createServer(options, app).listen(443, () => {
     }
   );
 });
-*/
 
+/*
 app.listen(80, () => {
   console.log("HTTP server running on port 80");
 });
+*/
 
 // Swagger endpoint - /doc
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));

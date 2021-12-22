@@ -184,8 +184,8 @@ router.post("/filter", (req, resp) => {
           "$stages": [],
           "$badges": [],
           "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
-          "$fromDate": "",
-          "$toDate": ""
+          "$registrationFrom": "",
+          "$registrationTo": ""
         }
     } */
   console.log("Filter request - " + JSON.stringify(req.body));
@@ -196,6 +196,8 @@ router.post("/filter", (req, resp) => {
   query.stages = req.body.stages;
   query.badges = req.body.badges;
   query.roles = req.body.roles;
+  query.registrationFrom = req.body.registrationFrom;
+  query.registrationTo = req.body.registrationTo;
 
   var options = {
     method: "POST",
@@ -251,6 +253,18 @@ router.post("/filter/defaults", (req, resp) => {
   // #swagger.tags = ['Filter']
   // #swagger.path = '/startup/filter/defaults'
   // #swagger.description = 'Get all filterable items'
+  /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$registrationFrom": "",
+          "$registrationTo": ""
+        }
+    } */
+  console.log("Filter request - " + JSON.stringify(req.body));
+  var query = JSON.parse(JSON.stringify(blankFilterQuery));
+  query.registrationFrom = req.body.registrationFrom;
+  query.registrationTo = req.body.registrationTo;
 
   var options = {
     method: "POST",
