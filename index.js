@@ -13,8 +13,9 @@ const swaggerFile = require("./swagger_output.json");
 const cronJobs = require("./routes/jobs");
 
 var options = {
-  key: fs.readFileSync("./certs/ssl-key.pem"),
-  cert: fs.readFileSync("./certs/ssl-cert.pem"),
+  key: fs.readFileSync("/etc/letsencrypt/live/api.startupindiaonline.com/privkey.pem", "utf8"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/api.startupindiaonline.com/cert.pem", "utf8"),
+  ca: fs.readFileSync("/etc/letsencrypt/live/api.startupindiaonline.com/chain.pem", "utf8"),
 };
 
 // defining the Express app
@@ -81,7 +82,6 @@ app.listen(80, () => {
   console.log("HTTP server running on port 80");
 });
 */
-
 // Swagger endpoint - /doc
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
