@@ -42,11 +42,11 @@ router.get("/searchDateRanges", (req, resp) => {
   console.log(nineMonthsAgo);
 
   var dates = [];
-  dates.push({ text: "Last week", from: today, to: oneWeekAgo });
-  dates.push({ text: "Last month", from: today, to: oneMonthAgo });
-  dates.push({ text: "Last 3 months", from: today, to: threeMonthsAgo });
-  dates.push({ text: "Last 6 months", from: today, to: sixMonthsAgo });
-  dates.push({ text: "Last 9 months", from: today, to: nineMonthsAgo });
+  dates.push({ text: "Last week", to: today, from: oneWeekAgo });
+  dates.push({ text: "Last month", to: today, from: oneMonthAgo });
+  dates.push({ text: "Last 3 months", to: today, from: threeMonthsAgo });
+  dates.push({ text: "Last 6 months", to: today, from: sixMonthsAgo });
+  dates.push({ text: "Last 9 months", to: today, from: nineMonthsAgo });
   resp.send(dates);
 });
 
