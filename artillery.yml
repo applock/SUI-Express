@@ -1,0 +1,21 @@
+config:
+  #  http:
+  #    extendedMetrics: true
+  target: "http://localhost"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 15
+      arrivalRate: 200
+scenarios:
+  - flow:
+      - post:
+          url: "/startup/v3/filter"
+          headers:
+            Content-Type: "application/json"
+            accept: "application/json"
+          json:
+            industries: []
+            sectors: []
+            registrationFrom: ""
+            registrationTo: ""

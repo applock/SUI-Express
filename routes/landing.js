@@ -469,6 +469,110 @@ router.post("/filter/v2/defaults", (req, resp) => {
   });
 });
 
+router.post("/v3/filter", async (req, resp) => {
+  // #swagger.tags = ['Filter']
+  // #swagger.path = '/startup/v3/filter'
+  // #swagger.description = 'Get filtered multi-level startup details'
+  /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$industries": [],
+          "$sectors": [],
+          "$stages": [],
+          "$badges": [],
+          "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
+          "$registrationFrom": "",
+          "$registrationTo": ""
+        }
+    } */
+  console.log("Filter request - " + JSON.stringify(req.body));
+  var query = JSON.parse(JSON.stringify(blankFilterQuery));
+  query.industries = req.body.industries;
+  query.sectors = req.body.sectors;
+  query.states = req.body.states;
+  query.stages = req.body.stages;
+  query.badges = req.body.badges;
+  query.roles = req.body.roles;
+  query.registrationFrom = req.body.registrationFrom;
+  query.registrationTo = req.body.registrationTo;
+
+  // DB CALL
+  try {
+    await mongodb
+      .getDb()
+      .collection("Placeholder")
+      .find({})
+      .toArray((err, result) => {
+        if (err) throw err;
+        console.log("* Output rows - " + JSON.stringify(result.length));
+        //console.log("* Output - " + JSON.stringify(result));
+        //data.Incubator = result.length;
+        resp.send(result);
+      });
+    /*
+    mongodb
+      .getDb()
+      .collection("users")
+      .aggregate([
+        {
+          $match: {
+            createdOn: {
+              $lt: new Date(req.params.from),
+              $gt: new Date(req.params.to),
+            },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              role: "$publish.role",
+              stateid: "$publish.location.state.$id",
+            },
+            count: { $count: {} },
+          },
+        },
+        {
+          $group: {
+            _id: "$_id.stateid",
+            roles: {
+              $push: { role: "$_id.role", count: "$count" },
+            },
+          },
+        },
+      ])
+      .toArray((err, result) => {
+        if (err) throw err;
+        console.log("Output rows - " + JSON.stringify(result.length));
+        console.log("Output - " + JSON.stringify(result));
+        //data.Incubator = result.length;
+      });*/
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
+
+  // OUTPUT
+  /*
+  var output = {};
+
+  output.fromDate = req.body.fromDate;
+  output.toDate = req.body.toDate;
+  output.entity = allItems;
+
+  output.states = allStatesArr.map(transformData);
+  output.sectors = allSectorsArr.map(transformData);
+  output.industries = allIndustriesArr.map(transformData);
+  output.roles = allRoleArr.map(transformData);
+  output.counts = allRoleArr.map(transformCount);
+  output.stages = allStagesArr.map(transformData);
+  output.badges = allBadgesArr.map(transformData);
+  output.dpiitStatus = allDpiitCertifiedsArr.map(transformData);
+
+  //resp.send(allItems);
+  resp.send(output);
+  */
+});
+
 router.get("/stages/:state", (req, resp) => {
   // #swagger.tags = ['Business']
   // #swagger.path = '/startup/stages/{state}'
