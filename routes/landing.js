@@ -299,9 +299,9 @@ router.post("/filter/defaults", (req, resp) => {
   });
 });
 
-router.post("/v2/filter", (req, resp) => {
+router.post("/v2_workingBackup/filter", (req, resp) => {
   // #swagger.tags = ['Filter']
-  // #swagger.path = '/startup/v2/filter'
+  // #swagger.path = '/startup/v2_workingBackup/filter'
   // #swagger.description = 'Get filtered multi-level startup details'
   /*  #swagger.parameters['obj'] = {
         in: 'body',
@@ -547,6 +547,144 @@ router.post("/v3/filter", async (req, resp) => {
         console.log("Output - " + JSON.stringify(result));
         //data.Incubator = result.length;
       });*/
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
+
+  // OUTPUT
+  /*
+  var output = {};
+
+  output.fromDate = req.body.fromDate;
+  output.toDate = req.body.toDate;
+  output.entity = allItems;
+
+  output.states = allStatesArr.map(transformData);
+  output.sectors = allSectorsArr.map(transformData);
+  output.industries = allIndustriesArr.map(transformData);
+  output.roles = allRoleArr.map(transformData);
+  output.counts = allRoleArr.map(transformCount);
+  output.stages = allStagesArr.map(transformData);
+  output.badges = allBadgesArr.map(transformData);
+  output.dpiitStatus = allDpiitCertifiedsArr.map(transformData);
+
+  //resp.send(allItems);
+  resp.send(output);
+  */
+});
+
+router.post("/v2/filter", async (req, resp) => {
+  // #swagger.tags = ['Filter']
+  // #swagger.path = '/startup/v2/filter'
+  // #swagger.description = 'Get filtered multi-level startup details'
+  /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$industries": [],
+          "$sectors": [],
+          "$stages": [],
+          "$badges": [],
+          "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
+          "$registrationFrom": "",
+          "$registrationTo": ""
+        }
+    } */
+  console.log("Filter request - " + JSON.stringify(req.body));
+  var query = JSON.parse(JSON.stringify(blankFilterQuery));
+  query.industries = req.body.industries;
+  query.sectors = req.body.sectors;
+  query.states = req.body.states;
+  query.stages = req.body.stages;
+  query.badges = req.body.badges;
+  query.roles = req.body.roles;
+  query.registrationFrom = req.body.registrationFrom;
+  query.registrationTo = req.body.registrationTo;
+
+  // DB CALL
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      //.aggregate([{ "$group": { _id: { State: "$stateName", Role: "$role" }, count: { $sum: 1 } } }, { $sort: { "_id.stateName": 1 } }])
+      .aggregate([{ "$group": { _id: { Role: "$role" }, count: { $sum: 1 } } }])
+      .toArray((err, result) => {
+        if (err) throw err;
+        console.log("* Output - " + JSON.stringify(result));
+
+        var options = {
+          method: "POST",
+          url: process.env.BLANK_FILTER_URL,
+          headers: {
+            authority: "api.startupindia.gov.in",
+            "sec-ch-ua":
+              '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+            accept: "application/json",
+            lang: "",
+            "sec-ch-ua-mobile": "?0",
+            "user-agent":
+              "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "sec-ch-ua-platform": '"Linux"',
+            "content-type": "application/json",
+            origin: "https://www.startupindia.gov.in",
+            "sec-fetch-site": "same-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            referer: "https://www.startupindia.gov.in/",
+            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
+          },
+          body: JSON.stringify(query),
+        };
+
+        request(options, (err, res, body) => {
+          if (err) {
+            return console.log(err);
+          }
+          //console.log(body);
+          var output = {};
+          var allItems = JSON.parse(body).content;
+
+          // add available logos
+          if (allItems) {
+            const l = allItems.length;
+            const lu = process.env.PROFILE_LOGO_URL;
+            for (let i = 0; i < l; i++) {
+              let itm = allItems[i];
+              if (itm.pic) {
+                itm.logo = lu + itm.role + "?fileName=" + itm.pic;
+                allItems[i] = itm;
+              }
+            }
+          }
+          output.fromDate = req.body.fromDate;
+          output.toDate = req.body.toDate;
+          output.entity = allItems;
+
+          var allFilterableItems = JSON.parse(body).allFacets;
+          var allIndustriesArr = allFilterableItems[0].content;
+          var allSectorsArr = allFilterableItems[1].content;
+          var allStatesArr = allFilterableItems[3].content;
+          let allRoleArr = allFilterableItems[5].content;
+          var allStagesArr = allFilterableItems[6].content;
+          var allBadgesArr = allFilterableItems[7].content;
+
+          var allDpiitCertifiedsArr = allFilterableItems[8].content;
+
+          output.states = allStatesArr.map(transformData);
+          output.sectors = allSectorsArr.map(transformData);
+          output.industries = allIndustriesArr.map(transformData);
+          output.roles = allRoleArr.map(transformData);
+          // output.counts = allRoleArr.map(transformCount);
+          output.counts = result.map(transformCount_Mongo);
+
+          output.stages = allStagesArr.map(transformData);
+          output.badges = allBadgesArr.map(transformData);
+          output.dpiitStatus = allDpiitCertifiedsArr.map(transformData);
+
+          //resp.send(allItems);
+          resp.send(output);
+        });
+      });
   } catch (err) {
     resp.status(500).json({ message: err.message });
   }
@@ -823,6 +961,13 @@ function transformCount(data) {
   var o = {};
   o.id = data.value;
   o.value = data.valueCount;
+  return o;
+}
+
+function transformCount_Mongo(data) {
+  var o = {};
+  o.id = data._id.Role;
+  o.value = data.count;
   return o;
 }
 
