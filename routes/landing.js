@@ -15,6 +15,18 @@ var blankFilterQuery = fs.readFileSync(
   "utf8"
 );
 blankFilterQuery = JSON.parse(blankFilterQuery);
+const startupTypeKeywordMap = {
+  "0": "Startup",
+  "1": "dpiitCertified",
+  "2": "showcased",
+  "3": "seedFunded",
+  "4": "fundOfFunds",
+  "5": "seedFunded",
+  "6": "patented",
+  "7": "womenOwned",
+  "8": "leadingSector",
+  "9": "declaredRewards"
+}
 
 // Get by date range
 router.get("/count/:from/:to", (req, res) => {
@@ -768,12 +780,41 @@ router.get("/recognisedcount/all", (req, resp) => {
   );
 });
 
-router.get("/startupCount/:type", (req, resp) => {
+router.get("/startupCount/:type", async (req, resp) => {
   // #swagger.tags = ['Counts']
   // #swagger.path = '/startup/startupCount/{type}'
   // #swagger.description = 'Count for a given startup type'
 
-  resp.json(1234);
+  let searchObj = {};
+  let type = req.params.type;
+  switch (type) {
+    case '0':
+      searchObj.role = `${startupTypeKeywordMap[type]}`;
+      break;
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      searchObj[startupTypeKeywordMap[type]] = true;
+      break;
+  }
+
+  try {
+    let count = await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      //.count(`${searchQuery}`))
+      .count(searchObj);
+    resp.status(200).send(count + '');
+
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
 });
 
 router.get("/startupCount/:type/:from/:to", (req, resp) => {
