@@ -817,12 +817,63 @@ router.get("/startupCount/:type", async (req, resp) => {
   }
 });
 
-router.get("/startupCount/:type/:from/:to", (req, resp) => {
+router.get("/startupCount/:geoType/:geoIdType/:geoIdValue/:entityType/:from/:to", async (req, resp) => {
   // #swagger.tags = ['Counts']
-  // #swagger.path = '/startup/startupCount/{type}/{from}/{to}'
-  // #swagger.description = 'Count for a given startup type with date range'
+  // #swagger.path = '/startup/startupCount/{geoType}/{geoIdType}/{geoIdValue}/{entityType}/{from}/{to}'
+  // #swagger.description = 'Count for a given startup type at given geography details with date range'
 
-  resp.json(1234);
+  if (req.params.geoType != 'district' && req.params.geoType != 'state') {
+    resp.status(500).json({ message: 'Invalid Geography Type' });
+  }
+  if (req.params.geoIdType != 'id' && req.params.geoIdType != 'name') {
+    resp.status(500).json({ message: 'Invalid Geography Identifier' });
+  }
+
+  let searchObj = {};
+
+  if (req.params.geoType == 'state') {
+    if (req.params.geoIdType == 'id') {
+      searchObj.stateId = req.params.geoIdValue;
+    } else {
+      searchObj.stateName = req.params.geoIdValue;
+    }
+  } else {
+    // district
+    if (req.params.geoIdType == 'id') {
+      searchObj.districtId = req.params.geoIdValue;
+    } else {
+      searchObj.districtName = req.params.geoIdValue;
+    }
+  }
+  let type = req.params.entityType;
+  switch (type) {
+    case '0':
+      searchObj.role = `${startupTypeKeywordMap[type]}`;
+      break;
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      searchObj[startupTypeKeywordMap[type]] = true;
+      break;
+  }
+
+  try {
+    let count = await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      //.count(`${searchQuery}`))
+      .count(searchObj);
+    resp.status(200).send(count + '');
+
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
 });
 
 router.get("/dpiit/states", (req, resp) => {
