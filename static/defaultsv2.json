@@ -1,0 +1,1507 @@
+{
+    "states": [
+      {
+        "id": "5f48ce592a9bb065cdf9fb31",
+        "value": "Maharashtra"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb26",
+        "value": "Delhi"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3f",
+        "value": "Uttar Pradesh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2d",
+        "value": "Karnataka"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb28",
+        "value": "Gujarat"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3b",
+        "value": "Tamil Nadu"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3c",
+        "value": "Telangana"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb29",
+        "value": "Haryana"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb40",
+        "value": "West Bengal"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb30",
+        "value": "Madhya Pradesh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb39",
+        "value": "Rajasthan"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2e",
+        "value": "Kerala"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb23",
+        "value": "Bihar"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb20",
+        "value": "Andhra Pradesh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb36",
+        "value": "Odisha"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb38",
+        "value": "Punjab"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2c",
+        "value": "Jharkhand"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb22",
+        "value": "Assam"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb25",
+        "value": "Chhattisgarh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3e",
+        "value": "Uttarakhand"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2b",
+        "value": "Jammu and Kashmir"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb24",
+        "value": "Chandigarh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2a",
+        "value": "Himachal Pradesh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb27",
+        "value": "Goa"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb32",
+        "value": "Manipur"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb37",
+        "value": "Puducherry"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3d",
+        "value": "Tripura"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb1f",
+        "value": "Andaman and Nicobar Islands"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb42",
+        "value": "Dadra and Nagar Haveli and Daman and Diu"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb33",
+        "value": "Meghalaya"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb35",
+        "value": "Nagaland"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb21",
+        "value": "Arunachal Pradesh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb3a",
+        "value": "Sikkim"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb34",
+        "value": "Mizoram"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb41",
+        "value": "Ladakh"
+      },
+      {
+        "id": "5f48ce592a9bb065cdf9fb2f",
+        "value": "Lakshadweep"
+      }
+    ],
+    "sectors": [
+      {
+        "id": "5f89b9b361334048016290f0",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17de",
+        "value": "Food Processing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f3",
+        "value": "IT Consulting"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b3",
+        "value": "Skill Development"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f8",
+        "value": "Application Development"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e5",
+        "value": "Health & Wellness"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180e",
+        "value": "Business Support Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f7",
+        "value": "Product Development"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1796",
+        "value": "Agri-Tech"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b2",
+        "value": "Education Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ac",
+        "value": "Construction & Engineering"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b1",
+        "value": "E-learning"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f6",
+        "value": "Web Development"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e8",
+        "value": "Healthcare Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1800",
+        "value": "Sales"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b9",
+        "value": "Renewable Solar Energy"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1813",
+        "value": "Retail Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e4",
+        "value": "Medical Devices Biomedical"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1798",
+        "value": "Machine Learning"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e2",
+        "value": "Electronics"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e6",
+        "value": "Pharmaceutical"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17fa",
+        "value": "IT Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17eb",
+        "value": "Recruitment Jobs"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47ca",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1829",
+        "value": "Apparel & Accessories"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1795",
+        "value": "Organic Agriculture"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17be",
+        "value": "Clean Tech"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47cf",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17bc",
+        "value": "Renewable Energy Solutions"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d3",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17dd",
+        "value": "Restaurants"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ea",
+        "value": "Healthcare Technology"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47e3",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183d",
+        "value": "Manufacturing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183c",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17fe",
+        "value": "Digital Marketing (SEO Automation)"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b4",
+        "value": "Coaching"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d1",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c2",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1797",
+        "value": "Food Processing"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47df",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1837",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17bd",
+        "value": "Waste Management"
+      },
+      {
+        "id": "5f844ba45874226324bd4632",
+        "value": "Food Technology/Food Delivery"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17cb",
+        "value": "Apparel"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e9",
+        "value": "Healthcare IT"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17bf",
+        "value": "Cloud"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47bc",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f1",
+        "value": "Manufacturing & Warehouse"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182c",
+        "value": "Freight & Logistics Services"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47ce",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f0",
+        "value": "Smart Home"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b8",
+        "value": "Oil & Gas Transportation Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1831",
+        "value": "Experiential Travel"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47e1",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a1",
+        "value": "Auto, Truck & Motorcycle Parts"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180f",
+        "value": "Professional Information Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b0",
+        "value": "Industrial Design"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47bd",
+        "value": "Electric Vehicles"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1836",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1814",
+        "value": "Social Commerce"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1791",
+        "value": "AdTech"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e7",
+        "value": "Biotechnology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a9",
+        "value": "Network Technology Solutions"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d4",
+        "value": "Personal Finance"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1838",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d9",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17fd",
+        "value": "Branding"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d7",
+        "value": "Business Finance"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47cc",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d6",
+        "value": "Advisory"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c0",
+        "value": "ERP"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1810",
+        "value": "Business Support Supplies"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b9",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180a",
+        "value": "Entertainment"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c5",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17aa",
+        "value": "New-age Construction Technologies"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c8",
+        "value": "Event Management"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b7",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1811",
+        "value": "Housing"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47cd",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d1",
+        "value": "Payment Platforms"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e0",
+        "value": "Embedded"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17dc",
+        "value": "Accounting"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179a",
+        "value": "Business Intelligence"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1799",
+        "value": "NLP"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17fb",
+        "value": "Project Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ca",
+        "value": "Lifestyle"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a8",
+        "value": "Integrated communication services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181e",
+        "value": "Home Security solutions"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ab",
+        "value": "Construction Materials"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182d",
+        "value": "Passenger Transportation Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1793",
+        "value": "Drones"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1794",
+        "value": "Dairy Farming"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1806",
+        "value": "Digital Media"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c9",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181a",
+        "value": "Robotics Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1822",
+        "value": "Home Care"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1823",
+        "value": "NGO"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1815",
+        "value": "Comparison Shopping"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47cb",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47de",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179c",
+        "value": "Data Science"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180d",
+        "value": "Employment Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a0",
+        "value": "Auto & Truck Manufacturers"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d4",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47dd",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1833",
+        "value": "Hospitality"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c6",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a5",
+        "value": "Specialty Chemicals"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c1",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f4",
+        "value": "BPO"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f2",
+        "value": "Wearables"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181d",
+        "value": "Cyber Security"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47e5",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1792",
+        "value": "Online Classified"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d7",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d2",
+        "value": "Trading"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ad",
+        "value": "Construction Supplies & Fixtures"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1828",
+        "value": "Non- Leather Textiles Goods"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181b",
+        "value": "Robotics Application"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180b",
+        "value": "Environmental Services & Equipment"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47db",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183b",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47be",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17cf",
+        "value": "Mobile wallets  Payments"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47bf",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1801",
+        "value": "Market Research"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c6",
+        "value": "Enterprise Mobility"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ee",
+        "value": "Talent Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d5",
+        "value": "Insurance"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179b",
+        "value": "Big Data"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17da",
+        "value": "Microfinance"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1826",
+        "value": "Sports Promotion and Networking"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d9",
+        "value": "Bitcoin and Blockchain"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a7",
+        "value": "Wireless"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c4",
+        "value": "Collaboration"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c4",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d6",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1802",
+        "value": "Digital Media News"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d0",
+        "value": "Point of Sales"
+      },
+      {
+        "id": "5f8434395874226324bd45fe",
+        "value": "Horticulture"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d2",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47da",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c9",
+        "value": "Fashion Technology"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c0",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1834",
+        "value": "Facility Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ce",
+        "value": "Crowdfunding"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d3",
+        "value": "Billing and Invoicing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17df",
+        "value": "Microbrewery"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17d8",
+        "value": "P2P Lending"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182f",
+        "value": "Holiday Rentals"
+      },
+      {
+        "id": "5f8434535874226324bd4600",
+        "value": "Animal Husbandry"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d8",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181c",
+        "value": "Personal Security"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e3",
+        "value": "3d printing"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47ba",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1817",
+        "value": "Home Improvement Products & Services Retailers"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1803",
+        "value": "Digital Media Video"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17cd",
+        "value": "Jewellery"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c5",
+        "value": "Location Based"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b8",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1832",
+        "value": "Ticketing"
+      },
+      {
+        "id": "5f6309cd2643793f541c77af",
+        "value": "Manufacture of Electrical Equipment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183a",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1824",
+        "value": "Corporate Social Responsibility"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17db",
+        "value": "Foreign Exchange"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ba",
+        "value": "Renewable Wind Energy"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c3",
+        "value": "Customer Support"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f5",
+        "value": "KPO"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17af",
+        "value": "Web Design"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c1",
+        "value": "CXM"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47dc",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ff",
+        "value": "Discovery"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1805",
+        "value": "Digital Media Publishing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17f9",
+        "value": "Testing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182e",
+        "value": "Transport Infrastructure"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17e1",
+        "value": "Semiconductor"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17fc",
+        "value": "Loyalty"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d0",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c2",
+        "value": "SCM"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ae",
+        "value": "Homebuilding"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ed",
+        "value": "Skills Assessment"
+      },
+      {
+        "id": "5f8434465874226324bd45ff",
+        "value": "Fisheries"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ec",
+        "value": "Training"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179d",
+        "value": "Handicraft"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1830",
+        "value": "Hotel"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1835",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa180c",
+        "value": "Commercial Printing Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179e",
+        "value": "Art"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1812",
+        "value": "Coworking Spaces"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1809",
+        "value": "Social Media"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1807",
+        "value": "Movies"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa179f",
+        "value": "Photography"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a3",
+        "value": "Commodity Chemicals"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a6",
+        "value": "Diversified Chemicals"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b7",
+        "value": "Oil Related Services and Equipment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a2",
+        "value": "Tires & Rubber Products"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c8",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17bb",
+        "value": "Renewable Nuclear Energy"
+      },
+      {
+        "id": "5f89b9b361334048016290ef",
+        "value": "Public Citizen Security Solutions"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47d5",
+        "value": "Others"
+      },
+      {
+        "id": "5f8433db5874226324bd45fd",
+        "value": "Defence Equipment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1819",
+        "value": "Computer & Electronics Retailers"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c3",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17a4",
+        "value": "Agricultural Chemicals"
+      },
+      {
+        "id": "5f844bbd5874226324bd4633",
+        "value": "Aviation & Others"
+      },
+      {
+        "id": "5f6309be2643793f541c77ae",
+        "value": "Manufacture of Machinery and Equipment"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47c7",
+        "value": "Others"
+      },
+      {
+        "id": "5fa697a5204c3d4ed00bc283",
+        "value": "Physical Toys and Games"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17c7",
+        "value": "Weddings"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b5",
+        "value": "Oil & Gas Exploration and Production"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1816",
+        "value": "Auto Vehicles, Parts & Service Retailers"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa181f",
+        "value": "Personal Care"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1825",
+        "value": "Fantasy Sports"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1820",
+        "value": "Laundry"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17ef",
+        "value": "Internships"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1804",
+        "value": "Digital Media Blogging"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1818",
+        "value": "Home Furnishings Retailers"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1808",
+        "value": "OOH Media"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1839",
+        "value": "Others"
+      },
+      {
+        "id": "5f8433cb5874226324bd45fc",
+        "value": "Space Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1827",
+        "value": "Leather Textiles Goods"
+      },
+      {
+        "id": "61261fa118746c467b35678f",
+        "value": "Assistance Technology"
+      },
+      {
+        "id": "5fa697ca204c3d4ed00bc284",
+        "value": "Virtual Games"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17b6",
+        "value": "Oil & Gas Drilling"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182a",
+        "value": "Leather Footwear"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa182b",
+        "value": "Non- Leather Footwear"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa17cc",
+        "value": "Fan Merchandise"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1840",
+        "value": "E-Commerce"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47bb",
+        "value": "Others"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47e4",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1821",
+        "value": "Baby Care"
+      },
+      {
+        "id": "5f48d0cb2a9bb065cdfc47e2",
+        "value": "Others"
+      },
+      {
+        "id": "5f8434cc5874226324bd4602",
+        "value": "Wayside Amenities"
+      },
+      {
+        "id": "5f8434b85874226324bd4601",
+        "value": "Traffic Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183f",
+        "value": "Natural Language Processing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1843",
+        "value": "Education"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa183e",
+        "value": "Media and Entertainment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1842",
+        "value": "Utility Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1841",
+        "value": "Social Media"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa178f",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1778",
+        "value": "IT Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1777",
+        "value": "Internet / Web Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa177f",
+        "value": "Medical Devices and Equipment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1762",
+        "value": "Agriculture"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1767",
+        "value": "Clean Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa176a",
+        "value": "Consulting"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa176d",
+        "value": "Digital Marketing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1770",
+        "value": "Fashion"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1776",
+        "value": "Industrial/Energy"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa176b",
+        "value": "Consumer Products"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa176c",
+        "value": "Consumer Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa176f",
+        "value": "Electronics / Instrumentation"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1772",
+        "value": "Fintech"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1779",
+        "value": "Legal"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa177d",
+        "value": "Marketing / Advertising"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa178a",
+        "value": "Software"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa178d",
+        "value": "Transportation"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa178e",
+        "value": "Travel"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1790",
+        "value": "Textile"
+      }
+    ],
+    "industries": [
+      {
+        "id": "5f48ce5f2a9bb065cdfa174d",
+        "value": "IT Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa174a",
+        "value": "Healthcare & Lifesciences"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1740",
+        "value": "Education"
+      },
+      {
+        "id": "5f02e3936f3de87babe21085",
+        "value": "Others"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1748",
+        "value": "Food & Beverages"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1732",
+        "value": "Agriculture"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1752",
+        "value": "Professional & Commercial Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173d",
+        "value": "Construction"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1754",
+        "value": "Retail"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa174e",
+        "value": "Marketing"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1749",
+        "value": "Technology Hardware"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1747",
+        "value": "Finance Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1742",
+        "value": "Renewable Energy"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1739",
+        "value": "Automotive"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa174b",
+        "value": "Human Resources"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1743",
+        "value": "Green Technology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175f",
+        "value": "Travel & Tourism"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1744",
+        "value": "Enterprise Software"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175d",
+        "value": "Textiles & Apparel"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1733",
+        "value": "AI"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa174c",
+        "value": "Internet of Things"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1746",
+        "value": "Fashion"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa174f",
+        "value": "Media & Entertainment"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175e",
+        "value": "Transportation & Storage"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173b",
+        "value": "Telecommunication & Networking"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1730",
+        "value": "Advertising"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1758",
+        "value": "Security Solutions"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173f",
+        "value": "Design"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1741",
+        "value": "Non- Renewable Energy"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175a",
+        "value": "Social Impact"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173a",
+        "value": "Chemicals"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b3",
+        "value": "Waste Management"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1734",
+        "value": "Analytics"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1755",
+        "value": "Other Specialty Retailers"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175b",
+        "value": "Social Network"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1731",
+        "value": "Aeronautics Aerospace & Defence"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1759",
+        "value": "House-Hold Services"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1753",
+        "value": "Real Estate"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1737",
+        "value": "Architecture Interior Design"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b1",
+        "value": "Logistics"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1745",
+        "value": "Events"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1756",
+        "value": "Robotics"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1736",
+        "value": "AR VR (Augmented + Virtual Reality)"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa175c",
+        "value": "Sports"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173c",
+        "value": "Computer Vision"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1738",
+        "value": "Art & Photography"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1757",
+        "value": "Safety"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b5",
+        "value": "Biotechnology"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1751",
+        "value": "Pets & Animals"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1750",
+        "value": "Nanotechnology"
+      },
+      {
+        "id": "5fa69741204c3d4ed00bc282",
+        "value": "Toys and Games"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1735",
+        "value": "Animation"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa173e",
+        "value": "Dating Matrimonial"
+      },
+      {
+        "id": "5f48ce5f2a9bb065cdfa1760",
+        "value": "Indic Language Startups"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b4",
+        "value": "Passenger Experience"
+      },
+      {
+        "id": "5f48d0ca2a9bb065cdfc47b2",
+        "value": "Airport Operations"
+      }
+    ],
+    "roles": [
+      {
+        "id": "Startup",
+        "value": "Startup"
+      },
+      {
+        "id": "Incubator",
+        "value": "Incubator"
+      },
+      {
+        "id": "Mentor",
+        "value": "Mentor"
+      },
+      {
+        "id": "Accelerator",
+        "value": "Accelerator"
+      },
+      {
+        "id": "Investor",
+        "value": "Investor"
+      },
+      {
+        "id": "GovernmentBody",
+        "value": "GovernmentBody"
+      },
+      {
+        "id": "Corporate",
+        "value": "Corporate"
+      }
+    ],
+    "counts": [
+      {
+        "id": "Startup",
+        "value": 0
+      },
+      {
+        "id": "Incubator",
+        "value": 0
+      },
+      {
+        "id": "Mentor",
+        "value": 0
+      },
+      {
+        "id": "Accelerator",
+        "value": 0
+      },
+      {
+        "id": "Investor",
+        "value": 0
+      },
+      {
+        "id": "GovernmentBody",
+        "value": 0
+      },
+      {
+        "id": "Corporate",
+        "value": 0
+      }
+    ],
+    "stages": [
+      {
+        "id": "Prototype",
+        "value": "Prototype"
+      },
+      {
+        "id": "Validation",
+        "value": "Validation"
+      },
+      {
+        "id": "EarlyTraction",
+        "value": "EarlyTraction"
+      },
+      {
+        "id": "Scaling",
+        "value": "Scaling"
+      }
+    ],
+    "badges": [],
+    "dpiitStatus": [
+      {
+        "id": "false"
+      },
+      {
+        "id": "true"
+      }
+    ]
+  }

@@ -11,6 +11,9 @@ var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
 stateMap = JSON.parse(stateMap);
 var allStages = fs.readFileSync("./static/allStages.json", "utf8");
 allStages = JSON.parse(allStages);
+var defaultsv2 = fs.readFileSync("./static/defaultsv2.json", "utf8");
+defaultsv2 = JSON.parse(defaultsv2);
+
 var blankFilterQuery = fs.readFileSync(
   "./static/blankFilterQuery.json",
   "utf8"
@@ -413,9 +416,9 @@ router.post("/v2_workingBackup/filter", (req, resp) => {
   });
 });
 
-router.post("/filter/v2/defaults", (req, resp) => {
+router.post("/filter/v2_workingBackup/defaults", (req, resp) => {
   // #swagger.tags = ['Filter']
-  // #swagger.path = '/startup/filter/v2/defaults'
+  // #swagger.path = '/startup/filter/v2_workingBackup/defaults'
   // #swagger.description = 'Get all filterable items'
   /*  #swagger.parameters['obj'] = {
         in: 'body',
@@ -480,6 +483,60 @@ router.post("/filter/v2/defaults", (req, resp) => {
     output.dpiitStatus = allDpiitCertifiedsArr.map(transformData);
     resp.send(output);
   });
+});
+
+router.post("/filter/v2/defaults", async (req, resp) => {
+  // #swagger.tags = ['Filter']
+  // #swagger.path = '/startup/filter/v2/defaults'
+  // #swagger.description = 'Get all filterable items'
+  /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$registrationFrom": "",
+          "$registrationTo": ""
+        }
+    } */
+  console.log("Filter request - " + JSON.stringify(req.body));
+
+  if (moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
+    console.log("Valid dates passed.")
+  } else {
+    resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
+  }
+
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "profileRegisteredOn": {
+              "$lte": new Date(req.body.registrationTo),
+              "$gte": new Date(req.body.registrationFrom),
+            },
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "Role": "$role",
+            },
+            "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        //console.log("* Output rows - " + JSON.stringify(result.length));
+        console.log("* Output - " + JSON.stringify(result));
+        let output = JSON.parse(JSON.stringify(defaultsv2));
+        output.counts = result.map(transformCount_Mongo);
+        resp.status(200).send(output);
+      });
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
 });
 
 router.post("/v3/filter", async (req, resp) => {
@@ -833,7 +890,7 @@ router.get("/startupCount/:geoType/:geoIdType/:geoIdValue/:entityType/:from/:to"
   let searchObj = {};
 
   if (moment(req.params.from, "YYYY-MM-DD", true).isValid() && moment(req.params.to, "YYYY-MM-DD", true).isValid()) {
-    searchObj.profileRegisteredOn = { '$lt': new Date(req.params.to), '$gt': new Date(req.params.from) };
+    searchObj.profileRegisteredOn = { '$lte': new Date(req.params.to), '$gte': new Date(req.params.from) };
   } else {
     resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
   }
@@ -1069,5 +1126,81 @@ function transformCount_Mongo(data) {
   o.value = data.count;
   return o;
 }
+
+async function getMyData(geoName) {
+  console.log("Getting details for " + geoName);
+  var output = {};
+
+  var proA = new Promise((resolve, rej) => {
+    request(
+      "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/sectorWise/" +
+      stateName,
+      { json: true },
+      (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("Sectorwise - " + JSON.stringify(body));
+        output.sectors = res.body.data;
+        resolve(res.body.data);
+      }
+    );
+  });
+  var proB = new Promise((resolve, rej) => {
+    request(
+      "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/awards/" +
+      stateName,
+      { json: true },
+      (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("StagewiseAwards - " + JSON.stringify(body));
+        output.stagewiseAwards = res.body.data;
+        resolve(res.body.data);
+      }
+    );
+  });
+  var proC = new Promise((resolve, rej) => {
+    request(
+      "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/funding/" +
+      stateName,
+      { json: true },
+      (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("StagewiseFundings - " + JSON.stringify(body));
+        output.stagewiseFundings = res.body.data;
+        resolve(res.body.data);
+      }
+    );
+  });
+  var proD = new Promise((resolve, rej) => {
+    request(
+      "https://api.startupindia.gov.in/sih/api/noauth/statesPolicy/startup/stageWise/" +
+      stateName,
+      { json: true },
+      (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("Stages - " + JSON.stringify(body));
+        output.stages = res.body.data;
+        resolve(res.body.data);
+      }
+    );
+  });
+
+  return Promise.all([proA, proB, proC, proD])
+    .then((values) => {
+      console.log("All promises resolved");
+      return output;
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
 
 module.exports = router;
