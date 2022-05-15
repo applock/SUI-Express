@@ -3,6 +3,7 @@ const router = express.Router();
 const request = require("request");
 const mongodb = require("../mongodb");
 const moment = require("moment");
+const _ = require('lodash');
 
 const fs = require("fs");
 var data = fs.readFileSync("./static/count.json", "utf8");
@@ -499,8 +500,10 @@ router.post("/filter/v2/defaults", async (req, resp) => {
     } */
   console.log("Filter request - " + JSON.stringify(req.body));
 
-  if ((!req.body.hasOwnProperty('registrationFrom') && !req.body.hasOwnProperty('registrationTo')) || moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
-    console.log("Valid dates passed.")
+  if ((!req.body.hasOwnProperty('registrationFrom') && !req.body.hasOwnProperty('registrationTo')) ||
+    (_.isEmpty(req.body.registrationFrom) && _.isEmpty(req.body.registrationTo)) ||
+    moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
+    console.log("Optional Date validation passed.")
   } else {
     resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
   }
