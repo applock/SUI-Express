@@ -499,7 +499,7 @@ router.post("/filter/v2/defaults", async (req, resp) => {
     } */
   console.log("Filter request - " + JSON.stringify(req.body));
 
-  if (moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
+  if ((!req.body.hasOwnProperty('registrationFrom') && !req.body.hasOwnProperty('registrationTo')) || moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
     console.log("Valid dates passed.")
   } else {
     resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
