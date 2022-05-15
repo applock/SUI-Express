@@ -669,39 +669,42 @@ router.post("/v2/filter", async (req, resp) => {
     } */
   console.log("Filter request - " + JSON.stringify(req.body));
 
-  if (moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
-    console.log("Valid dates passed.")
+  if ((!req.body.hasOwnProperty('registrationFrom') && !req.body.hasOwnProperty('registrationTo')) ||
+    (_.isEmpty(req.body.registrationFrom) && _.isEmpty(req.body.registrationTo)) ||
+    moment(req.body.registrationTo, "YYYY-MM-DD", true).isValid() && moment(req.body.registrationFrom, "YYYY-MM-DD", true).isValid()) {
+    console.log("Optional Valid dates passed.")
   } else {
     resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
   }
 
-  let queryObj = {
-    "profileRegisteredOn": {
+  let subQuery = {};
+  if ((!_.isEmpty(req.body.registrationFrom) && !_.isEmpty(req.body.registrationTo))) {
+    subQuery.profileRegisteredOn = {
       "$lte": new Date(req.body.registrationTo),
       "$gte": new Date(req.body.registrationFrom),
-    },
-  };
+    };
+  }
 
   if (req.body.hasOwnProperty('states') && req.body.states.length) {
-    queryObj.stateId = {
+    subQuery.stateId = {
       "$in": req.body.states
     }
   }
 
   if (req.body.hasOwnProperty('roles') && req.body.roles.length) {
-    queryObj.role = {
+    subQuery.role = {
       "$in": req.body.roles
     }
   }
 
   if (req.body.hasOwnProperty('industries') && req.body.industries.length) {
-    queryObj.industry = {
+    subQuery.industry = {
       "$elemMatch": { "industry": { "$in": req.body.industries } }
     }
   }
 
   if (req.body.hasOwnProperty('sectors') && req.body.sectors.length) {
-    queryObj.industry = {
+    subQuery.industry = {
       "$elemMatch": { "sector": { "$in": req.body.sectors } }
     }
   }
@@ -714,7 +717,7 @@ router.post("/v2/filter", async (req, resp) => {
       //.aggregate([{ "$group": { _id: { State: "$stateName", Role: "$role" }, count: { $sum: 1 } } }, { $sort: { "_id.stateName": 1 } }])
       .aggregate([
         {
-          "$match": queryObj,
+          "$match": subQuery,
         },
         {
           "$group": {
