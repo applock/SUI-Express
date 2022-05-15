@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const request = require("request");
 const mongodb = require("../mongodb");
+const moment = require("moment");
 
 const fs = require("fs");
 var data = fs.readFileSync("./static/count.json", "utf8");
@@ -830,6 +831,12 @@ router.get("/startupCount/:geoType/:geoIdType/:geoIdValue/:entityType/:from/:to"
   }
 
   let searchObj = {};
+
+  if (moment(req.params.from, "YYYY-MM-DD", true).isValid() && moment(req.params.to, "YYYY-MM-DD", true).isValid()) {
+    searchObj.profileRegisteredOn = { '$lt': new Date(req.params.to), '$gt': new Date(req.params.from) };
+  } else {
+    resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
+  }
 
   if (req.params.geoType == 'state') {
     if (req.params.geoIdType == 'id') {
