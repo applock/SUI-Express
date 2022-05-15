@@ -508,28 +508,31 @@ router.post("/filter/v2/defaults", async (req, resp) => {
     resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
   }
 
+  let queryObjD = [];
+  if ((!_.isEmpty(req.body.registrationFrom) && !_.isEmpty(req.body.registrationTo))) {
+    queryObjD.push({
+      "$match": {
+        "profileRegisteredOn": {
+          "$lte": new Date(req.body.registrationTo),
+          "$gte": new Date(req.body.registrationFrom),
+        },
+      },
+    });
+  }
+  queryObjD.push({
+    "$group": {
+      "_id": {
+        "Role": "$role",
+      },
+      "count": { "$count": {} },
+    },
+  });
+
   try {
     await mongodb
       .getDb()
       .collection("digitalMapUser")
-      .aggregate([
-        {
-          "$match": {
-            "profileRegisteredOn": {
-              "$lte": new Date(req.body.registrationTo),
-              "$gte": new Date(req.body.registrationFrom),
-            },
-          },
-        },
-        {
-          "$group": {
-            "_id": {
-              "Role": "$role",
-            },
-            "count": { "$count": {} },
-          },
-        },
-      ]).toArray((err, result) => {
+      .aggregate(queryObjD).toArray((err, result) => {
         if (err) throw err;
         //console.log("* Output rows - " + JSON.stringify(result.length));
         console.log("* Output - " + JSON.stringify(result));
