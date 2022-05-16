@@ -659,7 +659,7 @@ router.post("/v2/filter", async (req, resp) => {
         schema: {
           "$industries": [],
           "$sectors": [],
-          "$stages": [],
+          "$stages": ["Scaling", "EarlyTraction", "Validation"],
           "$states": [],
           "$badges": [],
           "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
@@ -688,6 +688,12 @@ router.post("/v2/filter", async (req, resp) => {
   if (req.body.hasOwnProperty('states') && req.body.states.length) {
     subQuery.stateId = {
       "$in": req.body.states
+    }
+  }
+
+  if (req.body.hasOwnProperty('stages') && req.body.stages.length) {
+    subQuery.stage = {
+      "$in": req.body.stages
     }
   }
 

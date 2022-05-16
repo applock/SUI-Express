@@ -4,6 +4,7 @@ const request = require("request");
 const fs = require("fs");
 const router = express.Router();
 var _ = require("lodash/core");
+const mongodb = require("../mongodb");
 
 var stateWiseCount = fs.readFileSync("./static/stateWiseCount.json", "utf8");
 stateWiseCount = JSON.parse(stateWiseCount);
@@ -164,6 +165,39 @@ async function populateStateIdNameMap() {
   });
 }
 
+async function populateStateIdNameMapV2() {
+  // Pre-process State List
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$group": {
+            "_id": "$stateId",
+            "name": { "$first": "$stateName" },
+            "text": { "$first": "$stateName" },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        console.log("* Output - " + JSON.stringify(result));
+        fs.writeFileSync(
+          "./static/stateIdNameMap.json",
+          JSON.stringify(result, null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("populateStateIdNameMapV2 :: Data written successfully!");
+          }
+        );
+      });
+  } catch (err) {
+    console.error('populateStateIdNameMapV2 :: ' + err.message);
+  }
+}
+
 async function populateWomenLedStartupMap() {
   // Pre-process Women Led startups
   request(
@@ -195,6 +229,45 @@ async function populateWomenLedStartupMap() {
       );
     }
   );
+}
+
+async function populateWomenLedStartupMapV2() {
+  // Pre-process Women Led startups
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "womenOwned": { "$eq": true }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        console.log("* Output - " + JSON.stringify(result));
+
+        fs.writeFileSync(
+          "./static/womenLedStartups.json",
+          JSON.stringify(getWO(result), null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("populateWomenLedStartupMapV2 :: Women Led startup data written successfully!");
+          }
+        );
+      });
+  } catch (err) {
+    console.error('populateWomenLedStartupMapV2 :: ' + err.message);
+  }
 }
 
 async function prepareIndiaLevelCounts() {
@@ -467,6 +540,184 @@ async function prepareStateWiseCounts() {
       });
     }
   });
+}
+
+async function prepareStateWiseCountsV2() {
+  // Pre-process State Wise counts
+  request(process.env.STATES_URL, { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+
+    var maxStartups = 0;
+    var maxMentors = 0;
+    var maxIncubators = 0;
+    var maxAccelarators = 0;
+    var maxCorporates = 0;
+    var maxInvestors = 0;
+    var maxGovernmentBodys = 0;
+
+    for (let i = 0, l = stateIdNameMap.length; i < l; i++) {
+      var query = JSON.parse(JSON.stringify(blankFilterQuery));
+      let currentState = stateIdNameMap[i];
+      console.log(
+        "prepareStateWiseCounts :: Processing for " + currentState.name
+      );
+      query.states = [currentState.id];
+
+      var options = {
+        method: "POST",
+        url: process.env.BLANK_FILTER_URL,
+        headers: {
+          authority: "api.startupindia.gov.in",
+          "sec-ch-ua":
+            '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+          accept: "application/json",
+          lang: "",
+          "sec-ch-ua-mobile": "?0",
+          "user-agent":
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+          "sec-ch-ua-platform": '"Linux"',
+          "content-type": "application/json",
+          origin: "https://www.startupindia.gov.in",
+          "sec-fetch-site": "same-site",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-dest": "empty",
+          referer: "https://www.startupindia.gov.in/",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,la;q=0.7",
+        },
+        body: JSON.stringify(query),
+      };
+
+      request(options, (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        //console.log(body);
+        var facetResult = JSON.parse(body).facetResultPages;
+        var industryBasedNumbers = facetResult[0].content;
+        var sectorBasedNumbers = facetResult[1].content;
+        var roleBasedNumbers = facetResult[5].content;
+        var stageBasedNumbers = facetResult[6].content;
+
+        var stateDetailsObj = {};
+        var stateDetails = fs.readFileSync(
+          "./static/stateWiseCount.json",
+          "utf8"
+        );
+        stateDetails = JSON.parse(stateDetails);
+
+        var template = JSON.parse(JSON.stringify(stateCountJson));
+        for (const role of roleBasedNumbers) {
+          template[role.value] = role.valueCount;
+        }
+        template.DpiitCertified = _.isUndefined(
+          facetResult[8].content[1].valueCount
+        )
+          ? 0
+          : facetResult[8].content[1].valueCount;
+        template.TaxExempted = _.isUndefined(facetResult[9].content[1])
+          ? 0
+          : facetResult[9].content[1].valueCount;
+        template.WomenLed = womenLedStartups[currentState.id];
+
+        // Storing statistics
+        stateDetailsObj.statistics = template;
+
+        // Storing Industries
+        var industryArr = [];
+        var totalIndustriesOfState = 0;
+        for (const ind of industryBasedNumbers) {
+          industryArr.push({
+            id: ind.value,
+            text: ind.field.value,
+            count: ind.valueCount,
+          });
+          totalIndustriesOfState += ind.valueCount;
+        }
+        stateDetailsObj.industry = industryArr;
+        stateDetailsObj.TotalIndustry = totalIndustriesOfState;
+
+        // Storing Sectors
+        var sectorArr = [];
+        var totalSectorsOfState = 0;
+        for (const sec of sectorBasedNumbers) {
+          sectorArr.push({
+            id: sec.value,
+            text: sec.field.value,
+            count: sec.valueCount,
+          });
+          totalSectorsOfState += sec.valueCount;
+        }
+        stateDetailsObj.sector = sectorArr;
+        stateDetailsObj.TotalSector = totalSectorsOfState;
+
+        // Storing Stages
+        var stageArr = [];
+        var totalStagesOfState = 0;
+        for (const stg of stageBasedNumbers) {
+          stageArr.push({
+            id: stg.value,
+            text: stg.field.value,
+            count: stg.valueCount,
+          });
+          totalStagesOfState += stg.valueCount;
+        }
+        stateDetailsObj.stage = stageArr;
+        stateDetailsObj.TotalStage = totalStagesOfState;
+
+        stateDetails[currentState.id] = stateDetailsObj;
+
+        // Checking max counts
+        stateDetails.maxStartups = maxStartups =
+          template.Startup > maxStartups ? template.Startup : maxStartups;
+        stateDetails.maxMentors = maxMentors =
+          template.Mentor > maxMentors ? template.Mentor : maxMentors;
+        stateDetails.maxIncubators = maxIncubators =
+          template.Incubator > maxIncubators
+            ? template.Incubator
+            : maxIncubators;
+        stateDetails.maxAccelarators = maxAccelarators =
+          template.maxAccelarators > maxAccelarators
+            ? template.maxAccelarators
+            : maxAccelarators;
+        stateDetails.maxCorporates = maxCorporates =
+          template.Corporate > maxCorporates
+            ? template.Corporate
+            : maxCorporates;
+        stateDetails.maxInvestors = maxInvestors =
+          template.Investor > maxInvestors ? template.Investor : maxInvestors;
+        stateDetails.maxGovernmentBodys = maxGovernmentBodys =
+          template.GovernmentBody > maxGovernmentBodys
+            ? template.GovernmentBody
+            : maxGovernmentBodys;
+
+        fs.writeFileSync(
+          "./static/stateWiseCount.json",
+          JSON.stringify(stateDetails, null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("Data written successfully for " + currentState.name);
+          }
+        );
+      });
+    }
+  });
+}
+
+function tranformWomenOwned_Mongo(data) {
+  var o = { [data._id.StateId]: data.count };
+  return o;
+}
+
+function getWO(data) {
+  var o = {};
+  for (let i = 0; i < data.length; i++) {
+    o.data[i][_id.StateId] = data[i].count;
+  }
+  return o;
 }
 
 module.exports = router;
