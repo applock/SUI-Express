@@ -998,6 +998,128 @@ router.get("/districts/:stateId", (req, resp) => {
   );
 });
 
+router.get("/v2/districts/:stateId", async (req, resp) => {
+  // #swagger.tags = ['Geography']
+  // #swagger.path = '/startup/v2/districts/{stateId}'
+  // #swagger.description = 'List of all districts by state id with counts'
+
+  if (_.isEmpty(req.params.stateId)) {
+    resp.status(500).json({ message: "Invalid state id" });
+  }
+
+  let subQueryDist = {
+    "stateId": { "$eq": req.params.stateId }
+  };
+
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": subQueryDist,
+        },
+        {
+          "$group": {
+            "_id": {
+              "role": "$role",
+              "districtid": "$districtId",
+              "district": "$districtName",
+              "stateId": "$stateId",
+              "state": "$stateName",
+            },
+            "count": { "$count": {} },
+          },
+        },
+        {
+          "$group": {
+            "_id": "$_id.districtid",
+            "roles": {
+              "$push": { "role": "$_id.role", "district": "$_id.district", "stateId": "$_id.stateId", "state": "$_id.state", "count": "$count" },
+            },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        let countsArr = [];
+        for (let i = 0; i < result.length; i++) {
+          let dd = result[i];
+          let district = {};
+          let count = {};
+          district.id = dd._id;
+          district.name = dd.roles[0].district;
+          district.stateId = dd.roles[0].stateId;
+          district.state = dd.roles[0].state;
+
+          for (let j = 0; j < dd.roles.length; j++) {
+            let role = dd.roles[j];
+            count[role.role] = role.count;
+          }
+          district.counts = count;
+          countsArr.push(district);
+        }
+        resp.status(200).send(countsArr);
+      });
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/v2/districts", async (req, resp) => {
+  // #swagger.tags = ['Geography']
+  // #swagger.path = '/startup/v2/districts'
+  // #swagger.description = 'List of all districts with counts'
+
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([{
+        "$group": {
+          "_id": {
+            "role": "$role",
+            "districtid": "$districtId",
+            "district": "$districtName",
+            "stateId": "$stateId",
+            "state": "$stateName",
+          },
+          "count": { "$count": {} },
+        },
+      },
+      {
+        "$group": {
+          "_id": "$_id.districtid",
+          "roles": {
+            "$push": { "role": "$_id.role", "district": "$_id.district", "stateId": "$_id.stateId", "state": "$_id.state", "count": "$count" },
+          },
+        },
+      },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        let countsArr = [];
+        for (let i = 0; i < result.length; i++) {
+          let dd = result[i];
+          let district = {};
+          let count = {};
+          district.id = dd._id;
+          district.name = dd.roles[0].district;
+          district.stateId = dd.roles[0].stateId;
+          district.state = dd.roles[0].state;
+
+          for (let j = 0; j < dd.roles.length; j++) {
+            let role = dd.roles[j];
+            count[role.role] = role.count;
+          }
+          district.counts = count;
+          countsArr.push(district);
+        }
+        resp.status(200).send(countsArr);
+      });
+  } catch (err) {
+    resp.status(500).json({ message: err.message });
+  }
+});
+
 router.get("/industry/all", (req, resp) => {
   // #swagger.tags = ['Industry']
   // #swagger.path = '/startup/industry/all'
