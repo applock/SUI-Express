@@ -999,7 +999,7 @@ router.get("/districts/:stateId", (req, resp) => {
 });
 
 router.get("/v2/districts/:stateId", async (req, resp) => {
-  // #swagger.tags = ['Geography']
+  // #swagger.tags = ['Counts']
   // #swagger.path = '/startup/v2/districts/{stateId}'
   // #swagger.description = 'List of all districts by state id with counts'
 
@@ -1066,7 +1066,7 @@ router.get("/v2/districts/:stateId", async (req, resp) => {
 });
 
 router.get("/v2/districts", async (req, resp) => {
-  // #swagger.tags = ['Geography']
+  // #swagger.tags = ['Counts']
   // #swagger.path = '/startup/v2/districts'
   // #swagger.description = 'List of all districts with counts'
 

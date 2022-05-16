@@ -1,218 +1,162 @@
 [
     {
-        "id": "5f48ce592a9bb065cdf9fb22",
-        "name": "Assam",
-        "isUnionTerritory": false,
-        "text": "Assam"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb24",
-        "name": "Chandigarh",
-        "isUnionTerritory": true,
-        "text": "Chandigarh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb27",
-        "name": "Goa",
-        "isUnionTerritory": false,
-        "text": "Goa"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb26",
-        "name": "Delhi",
-        "isUnionTerritory": true,
-        "text": "Delhi"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb28",
-        "name": "Gujarat",
-        "isUnionTerritory": false,
-        "text": "Gujarat"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2a",
-        "name": "Himachal Pradesh",
-        "isUnionTerritory": false,
-        "text": "Himachal Pradesh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb29",
-        "name": "Haryana",
-        "isUnionTerritory": false,
-        "text": "Haryana"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2b",
-        "name": "Jammu and Kashmir",
-        "isUnionTerritory": false,
-        "text": "Jammu and Kashmir"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2c",
-        "name": "Jharkhand",
-        "isUnionTerritory": false,
-        "text": "Jharkhand"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb23",
-        "name": "Bihar",
-        "isUnionTerritory": false,
-        "text": "Bihar"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2f",
-        "name": "Lakshadweep",
-        "isUnionTerritory": true,
-        "text": "Lakshadweep"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2e",
-        "name": "Kerala",
-        "isUnionTerritory": false,
-        "text": "Kerala"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb2d",
-        "name": "Karnataka",
-        "isUnionTerritory": false,
-        "text": "Karnataka"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb25",
-        "name": "Chhattisgarh",
-        "isUnionTerritory": false,
-        "text": "Chhattisgarh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb20",
-        "name": "Andhra Pradesh",
-        "isUnionTerritory": false,
-        "text": "Andhra Pradesh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb21",
-        "name": "Arunachal Pradesh",
-        "isUnionTerritory": false,
-        "text": "Arunachal Pradesh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb1f",
-        "name": "Andaman and Nicobar Islands",
-        "isUnionTerritory": true,
-        "text": "Andaman and Nicobar Islands"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb32",
-        "name": "Manipur",
-        "isUnionTerritory": false,
-        "text": "Manipur"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb34",
-        "name": "Mizoram",
-        "isUnionTerritory": false,
-        "text": "Mizoram"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb39",
-        "name": "Rajasthan",
-        "isUnionTerritory": false,
-        "text": "Rajasthan"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb3a",
+        "_id": "5f48ce592a9bb065cdf9fb3a",
         "name": "Sikkim",
-        "isUnionTerritory": false,
         "text": "Sikkim"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb3b",
-        "name": "Tamil Nadu",
-        "isUnionTerritory": false,
-        "text": "Tamil Nadu"
+        "_id": "5f48ce592a9bb065cdf9fb24",
+        "name": "Chandigarh",
+        "text": "Chandigarh"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb30",
-        "name": "Madhya Pradesh",
-        "isUnionTerritory": false,
-        "text": "Madhya Pradesh"
+        "_id": "5f48ce592a9bb065cdf9fb2b",
+        "name": "Jammu and Kashmir",
+        "text": "Jammu and Kashmir"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb3d",
-        "name": "Tripura",
-        "isUnionTerritory": false,
-        "text": "Tripura"
+        "_id": "5f48ce592a9bb065cdf9fb38",
+        "name": "Punjab",
+        "text": "Punjab"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb35",
-        "name": "Nagaland",
-        "isUnionTerritory": false,
-        "text": "Nagaland"
+        "_id": "5f48ce592a9bb065cdf9fb26",
+        "name": "Delhi",
+        "text": "Delhi"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb3c",
-        "name": "Telangana",
-        "isUnionTerritory": false,
-        "text": "Telangana"
+        "_id": "5f48ce592a9bb065cdf9fb27",
+        "name": "Goa",
+        "text": "Goa"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb3e",
-        "name": "Uttarakhand",
-        "isUnionTerritory": false,
-        "text": "Uttarakhand"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb40",
-        "name": "West Bengal",
-        "isUnionTerritory": false,
-        "text": "West Bengal"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb3f",
-        "name": "Uttar Pradesh",
-        "isUnionTerritory": false,
-        "text": "Uttar Pradesh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb41",
-        "name": "Ladakh",
-        "isUnionTerritory": true,
-        "text": "Ladakh"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb31",
-        "name": "Maharashtra",
-        "isUnionTerritory": false,
-        "text": "Maharashtra"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb42",
-        "name": "Dadra and Nagar Haveli and Daman and Diu",
-        "isUnionTerritory": true,
-        "text": "Dadra and Nagar Haveli and Daman and Diu"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb37",
-        "name": "Puducherry",
-        "isUnionTerritory": true,
-        "text": "Puducherry"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb33",
-        "name": "Meghalaya",
-        "isUnionTerritory": false,
-        "text": "Meghalaya"
-    },
-    {
-        "id": "5f48ce592a9bb065cdf9fb36",
+        "_id": "5f48ce592a9bb065cdf9fb36",
         "name": "Odisha",
-        "isUnionTerritory": false,
         "text": "Odisha"
     },
     {
-        "id": "5f48ce592a9bb065cdf9fb38",
-        "name": "Punjab",
-        "isUnionTerritory": false,
-        "text": "Punjab"
+        "_id": "5f48ce592a9bb065cdf9fb21",
+        "name": "Arunachal Pradesh",
+        "text": "Arunachal Pradesh"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb2c",
+        "name": "Jharkhand",
+        "text": "Jharkhand"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb35",
+        "name": "Nagaland",
+        "text": "Nagaland"
+    },
+    {
+        "_id": null,
+        "name": null,
+        "text": null
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb3b",
+        "name": "Tamil Nadu",
+        "text": "Tamil Nadu"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb40",
+        "name": "West Bengal",
+        "text": "West Bengal"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb22",
+        "name": "Assam",
+        "text": "Assam"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb3c",
+        "name": "Telangana",
+        "text": "Telangana"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb42",
+        "name": "Dadra and Nagar Haveli and Daman and Diu",
+        "text": "Dadra and Nagar Haveli and Daman and Diu"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb29",
+        "name": "Haryana",
+        "text": "Haryana"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb2e",
+        "name": "Kerala",
+        "text": "Kerala"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb39",
+        "name": "Rajasthan",
+        "text": "Rajasthan"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb3f",
+        "name": "Uttar Pradesh",
+        "text": "Uttar Pradesh"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb31",
+        "name": "Maharashtra",
+        "text": "Maharashtra"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb3e",
+        "name": "Uttarakhand",
+        "text": "Uttarakhand"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb30",
+        "name": "Madhya Pradesh",
+        "text": "Madhya Pradesh"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb28",
+        "name": "Gujarat",
+        "text": "Gujarat"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb23",
+        "name": "Bihar",
+        "text": "Bihar"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb20",
+        "name": "Andhra Pradesh",
+        "text": "Andhra Pradesh"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb32",
+        "name": "Manipur",
+        "text": "Manipur"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb37",
+        "name": "Puducherry",
+        "text": "Puducherry"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb3d",
+        "name": "Tripura",
+        "text": "Tripura"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb25",
+        "name": "Chhattisgarh",
+        "text": "Chhattisgarh"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb2d",
+        "name": "Karnataka",
+        "text": "Karnataka"
+    },
+    {
+        "_id": "5f48ce592a9bb065cdf9fb2a",
+        "name": "Himachal Pradesh",
+        "text": "Himachal Pradesh"
     }
 ]

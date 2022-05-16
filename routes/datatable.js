@@ -188,6 +188,150 @@ router.get(
   }
 );
 
+router.get(
+  "/v2/statistics/:geographicalEntity/:entityId/:from/:to",
+  async (req, resp) => {
+    // #swagger.tags = ['Data Tables']
+    // #swagger.path = '/data/v2/statistics/{geographicalEntity}/{entityId}/{from}/{to}'
+    // #swagger.exmaple = '/data/v2/statistics/country/5f02e38c6f3de87babe20cd2/{from}/{to}'
+    // #swagger.description = 'State-wise data table'
+    var output = {};
+    output.from = req.params.from;
+    output.to = req.params.to;
+
+    if ((!_.isEmpty(req.params.from) && !_.isEmpty(req.params.to)) ||
+      moment(req.params.from, "YYYY-MM-DD", true).isValid() && moment(req.params.to, "YYYY-MM-DD", true).isValid()) {
+      console.log("Valid dates passed.")
+    } else {
+      resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
+    }
+
+    let subQuery = {};
+    subQuery.profileRegisteredOn = {
+      "$lte": new Date(req.params.to),
+      "$gte": new Date(req.params.from),
+    };
+
+    var result = [];
+    if (req.params.geographicalEntity == "country") {
+      // Country - India level
+      try {
+        await mongodb
+          .getDb()
+          .collection("digitalMapUser")
+          .aggregate([
+            {
+              "$match": subQuery,
+            },
+            {
+              "$group": {
+                "_id": {
+                  "role": "$role",
+                  "stateId": "$stateId",
+                  "state": "$stateName",
+                },
+                "count": { "$count": {} },
+              },
+            },
+            {
+              "$group": {
+                "_id": "$_id.stateId",
+                "roles": {
+                  "$push": { "role": "$_id.role", "state": "$_id.state", "count": "$count" },
+                },
+              },
+            },
+          ]).toArray((err, result) => {
+            if (err) throw err;
+            let countsArr = [];
+            for (let i = 0; i < result.length; i++) {
+              let dd = result[i];
+              let district = {};
+              let count = JSON.parse(JSON.stringify(dataCountJson));
+
+              district.id = dd._id;
+              district.name = dd.roles[0].district;
+              district.stateId = dd.roles[0].stateId;
+              district.state = dd.roles[0].state;
+
+              for (let j = 0; j < dd.roles.length; j++) {
+                let role = dd.roles[j];
+                count[role.role] = role.count;
+              }
+              district.counts = count;
+              countsArr.push(district);
+            }
+            resp.status(200).send(countsArr);
+          });
+      } catch (err) {
+        resp.status(500).json({ message: err.message });
+      }
+    } else if (req.params.geographicalEntity == "state") {
+      // State level
+      console.log(
+        "Praparing data table for State with Id - " + req.params.entityId
+      );
+
+      subQuery.stateId = { "$eq": req.params.entityId };
+
+      try {
+        await mongodb
+          .getDb()
+          .collection("digitalMapUser")
+          .aggregate([
+            {
+              "$match": subQuery,
+            },
+            {
+              "$group": {
+                "_id": {
+                  "role": "$role",
+                  "districtid": "$districtId",
+                  "district": "$districtName",
+                  "stateId": "$stateId",
+                  "state": "$stateName",
+                },
+                "count": { "$count": {} },
+              },
+            },
+            {
+              "$group": {
+                "_id": "$_id.districtid",
+                "roles": {
+                  "$push": { "role": "$_id.role", "district": "$_id.district", "stateId": "$_id.stateId", "state": "$_id.state", "count": "$count" },
+                },
+              },
+            },
+          ]).toArray((err, result) => {
+            if (err) throw err;
+            let countsArr = [];
+            for (let i = 0; i < result.length; i++) {
+              let dd = result[i];
+              let district = {};
+              let count = {};
+              district.id = dd._id;
+              district.name = dd.roles[0].district;
+              district.stateId = dd.roles[0].stateId;
+              district.state = dd.roles[0].state;
+
+              for (let j = 0; j < dd.roles.length; j++) {
+                let role = dd.roles[j];
+                count[role.role] = role.count;
+              }
+              district.counts = count;
+              countsArr.push(district);
+            }
+            resp.status(200).send(countsArr);
+          });
+      } catch (err) {
+        resp.status(500).json({ message: err.message });
+      }
+    } else {
+      // City/District level
+    }
+  }
+);
+
 router.get("/stateStatisticsLive/:from/:to", (req, resp) => {
   // #swagger.tags = ['Data Tables']
   // #swagger.path = '/data/stateStatisticsLive/{from}/{to}'

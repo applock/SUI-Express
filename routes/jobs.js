@@ -56,9 +56,13 @@ router.get("/triggerCron", (req, resp) => {
     "* * * * *",
     () => {
       console.log("Executing scheduled cron at - " + new Date());
-      populateStateIdNameMap();
-      populateWomenLedStartupMap();
-      prepareStateWiseCounts();
+      //populateStateIdNameMap();
+      //populateWomenLedStartupMap();
+      //prepareStateWiseCounts();
+
+      populateStateIdNameMapV2();
+      populateWomenLedStartupMapV2();
+      prepareStateWiseCountsV2();
     },
     {
       scheduled: true,
@@ -73,7 +77,8 @@ router.get("/populateStateIdNameMap", (req, resp) => {
   // #swagger.path = '/jobs/populateStateIdNameMap'
   // #swagger.description = 'DO NOT USE - Manual Job to populate StateId-Name Map'
 
-  populateStateIdNameMap();
+  //populateStateIdNameMap();
+  populateStateIdNameMapV2();
   resp.json("DONE");
 });
 
@@ -91,7 +96,8 @@ router.get("/populateWomenLedStartupMap", (req, resp) => {
   // #swagger.path = '/jobs/populateWomenLedStartupMap'
   // #swagger.description = 'DO NOT USE - Manual Job to prepare State-Wise Women Led startup Counts'
 
-  populateWomenLedStartupMap();
+  //populateWomenLedStartupMap();
+  populateWomenLedStartupMapV2();
   resp.json("DONE");
 });
 
@@ -252,7 +258,7 @@ async function populateWomenLedStartupMapV2() {
         },
       ]).toArray((err, result) => {
         if (err) throw err;
-        console.log("* Output - " + JSON.stringify(result));
+        //console.log("* Output - " + JSON.stringify(result));
 
         fs.writeFileSync(
           "./static/womenLedStartups.json",
@@ -715,7 +721,8 @@ function tranformWomenOwned_Mongo(data) {
 function getWO(data) {
   var o = {};
   for (let i = 0; i < data.length; i++) {
-    o.data[i][_id.StateId] = data[i].count;
+    let obj = data[i];
+    o[obj._id.StateId] = obj.count;
   }
   return o;
 }
