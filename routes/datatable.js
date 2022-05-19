@@ -215,13 +215,13 @@ router.get(
       "$gte": new Date(req.params.from),
     };
 
-    var wos = await populateWomenLedStartup(req.params.from, req.params.to);
-    var txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
-    var drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
-
     var result = [];
     if (req.params.geographicalEntity == "country") {
       // Country - India level
+      let wos = await populateWomenLedStartup(req.params.from, req.params.to);
+      let txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
+      let drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
+
       try {
         await mongodb
           .getDb()
@@ -282,11 +282,15 @@ router.get(
       }
     } else if (req.params.geographicalEntity == "state") {
       // State level
+      let stateId = req.params.entityId;
+
+      let stateCounts = await populateMultiFieldCountsForState(stateId, req.params.from, req.params.to);
+
       console.log(
-        "Praparing data table for State with Id - " + req.params.entityId
+        "Praparing data table for State with Id - " + stateId
       );
 
-      subQuery.stateId = { "$eq": req.params.entityId };
+      subQuery.stateId = { "$eq": stateId };
 
       try {
         await mongodb
@@ -322,9 +326,10 @@ router.get(
             for (let i = 0; i < result.length; i++) {
               let dd = result[i];
               let district = {};
-              let count = {};
-              district.id = dd._id;
-              district.name = dd.roles[0].district;
+              let count = JSON.parse(JSON.stringify(dataCountJson));
+
+              district.districtId = dd._id;
+              district.district = dd.roles[0].district;
               district.stateId = dd.roles[0].stateId;
               district.state = dd.roles[0].state;
 
@@ -332,10 +337,19 @@ router.get(
                 let role = dd.roles[j];
                 count[role.role] = role.count;
               }
-              district.counts = count;
+              count.WomenLed = stateCounts.hasOwnProperty('WomenLed') ? stateCounts.WomenLed : 0;
+              count.TaxExempted = stateCounts.hasOwnProperty('TaxExempted') ? stateCounts.TaxExempted : 0;
+              count.ShowcasedStartups = stateCounts.hasOwnProperty('ShowcasedStartups') ? stateCounts.ShowcasedStartups : 0;
+              count.SeedFundStartup = stateCounts.hasOwnProperty('SeedFundStartup') ? stateCounts.SeedFundStartup : 0;
+              count.FFS = stateCounts.hasOwnProperty('FFS') ? stateCounts.FFS : 0;
+              count.DpiitCertified = stateCounts.hasOwnProperty('DpiitCertified') ? stateCounts.DpiitCertified : 0;
+              count.PatentStartup = stateCounts.hasOwnProperty('PatentStartup') ? stateCounts.PatentStartup : 0;
+
+              district.statistics = count;
               countsArr.push(district);
             }
-            resp.status(200).send(countsArr);
+            output.data = countsArr;
+            resp.status(200).send(output);
           });
       } catch (err) {
         resp.status(500).json({ message: err.message });
@@ -606,6 +620,18 @@ async function populateMultiFieldCountsForState(stateId, from, to) {
         "DpiitCertified": [
           { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
           { "$count": "DpiitCertified" }
+        ],
+        "FFS": [
+          { "$match": { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "FFS" }
+        ],
+        "ShowcasedStartups": [
+          { "$match": { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "ShowcasedStartups" }
+        ],
+        "PatentStartup": [
+          { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "PatentStartup" }
         ]
       }
     },
@@ -614,7 +640,10 @@ async function populateMultiFieldCountsForState(stateId, from, to) {
         "WomenOwned": { "$arrayElemAt": ["$WomenOwned.WomenOwned", 0] },
         "SeedFunded": { "$arrayElemAt": ["$SeedFunded.SeedFunded", 0] },
         "TaxExempted": { "$arrayElemAt": ["$TaxExempted.TaxExempted", 0] },
-        "DpiitCertified": { "$arrayElemAt": ["$DpiitCertified.DpiitCertified", 0] }
+        "DpiitCertified": { "$arrayElemAt": ["$DpiitCertified.DpiitCertified", 0] },
+        "ShowcasedStartups": { "$arrayElemAt": ["$ShowcasedStartups.ShowcasedStartups", 0] },
+        "PatentStartup": { "$arrayElemAt": ["$PatentStartup.PatentStartup", 0] },
+        "FFS": { "$arrayElemAt": ["$FFS.FFS", 0] }
       }
     }
   ];
@@ -626,7 +655,7 @@ async function populateMultiFieldCountsForState(stateId, from, to) {
         .collection("digitalMapUser")
         .aggregate(query).toArray(async (err, result) => {
           if (err) throw err;
-          let output = await processStatewiseResults(result);
+          let output = await result[0];
           resolve(output);
         });
     } catch (err) {
