@@ -627,7 +627,6 @@ async function populateMultiFieldCountsForState(stateId, from, to) {
         .aggregate(query).toArray(async (err, result) => {
           if (err) throw err;
           let output = await processStatewiseResults(result);
-          //console.log("populateMultiFieldCountsForState :: Dpiit Recognized startup data count - " + Object.keys(output));
           resolve(output);
         });
     } catch (err) {
