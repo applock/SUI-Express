@@ -587,6 +587,63 @@ async function populateDpiitRecognizedStartup(from, to) {
     });
 }
 
+async function populateMultiFieldCountsForState(stateId, from, to) {
+  let query = [
+    {
+      "$facet": {
+        "WomenOwned": [
+          { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "WomenOwned" }
+        ],
+        "SeedFunded": [
+          { "$match": { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "SeedFunded" }
+        ],
+        "TaxExempted": [
+          { "$match": { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "TaxExempted" }
+        ],
+        "DpiitCertified": [
+          { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$count": "DpiitCertified" }
+        ]
+      }
+    },
+    {
+      "$project": {
+        "WomenOwned": { "$arrayElemAt": ["$WomenOwned.WomenOwned", 0] },
+        "SeedFunded": { "$arrayElemAt": ["$SeedFunded.SeedFunded", 0] },
+        "TaxExempted": { "$arrayElemAt": ["$TaxExempted.TaxExempted", 0] },
+        "DpiitCertified": { "$arrayElemAt": ["$DpiitCertified.DpiitCertified", 0] }
+      }
+    }
+  ];
+
+  var promAll = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate(query).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          //console.log("populateMultiFieldCountsForState :: Dpiit Recognized startup data count - " + Object.keys(output));
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateMultiFieldCountsForState :: ' + err.message);
+    }
+  });
+  return Promise.all([promAll])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
 async function processStatewiseResults(data) {
   var o = {};
   for (let i = 0; i < data.length; i++) {

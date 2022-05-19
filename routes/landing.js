@@ -719,7 +719,6 @@ router.post("/v2/filter", async (req, resp) => {
     subQuery.badges = {
       "badges": { "$exists": true, "$type": 'array', "$ne": [] }
     }
-
   }
 
   // DB CALL
