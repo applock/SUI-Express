@@ -221,6 +221,10 @@ router.get(
       let wos = await populateWomenLedStartup(req.params.from, req.params.to);
       let txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
       let drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
+      let pss = await populatePatentedStartup(req.params.from, req.params.to);
+      let scs = await populateShowcasedStartup(req.params.from, req.params.to);
+      let sfs = await populateSeedFundedStartup(req.params.from, req.params.to);
+      let ffs = await populateFundOfFundStartup(req.params.from, req.params.to);
 
       try {
         await mongodb
@@ -270,6 +274,10 @@ router.get(
               count.WomenLed = wos.hasOwnProperty(stateId) ? wos[stateId] : 0;
               count.TaxExempted = txs.hasOwnProperty(stateId) ? txs[stateId] : 0;
               count.DpiitCertified = drs.hasOwnProperty(stateId) ? drs[stateId] : 0;
+              count.PatentStartup = pss.hasOwnProperty(stateId) ? pss[stateId] : 0;
+              count.ShowcasedStartups = scs.hasOwnProperty(stateId) ? scs[stateId] : 0;
+              count.SeedFundStartup = sfs.hasOwnProperty(stateId) ? sfs[stateId] : 0;
+              count.FFS = ffs.hasOwnProperty(stateId) ? ffs[stateId] : 0;
 
               state.statistics = count;
               countsArr.push(state);
@@ -592,6 +600,175 @@ async function populateDpiitRecognizedStartup(from, to) {
     }
   });
   return Promise.all([promDR])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populatePatentedStartup(from, to) {
+  var promPT = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "patented": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
+          },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
+          },
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          //console.log("populatePatentedStartup :: Dpiit Recognized startup data count - " + Object.keys(output));
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populatePatentedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promPT])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populateShowcasedStartup(from, to) {
+  var promSC = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "showcased": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
+          },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
+          },
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateShowcasedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promSC])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populateSeedFundedStartup(from, to) {
+  var promSF = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "seedFunded": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
+          },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
+          },
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateSeedFundedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promSF])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populateFundOfFundStartup(from, to) {
+  var promFF = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "fundOfFunds": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
+          },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
+          },
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateFundOfFundStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promFF])
     .then((values) => {
       console.log("All promises resolved - " + JSON.stringify(values));
       return values[0];
