@@ -661,7 +661,7 @@ router.post("/v2/filter", async (req, resp) => {
           "$sectors": [],
           "$stages": ["Scaling", "EarlyTraction", "Validation"],
           "$states": [],
-          "$badges": [],
+          "$badges": ["true"],
           "$roles": ["Startup", "Mentor", "Investor", "GovernmentBody", "Incubator", "Accelerator"],
           "$registrationFrom": "",
           "$registrationTo": ""
@@ -710,9 +710,16 @@ router.post("/v2/filter", async (req, resp) => {
   }
 
   if (req.body.hasOwnProperty('sectors') && req.body.sectors.length) {
-    subQuery.industry = {
+    subQuery.sector = {
       "$elemMatch": { "sector": { "$in": req.body.sectors } }
     }
+  }
+
+  if (req.body.hasOwnProperty('badges') && req.body.badges.length && req.body.badges[0] == "true") {
+    subQuery.badges = {
+      "badges": { "$exists": true, "$type": 'array', "$ne": [] }
+    }
+
   }
 
   // DB CALL
