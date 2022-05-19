@@ -4,6 +4,7 @@ const request = require("request");
 const _ = require('lodash');
 const fs = require("fs");
 const mongodb = require("../mongodb");
+const { resolve } = require("path");
 
 var stateStatistics = fs.readFileSync("./static/stateStatistics.json", "utf8");
 stateStatistics = JSON.parse(stateStatistics);
@@ -214,6 +215,10 @@ router.get(
       "$gte": new Date(req.params.from),
     };
 
+    var wos = await populateWomenLedStartup(req.params.from, req.params.to);
+    var txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
+    var drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
+
     var result = [];
     if (req.params.geographicalEntity == "country") {
       // Country - India level
@@ -246,10 +251,6 @@ router.get(
           ]).toArray((err, result) => {
             if (err) throw err;
 
-            let wos = populateWomenLedStartup(req.params.from, req.params.to);
-            let txs = populateTaxExemptedStartup(req.params.from, req.params.to);
-            let drs = populateDpiitRecognizedStartup(req.params.from, req.params.to);
-
             let countsArr = [];
             for (let i = 0; i < result.length; i++) {
               let stateData = result[i];
@@ -267,8 +268,8 @@ router.get(
                 count[role.role] = role.count;
               }
               count.WomenLed = wos.hasOwnProperty(stateId) ? wos[stateId] : 0;
-              count.TaxExempted = txs.hasOwnProperty(stateId) ? wos[stateId] : 0;
-              count.DpiitCertified = drs.hasOwnProperty(stateId) ? wos[stateId] : 0;
+              count.TaxExempted = txs.hasOwnProperty(stateId) ? txs[stateId] : 0;
+              count.DpiitCertified = drs.hasOwnProperty(stateId) ? drs[stateId] : 0;
 
               state.statistics = count;
               countsArr.push(state);
@@ -458,102 +459,135 @@ router.get("/startup/:id", (req, resp) => {
 });
 
 async function populateWomenLedStartup(from, to) {
-  try {
-    await mongodb
-      .getDb()
-      .collection("digitalMapUser")
-      .aggregate([
-        {
-          "$match": {
-            "womenOwned": { "$eq": true },
-            "profileRegisteredOn": {
-              "$lte": new Date(to),
-              "$gte": new Date(from),
-            }
+  var promWO = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "womenOwned": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
           },
-        },
-        {
-          "$group": {
-            "_id": {
-              "StateId": "$stateId",
-            }, "count": { "$count": {} },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
           },
-        },
-      ]).toArray((err, result) => {
-        if (err) throw err;
-        console.log("populateWomenLedStartup :: Women Led startup data written successfully!");
-        return JSON.stringify(processStatewiseResults(result), null, 4);
-      });
-  } catch (err) {
-    console.error('populateWomenLedStartup :: ' + err.message);
-  }
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          //console.log("populateWomenLedStartup :: Women Led startup data count - " + Object.keys(output));
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateWomenLedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promWO])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
 }
 
 async function populateTaxExemptedStartup(from, to) {
-  try {
-    await mongodb
-      .getDb()
-      .collection("digitalMapUser")
-      .aggregate([
-        {
-          "$match": {
-            "taxExempted": { "$eq": true },
-            "profileRegisteredOn": {
-              "$lte": new Date(to),
-              "$gte": new Date(from),
-            }
+  var promTX = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "taxExempted": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
           },
-        },
-        {
-          "$group": {
-            "_id": {
-              "StateId": "$stateId",
-            }, "count": { "$count": {} },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
           },
-        },
-      ]).toArray((err, result) => {
-        if (err) throw err;
-        console.log("populateTaxExemptedStartup :: Tax Exempted startup data written successfully!");
-        return JSON.stringify(processStatewiseResults(result), null, 4);
-      });
-  } catch (err) {
-    console.error('populateTaxExemptedStartup :: ' + err.message);
-  }
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          //console.log("populateTaxExemptedStartup :: Tax Exempted startup data count - " + Object.keys(output));
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateTaxExemptedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promTX])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
 }
 
 async function populateDpiitRecognizedStartup(from, to) {
-  try {
-    await mongodb
-      .getDb()
-      .collection("digitalMapUser")
-      .aggregate([
-        {
-          "$match": {
-            "dpiitCertified": { "$eq": true },
-            "profileRegisteredOn": {
-              "$lte": new Date(to),
-              "$gte": new Date(from),
-            }
+  var promDR = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate([
+          {
+            "$match": {
+              "dpiitCertified": { "$eq": true },
+              "profileRegisteredOn": {
+                "$lte": new Date(to),
+                "$gte": new Date(from),
+              }
+            },
           },
-        },
-        {
-          "$group": {
-            "_id": {
-              "StateId": "$stateId",
-            }, "count": { "$count": {} },
+          {
+            "$group": {
+              "_id": {
+                "StateId": "$stateId",
+              }, "count": { "$count": {} },
+            },
           },
-        },
-      ]).toArray((err, result) => {
-        if (err) throw err;
-        console.log("populateDpiitRecognizedStartup :: Dpiit Recognized startup data written successfully!");
-        return JSON.stringify(processStatewiseResults(result), null, 4);
-      });
-  } catch (err) {
-    console.error('populateDpiitRecognizedStartup :: ' + err.message);
-  }
+        ]).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await processStatewiseResults(result);
+          //console.log("populateDpiitRecognizedStartup :: Dpiit Recognized startup data count - " + Object.keys(output));
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateDpiitRecognizedStartup :: ' + err.message);
+    }
+  });
+  return Promise.all([promDR])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
 }
 
-function processStatewiseResults(data) {
+async function processStatewiseResults(data) {
   var o = {};
   for (let i = 0; i < data.length; i++) {
     let obj = data[i];
