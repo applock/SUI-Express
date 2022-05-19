@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-
+const _ = require('lodash');
 const fs = require("fs");
+const mongodb = require("../mongodb");
+
 var stateStatistics = fs.readFileSync("./static/stateStatistics.json", "utf8");
 stateStatistics = JSON.parse(stateStatistics);
 var stateMap = fs.readFileSync("./static/stateMap.json", "utf8");
@@ -243,25 +245,36 @@ router.get(
             },
           ]).toArray((err, result) => {
             if (err) throw err;
+
+            let wos = populateWomenLedStartup(req.params.from, req.params.to);
+            let txs = populateTaxExemptedStartup(req.params.from, req.params.to);
+            let drs = populateDpiitRecognizedStartup(req.params.from, req.params.to);
+
             let countsArr = [];
             for (let i = 0; i < result.length; i++) {
-              let dd = result[i];
-              let district = {};
+              let stateData = result[i];
+              let stateId = stateData._id;
+              let state = {};
               let count = JSON.parse(JSON.stringify(dataCountJson));
 
-              district.id = dd._id;
-              district.name = dd.roles[0].district;
-              district.stateId = dd.roles[0].stateId;
-              district.state = dd.roles[0].state;
+              state.id = stateId;
+              state.name = stateData.roles[0].state;
+              state.text = stateData.roles[0].state;
+              state.isUnionTerritory = false;
 
-              for (let j = 0; j < dd.roles.length; j++) {
-                let role = dd.roles[j];
+              for (let j = 0; j < stateData.roles.length; j++) {
+                let role = stateData.roles[j];
                 count[role.role] = role.count;
               }
-              district.counts = count;
-              countsArr.push(district);
+              count.WomenLed = wos.hasOwnProperty(stateId) ? wos[stateId] : 0;
+              count.TaxExempted = txs.hasOwnProperty(stateId) ? wos[stateId] : 0;
+              count.DpiitCertified = drs.hasOwnProperty(stateId) ? wos[stateId] : 0;
+
+              state.statistics = count;
+              countsArr.push(state);
             }
-            resp.status(200).send(countsArr);
+            output.data = countsArr;
+            resp.status(200).send(output);
           });
       } catch (err) {
         resp.status(500).json({ message: err.message });
@@ -443,5 +456,110 @@ router.get("/startup/:id", (req, resp) => {
     resp.send(JSON.parse(response.body).user);
   });
 });
+
+async function populateWomenLedStartup(from, to) {
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "womenOwned": { "$eq": true },
+            "profileRegisteredOn": {
+              "$lte": new Date(to),
+              "$gte": new Date(from),
+            }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        console.log("populateWomenLedStartup :: Women Led startup data written successfully!");
+        return JSON.stringify(processStatewiseResults(result), null, 4);
+      });
+  } catch (err) {
+    console.error('populateWomenLedStartup :: ' + err.message);
+  }
+}
+
+async function populateTaxExemptedStartup(from, to) {
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "taxExempted": { "$eq": true },
+            "profileRegisteredOn": {
+              "$lte": new Date(to),
+              "$gte": new Date(from),
+            }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        console.log("populateTaxExemptedStartup :: Tax Exempted startup data written successfully!");
+        return JSON.stringify(processStatewiseResults(result), null, 4);
+      });
+  } catch (err) {
+    console.error('populateTaxExemptedStartup :: ' + err.message);
+  }
+}
+
+async function populateDpiitRecognizedStartup(from, to) {
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "dpiitCertified": { "$eq": true },
+            "profileRegisteredOn": {
+              "$lte": new Date(to),
+              "$gte": new Date(from),
+            }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        console.log("populateDpiitRecognizedStartup :: Dpiit Recognized startup data written successfully!");
+        return JSON.stringify(processStatewiseResults(result), null, 4);
+      });
+  } catch (err) {
+    console.error('populateDpiitRecognizedStartup :: ' + err.message);
+  }
+}
+
+function processStatewiseResults(data) {
+  var o = {};
+  for (let i = 0; i < data.length; i++) {
+    let obj = data[i];
+    o[obj._id.StateId] = obj.count;
+  }
+  return o;
+}
 
 module.exports = router;

@@ -62,6 +62,8 @@ router.get("/triggerCron", (req, resp) => {
 
       populateStateIdNameMapV2();
       populateWomenLedStartupMapV2();
+      populateTaxExemptedStartupMap();
+      populateDpiitRecognizedStartupMap();
       prepareStateWiseCountsV2();
     },
     {
@@ -98,6 +100,24 @@ router.get("/populateWomenLedStartupMap", (req, resp) => {
 
   //populateWomenLedStartupMap();
   populateWomenLedStartupMapV2();
+  resp.json("DONE");
+});
+
+router.get("/populateTaxExemptedStartupMap", (req, resp) => {
+  // #swagger.tags = ['Jobs']
+  // #swagger.path = '/jobs/populateTaxExemptedStartupMap'
+  // #swagger.description = 'DO NOT USE - Manual Job to prepare State-Wise Tax Exmpted startup Counts'
+
+  populateTaxExemptedStartupMap();
+  resp.json("DONE");
+});
+
+router.get("/populateDpiitRecognizedStartupMap", (req, resp) => {
+  // #swagger.tags = ['Jobs']
+  // #swagger.path = '/jobs/populateDpiitRecognizedStartupMap'
+  // #swagger.description = 'DO NOT USE - Manual Job to prepare State-Wise Dpiit Certified startup Counts'
+
+  populateDpiitRecognizedStartupMap();
   resp.json("DONE");
 });
 
@@ -262,7 +282,7 @@ async function populateWomenLedStartupMapV2() {
 
         fs.writeFileSync(
           "./static/womenLedStartups.json",
-          JSON.stringify(getWO(result), null, 4),
+          JSON.stringify(processStatewiseResults(result), null, 4),
           function (err) {
             if (err) {
               return console.error(err);
@@ -273,6 +293,84 @@ async function populateWomenLedStartupMapV2() {
       });
   } catch (err) {
     console.error('populateWomenLedStartupMapV2 :: ' + err.message);
+  }
+}
+
+async function populateTaxExemptedStartupMap() {
+  // Pre-process Tax Exempted startups
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "taxExempted": { "$eq": true }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        //console.log("* Output - " + JSON.stringify(result));
+
+        fs.writeFileSync(
+          "./static/taxExemptedStartups.json",
+          JSON.stringify(processStatewiseResults(result), null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("populateTaxExemptedStartupMap :: Tax Exempted startup data written successfully!");
+          }
+        );
+      });
+  } catch (err) {
+    console.error('populateTaxExemptedStartupMap :: ' + err.message);
+  }
+}
+
+async function populateDpiitRecognizedStartupMap() {
+  // Pre-process Dpiit Recognized startups
+  try {
+    await mongodb
+      .getDb()
+      .collection("digitalMapUser")
+      .aggregate([
+        {
+          "$match": {
+            "dpiitCertified": { "$eq": true }
+          },
+        },
+        {
+          "$group": {
+            "_id": {
+              "StateId": "$stateId",
+            }, "count": { "$count": {} },
+          },
+        },
+      ]).toArray((err, result) => {
+        if (err) throw err;
+        //console.log("* Output - " + JSON.stringify(result));
+
+        fs.writeFileSync(
+          "./static/dpiitCertifiedStartups.json",
+          JSON.stringify(processStatewiseResults(result), null, 4),
+          function (err) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("populateDpiitRecognizedStartupMap :: Dpiit Recognized startup data written successfully!");
+          }
+        );
+      });
+  } catch (err) {
+    console.error('populateDpiitRecognizedStartupMap :: ' + err.message);
   }
 }
 
@@ -718,7 +816,7 @@ function tranformWomenOwned_Mongo(data) {
   return o;
 }
 
-function getWO(data) {
+function processStatewiseResults(data) {
   var o = {};
   for (let i = 0; i < data.length; i++) {
     let obj = data[i];
