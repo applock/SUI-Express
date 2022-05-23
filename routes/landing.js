@@ -4,7 +4,7 @@ const request = require("request");
 const mongodb = require("../mongodb");
 const moment = require("moment");
 const _ = require('lodash');
-
+const ObjectId = require('mongodb').ObjectId;
 const fs = require("fs");
 var data = fs.readFileSync("./static/count.json", "utf8");
 data = JSON.parse(data);
@@ -704,14 +704,22 @@ router.post("/v2/filter", async (req, resp) => {
   }
 
   if (req.body.hasOwnProperty('industries') && req.body.industries.length) {
-    subQuery.industry = {
-      "$elemMatch": { "industry": { "$in": req.body.industries } }
+    let inds = [];
+    for (let ind of req.body.industries) {
+      inds.push(new ObjectId(ind));
+    }
+    subQuery['industry._id'] = {
+      "$in": inds,
     }
   }
 
   if (req.body.hasOwnProperty('sectors') && req.body.sectors.length) {
-    subQuery.sector = {
-      "$elemMatch": { "sector": { "$in": req.body.sectors } }
+    let secs = [];
+    for (let sec of req.body.sectors) {
+      secs.push(new ObjectId(sec));
+    }
+    subQuery['sector._id'] = {
+      "$in": secs,
     }
   }
 
@@ -726,7 +734,6 @@ router.post("/v2/filter", async (req, resp) => {
     await mongodb
       .getDb()
       .collection("digitalMapUser")
-      //.aggregate([{ "$group": { _id: { State: "$stateName", Role: "$role" }, count: { $sum: 1 } } }, { $sort: { "_id.stateName": 1 } }])
       .aggregate([
         {
           "$match": subQuery,
@@ -741,7 +748,7 @@ router.post("/v2/filter", async (req, resp) => {
         },
       ]).toArray((err, result) => {
         if (err) throw err;
-        console.log("* Output - " + JSON.stringify(result));
+        //console.log("* Output - " + JSON.stringify(result));
         let output = JSON.parse(JSON.stringify(defaultsv2));
         output.counts = result.map(transformCount_Mongo);
         resp.status(200).send(output);
