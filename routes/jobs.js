@@ -127,7 +127,8 @@ router.get("/prepareIndiaLevelCounts", (req, resp) => {
   // #swagger.path = '/jobs/prepareIndiaLevelCounts'
   // #swagger.description = 'DO NOT USE - Manual Job to prepare India level Counts'
 
-  prepareIndiaLevelCounts();
+  //prepareIndiaLevelCounts();
+  prepareIndiaLevelCountsV2();
   resp.json("DONE");
 });
 
@@ -482,6 +483,82 @@ async function prepareIndiaLevelCounts() {
   });
 }
 
+async function prepareIndiaLevelCountsV2() {
+  // Pre-process India Wise counts
+  let facetResult = await populateMultiFieldCountsForIndiaWithoutDate();
+  let industryBasedNumbers = facetResult.Industry[0];
+  let sectorBasedNumbers = facetResult.Sector[0];
+  let stageBasedNumbers = facetResult.Stage[0];
+
+  let template = JSON.parse(JSON.stringify(stateCountJson));
+  template.Mentor = fillUndefined(facetResult.Mentor);
+  template.GovernmentBody = fillUndefined(facetResult.GovernmentBody);
+  template.Individual = fillUndefined(facetResult.Individual);
+  template.Investor = fillUndefined(facetResult.Investor);
+  template.Startup = fillUndefined(facetResult.Startup);
+  template.Accelerator = fillUndefined(facetResult.Accelerator);
+  template.DpiitCertified = fillUndefined(facetResult.DpiitCertified);
+  template.TaxExempted = fillUndefined(facetResult.TaxExempted);
+  template.WomenLed = fillUndefined(facetResult.WomenOwned);
+  template.FFS = fillUndefined(facetResult.FFS);
+  template.PatentStartup = fillUndefined(facetResult.PatentStartup);
+  template.SeedFundStartup = fillUndefined(facetResult.SeedFunded);
+  template.ShowcasedStartups = fillUndefined(facetResult.ShowcasedStartups);
+
+  // Storing Industries
+  let industryArr = [];
+  let totalIndustriesOfState = 0;
+  for (const ind of industryBasedNumbers) {
+    industryArr.push({
+      id: ind._id.industry._id,
+      text: ind._id.industry.name,
+      count: ind.count,
+    });
+    totalIndustriesOfState += ind.count;
+  }
+  template.industry = industryArr;
+  template.TotalIndustry = totalIndustriesOfState;
+
+  // Storing Sectors
+  let sectorArr = [];
+  let totalSectorsOfState = 0;
+  for (const sec of sectorBasedNumbers) {
+    sectorArr.push({
+      id: sec._id.sector._id,
+      text: sec._id.sector.name,
+      count: sec.count,
+    });
+    totalSectorsOfState += sec.count;
+  }
+  template.sector = sectorArr;
+  template.TotalSector = totalSectorsOfState;
+
+  // Storing Stages
+  let stageArr = [];
+  let totalStagesOfState = 0;
+  for (const stg of stageBasedNumbers) {
+    stageArr.push({
+      id: stg._id.stage,
+      text: stg._id.stage,
+      count: stg.count,
+    });
+    totalStagesOfState += stg.count;
+  }
+  template.stage = stageArr;
+  template.TotalStage = totalStagesOfState;
+
+  fs.writeFileSync(
+    "./static/IndiaWiseCount.json",
+    JSON.stringify(template, null, 4),
+    function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log("Data written successfully for India");
+    }
+  );
+}
+
 async function prepareStateWiseCounts() {
   // Pre-process State Wise counts
   request(process.env.STATES_URL, { json: true }, (err, res, body) => {
@@ -660,14 +737,12 @@ async function prepareStateWiseCountsV2() {
   let maxGovernmentBodys = 0;
 
   for (let i = 0, l = stateIdNameMap.length; i < l; i++) {
-    let query = JSON.parse(JSON.stringify(blankFilterQuery));
     let currentState = stateIdNameMap[i];
     console.log(
       "prepareStateWiseCountsV2 :: Processing for " + currentState.name
     );
-    query.states = [currentState._id];
 
-    let facetResult = await populateMultiFieldCountsForStateWithoutDate(currentState._id, null, null);
+    let facetResult = await populateMultiFieldCountsForStateWithoutDate(currentState._id);
     let industryBasedNumbers = facetResult.Industry[0];
     let sectorBasedNumbers = facetResult.Sector[0];
     let stageBasedNumbers = facetResult.Stage[0];
@@ -868,6 +943,127 @@ async function populateMultiFieldCountsForStateWithoutDate(stateId) {
         ],
         "PatentStartup": [
           { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, } },
+          { "$count": "PatentStartup" }
+        ]
+      }
+    },
+    {
+      "$project": {
+        "Startup": { "$arrayElemAt": ["$Startup.Startup", 0] },
+        "Investor": { "$arrayElemAt": ["$Investor.Investor", 0] },
+        "Accelerator": { "$arrayElemAt": ["$Accelerator.Accelerator", 0] },
+        "Individual": { "$arrayElemAt": ["$Individual.Individual", 0] },
+        "Mentor": { "$arrayElemAt": ["$Mentor.Mentor", 0] },
+        "GovernmentBody": { "$arrayElemAt": ["$GovernmentBody.GovernmentBody", 0] },
+        "Incubator": { "$arrayElemAt": ["$Incubator.Incubator", 0] },
+        "Industry": ["$Industry"],
+        "Sector": ["$Sector"],
+        "Stage": ["$Stage"],
+        "WomenOwned": { "$arrayElemAt": ["$WomenOwned.WomenOwned", 0] },
+        "SeedFunded": { "$arrayElemAt": ["$SeedFunded.SeedFunded", 0] },
+        "TaxExempted": { "$arrayElemAt": ["$TaxExempted.TaxExempted", 0] },
+        "DpiitCertified": { "$arrayElemAt": ["$DpiitCertified.DpiitCertified", 0] },
+        "ShowcasedStartups": { "$arrayElemAt": ["$ShowcasedStartups.ShowcasedStartups", 0] },
+        "PatentStartup": { "$arrayElemAt": ["$PatentStartup.PatentStartup", 0] },
+        "FFS": { "$arrayElemAt": ["$FFS.FFS", 0] }
+      }
+    }
+  ];
+
+  var promAll = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate(query).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await result[0];
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateMultiFieldCountsForStateWithoutDate :: ' + err.message);
+    }
+  });
+  return Promise.all([promAll])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populateMultiFieldCountsForIndiaWithoutDate() {
+  let query = [
+    {
+      "$facet": {
+        "Startup": [
+          { "$match": { "role": { "$eq": 'Startup' }, } },
+          { "$count": "Startup" }
+        ],
+        "Investor": [
+          { "$match": { "role": { "$eq": 'Investor' }, } },
+          { "$count": "Investor" }
+        ],
+        "Accelerator": [
+          { "$match": { "role": { "$eq": 'Accelerator' }, } },
+          { "$count": "Accelerator" }
+        ],
+        "Individual": [
+          { "$match": { "role": { "$eq": 'Individual' }, } },
+          { "$count": "Individual" }
+        ],
+        "Mentor": [
+          { "$match": { "role": { "$eq": 'Mentor' }, } },
+          { "$count": "Mentor" }
+        ],
+        "GovernmentBody": [
+          { "$match": { "role": { "$eq": 'GovernmentBody' }, } },
+          { "$count": "GovernmentBody" }
+        ],
+        "Incubator": [
+          { "$match": { "role": { "$eq": 'Incubator' }, } },
+          { "$count": "Incubator" }
+        ],
+        "Industry": [
+          { "$unwind": "$industry" },
+          { "$group": { "_id": { "industry": "$industry" }, "count": { "$count": {} }, }, },
+        ],
+        "Sector": [
+          { "$unwind": "$sector" },
+          { "$group": { "_id": { "sector": "$sector" }, "count": { "$count": {} }, }, },
+        ],
+        "Stage": [
+          { "$match": { "stage": { "$nin": ["", null] } } },
+          { "$group": { "_id": { "stage": "$stage" }, "count": { "$count": {} }, }, },
+        ],
+        "WomenOwned": [
+          { "$match": { "womenOwned": { "$eq": true }, } },
+          { "$count": "WomenOwned" }
+        ],
+        "SeedFunded": [
+          { "$match": { "seedFunded": { "$eq": true }, } },
+          { "$count": "SeedFunded" }
+        ],
+        "TaxExempted": [
+          { "$match": { "taxExempted": { "$eq": true }, } },
+          { "$count": "TaxExempted" }
+        ],
+        "DpiitCertified": [
+          { "$match": { "dpiitCertified": { "$eq": true }, } },
+          { "$count": "DpiitCertified" }
+        ],
+        "FFS": [
+          { "$match": { "fundOfFunds": { "$eq": true }, } },
+          { "$count": "FFS" }
+        ],
+        "ShowcasedStartups": [
+          { "$match": { "showcased": { "$eq": true }, } },
+          { "$count": "ShowcasedStartups" }
+        ],
+        "PatentStartup": [
+          { "$match": { "patented": { "$eq": true }, } },
           { "$count": "PatentStartup" }
         ]
       }

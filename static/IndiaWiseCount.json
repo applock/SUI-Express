@@ -1,1593 +1,708 @@
 {
     "Exploring": 0,
-    "Incubator": 764,
-    "Corporate": 32,
+    "Incubator": 0,
+    "Corporate": 0,
     "SIH_Admin": 0,
-    "Mentor": 723,
+    "Mentor": 160,
     "Academia": 0,
-    "GovernmentBody": 62,
+    "GovernmentBody": 8,
     "ConnectToPotentialPartner": 0,
     "IndiaMarketEntry": 0,
     "Individual": 0,
     "ServiceProvider": 0,
-    "Investor": 98,
-    "Startup": 179244,
-    "Accelerator": 155,
-    "DpiitCertified": 60305,
-    "TaxExempted": 390,
-    "WomenLed": 27793,
+    "Investor": 43,
+    "Startup": 4866,
+    "Accelerator": 26,
+    "DpiitCertified": 2141,
+    "TaxExempted": 65,
+    "WomenLed": 776,
     "FFS": 0,
-    "PatentStartup": 0,
+    "PatentStartup": 116,
     "SeedFundStartup": 0,
     "ShowcasedStartups": 0,
     "industry": [
         {
-            "id": "5f48ce5f2a9bb065cdfa174d",
-            "text": "IT Services",
-            "count": 20259
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa174a",
-            "text": "Healthcare & Lifesciences",
-            "count": 13613
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1740",
-            "text": "Education",
-            "count": 12399
-        },
-        {
-            "id": "5f02e3936f3de87babe21085",
-            "text": "Others",
-            "count": 10344
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1748",
-            "text": "Food & Beverages",
-            "count": 9599
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1752",
-            "text": "Professional & Commercial Services",
-            "count": 8036
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1732",
-            "text": "Agriculture",
-            "count": 8009
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa173d",
-            "text": "Construction",
-            "count": 6181
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa174e",
-            "text": "Marketing",
-            "count": 5583
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1754",
-            "text": "Retail",
-            "count": 5396
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1749",
-            "text": "Technology Hardware",
-            "count": 5002
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1747",
-            "text": "Finance Technology",
-            "count": 4653
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1742",
-            "text": "Renewable Energy",
-            "count": 4531
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1739",
-            "text": "Automotive",
-            "count": 3571
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa174b",
-            "text": "Human Resources",
-            "count": 3562
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1743",
-            "text": "Green Technology",
-            "count": 3557
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa175f",
-            "text": "Travel & Tourism",
-            "count": 3265
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1733",
-            "text": "AI",
-            "count": 3240
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1744",
-            "text": "Enterprise Software",
-            "count": 3233
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa174c",
-            "text": "Internet of Things",
-            "count": 3196
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa175d",
-            "text": "Textiles & Apparel",
-            "count": 3080
-        },
-        {
             "id": "5f48ce5f2a9bb065cdfa174f",
             "text": "Media & Entertainment",
-            "count": 2803
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1746",
-            "text": "Fashion",
-            "count": 2770
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa175e",
-            "text": "Transportation & Storage",
-            "count": 2427
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa173b",
-            "text": "Telecommunication & Networking",
-            "count": 2186
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1730",
-            "text": "Advertising",
-            "count": 2034
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1758",
-            "text": "Security Solutions",
-            "count": 1985
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa173f",
-            "text": "Design",
-            "count": 1852
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1741",
-            "text": "Non- Renewable Energy",
-            "count": 1770
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa175a",
-            "text": "Social Impact",
-            "count": 1702
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1734",
-            "text": "Analytics",
-            "count": 1621
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1755",
-            "text": "Other Specialty Retailers",
-            "count": 1609
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa173a",
-            "text": "Chemicals",
-            "count": 1590
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa175b",
-            "text": "Social Network",
-            "count": 1517
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47b3",
-            "text": "Waste Management",
-            "count": 1477
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1731",
-            "text": "Aeronautics Aerospace & Defence",
-            "count": 1464
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1759",
-            "text": "House-Hold Services",
-            "count": 1459
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1753",
-            "text": "Real Estate",
-            "count": 1380
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1737",
-            "text": "Architecture Interior Design",
-            "count": 1327
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1756",
-            "text": "Robotics",
-            "count": 1154
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1745",
-            "text": "Events",
-            "count": 1141
+            "count": 119
         },
         {
             "id": "5f48ce5f2a9bb065cdfa1736",
             "text": "AR VR (Augmented + Virtual Reality)",
-            "count": 1084
+            "count": 102
         },
         {
-            "id": "5f48d0ca2a9bb065cdfc47b1",
-            "text": "Logistics",
-            "count": 1078
+            "id": "5f48ce5f2a9bb065cdfa1741",
+            "text": "Non- Renewable Energy",
+            "count": 24
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1744",
+            "text": "Enterprise Software",
+            "count": 181
         },
         {
             "id": "5f48ce5f2a9bb065cdfa173c",
             "text": "Computer Vision",
-            "count": 1020
+            "count": 54
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa175c",
-            "text": "Sports",
-            "count": 1015
+            "id": "5f48ce5f2a9bb065cdfa173b",
+            "text": "Telecommunication & Networking",
+            "count": 94
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1757",
-            "text": "Safety",
-            "count": 833
+            "id": "5f48ce5f2a9bb065cdfa1752",
+            "text": "Professional & Commercial Services",
+            "count": 192
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1738",
-            "text": "Art & Photography",
-            "count": 823
+            "id": "5f48ce5f2a9bb065cdfa175f",
+            "text": "Travel & Tourism",
+            "count": 124
         },
         {
-            "id": "5f48d0ca2a9bb065cdfc47b5",
-            "text": "Biotechnology",
-            "count": 568
+            "id": "5f48ce5f2a9bb065cdfa1730",
+            "text": "Advertising",
+            "count": 97
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa174b",
+            "text": "Human Resources",
+            "count": 101
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa173f",
+            "text": "Design",
+            "count": 80
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1747",
+            "text": "Finance Technology",
+            "count": 253
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1755",
+            "text": "Other Specialty Retailers",
+            "count": 41
         },
         {
             "id": "5f48ce5f2a9bb065cdfa1751",
             "text": "Pets & Animals",
-            "count": 512
+            "count": 19
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1750",
-            "text": "Nanotechnology",
-            "count": 385
+            "id": "5f48ce5f2a9bb065cdfa1732",
+            "text": "Agriculture",
+            "count": 562
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1735",
-            "text": "Animation",
-            "count": 314
+            "id": "5f48ce5f2a9bb065cdfa1733",
+            "text": "AI",
+            "count": 177
         },
         {
-            "id": "5fa69741204c3d4ed00bc282",
-            "text": "Toys and Games",
-            "count": 293
+            "id": "5f48ce5f2a9bb065cdfa1731",
+            "text": "Aeronautics Aerospace & Defence",
+            "count": 58
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b3",
+            "text": "Waste Management",
+            "count": 4
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa175b",
+            "text": "Social Network",
+            "count": 118
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1737",
+            "text": "Architecture Interior Design",
+            "count": 35
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1738",
+            "text": "Art & Photography",
+            "count": 36
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1740",
+            "text": "Education",
+            "count": 400
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1742",
+            "text": "Renewable Energy",
+            "count": 195
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa173a",
+            "text": "Chemicals",
+            "count": 34
+        },
+        {
+            "id": "5f02e3936f3de87babe21085",
+            "text": "Others",
+            "count": 10
         },
         {
             "id": "5f48ce5f2a9bb065cdfa173e",
             "text": "Dating Matrimonial",
-            "count": 183
+            "count": 12
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1760",
-            "text": "Indic Language Startups",
-            "count": 135
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47b4",
-            "text": "Passenger Experience",
-            "count": 76
+            "id": "5f48ce5f2a9bb065cdfa175d",
+            "text": "Textiles & Apparel",
+            "count": 77
         },
         {
             "id": "5f48d0ca2a9bb065cdfc47b2",
             "text": "Airport Operations",
-            "count": 60
+            "count": 1
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1757",
+            "text": "Safety",
+            "count": 22
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa175a",
+            "text": "Social Impact",
+            "count": 129
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1735",
+            "text": "Animation",
+            "count": 28
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1743",
+            "text": "Green Technology",
+            "count": 206
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1734",
+            "text": "Analyticss",
+            "count": 124
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1749",
+            "text": "Technology Hardware",
+            "count": 176
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1746",
+            "text": "Fashion",
+            "count": 91
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1753",
+            "text": "Real Estate",
+            "count": 54
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1748",
+            "text": "Food & Beverages",
+            "count": 202
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1750",
+            "text": "Nanotechnology",
+            "count": 40
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa175e",
+            "text": "Transportation & Storage",
+            "count": 116
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa174a",
+            "text": "Healthcare & Lifesciences",
+            "count": 492
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa173d",
+            "text": "Construction",
+            "count": 68
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa175c",
+            "text": "Sports",
+            "count": 44
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b1",
+            "text": "Logistics",
+            "count": 1
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b5",
+            "text": "Biotechnology",
+            "count": 2
+        },
+        {
+            "id": "5fa69741204c3d4ed00bc282",
+            "text": "Toys and Games",
+            "count": 1
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1759",
+            "text": "House-Hold Services",
+            "count": 49
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa174e",
+            "text": "Marketing",
+            "count": 180
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1756",
+            "text": "Robotics",
+            "count": 94
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1745",
+            "text": "Events",
+            "count": 63
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1739",
+            "text": "Automotive",
+            "count": 102
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1754",
+            "text": "Retail",
+            "count": 167
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1758",
+            "text": "Security Solutions",
+            "count": 62
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa174c",
+            "text": "Internet of Things",
+            "count": 260
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa174d",
+            "text": "IT Services",
+            "count": 644
         }
     ],
-    "TotalIndustry": 183956,
+    "TotalIndustry": 6617,
     "sector": [
-        {
-            "id": "5f89b9b361334048016290f0",
-            "text": "Others",
-            "count": 10312
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17de",
-            "text": "Food Processing",
-            "count": 5206
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f3",
-            "text": "IT Consulting",
-            "count": 4913
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b3",
-            "text": "Skill Development",
-            "count": 4509
-        },
         {
             "id": "5f48ce5f2a9bb065cdfa17f8",
             "text": "Application Development",
-            "count": 4372
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f7",
-            "text": "Product Development",
-            "count": 4212
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180e",
-            "text": "Business Support Services",
-            "count": 4061
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e5",
-            "text": "Health & Wellness",
-            "count": 4001
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b2",
-            "text": "Education Technology",
-            "count": 3945
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1796",
-            "text": "Agri-Tech",
-            "count": 3901
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ac",
-            "text": "Construction & Engineering",
-            "count": 3692
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b1",
-            "text": "E-learning",
-            "count": 3334
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f6",
-            "text": "Web Development",
-            "count": 3255
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e8",
-            "text": "Healthcare Services",
-            "count": 2996
+            "count": 186
         },
         {
             "id": "5f48ce5f2a9bb065cdfa1800",
             "text": "Sales",
-            "count": 2622
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b9",
-            "text": "Renewable Solar Energy",
-            "count": 2545
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1798",
-            "text": "Machine Learning",
-            "count": 2428
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1813",
-            "text": "Retail Technology",
-            "count": 2418
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e4",
-            "text": "Medical Devices Biomedical",
-            "count": 2370
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e2",
-            "text": "Electronics",
-            "count": 2319
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17fa",
-            "text": "IT Management",
-            "count": 2266
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17eb",
-            "text": "Recruitment Jobs",
-            "count": 2187
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e6",
-            "text": "Pharmaceutical",
-            "count": 2181
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47ca",
-            "text": "Others",
-            "count": 2037
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17be",
-            "text": "Clean Tech",
-            "count": 2024
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1829",
-            "text": "Apparel & Accessories",
-            "count": 2005
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1795",
-            "text": "Organic Agriculture",
-            "count": 1995
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17bc",
-            "text": "Renewable Energy Solutions",
-            "count": 1784
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17dd",
-            "text": "Restaurants",
-            "count": 1783
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47cf",
-            "text": "Others",
-            "count": 1730
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ea",
-            "text": "Healthcare Technology",
-            "count": 1707
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d3",
-            "text": "Others",
-            "count": 1699
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183c",
-            "text": "Others",
-            "count": 1513
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183d",
-            "text": "Manufacturing",
-            "count": 1497
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17fe",
-            "text": "Digital Marketing (SEO Automation)",
-            "count": 1476
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47e3",
-            "text": "Others",
-            "count": 1476
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b4",
-            "text": "Coaching",
-            "count": 1440
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17bd",
-            "text": "Waste Management",
-            "count": 1410
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17bf",
-            "text": "Cloud",
-            "count": 1343
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d1",
-            "text": "Others",
-            "count": 1339
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c2",
-            "text": "Others",
-            "count": 1336
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1797",
-            "text": "Food Processing",
-            "count": 1326
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1837",
-            "text": "Others",
-            "count": 1326
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f1",
-            "text": "Manufacturing & Warehouse",
-            "count": 1319
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47df",
-            "text": "Others",
-            "count": 1313
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17cb",
-            "text": "Apparel",
-            "count": 1309
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e9",
-            "text": "Healthcare IT",
-            "count": 1308
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182c",
-            "text": "Freight & Logistics Services",
-            "count": 1271
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f0",
-            "text": "Smart Home",
-            "count": 1251
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47bc",
-            "text": "Others",
-            "count": 1230
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47ce",
-            "text": "Others",
-            "count": 1230
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b8",
-            "text": "Oil & Gas Transportation Services",
-            "count": 1199
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1831",
-            "text": "Experiential Travel",
-            "count": 1183
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180f",
-            "text": "Professional Information Services",
-            "count": 1155
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b0",
-            "text": "Industrial Design",
-            "count": 1148
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a1",
-            "text": "Auto, Truck & Motorcycle Parts",
-            "count": 1139
-        },
-        {
-            "id": "5f844ba45874226324bd4632",
-            "text": "Food Technology/Food Delivery",
-            "count": 1113
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e7",
-            "text": "Biotechnology",
-            "count": 1088
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1814",
-            "text": "Social Commerce",
-            "count": 1084
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1836",
-            "text": "Others",
-            "count": 1081
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47e1",
-            "text": "Others",
-            "count": 1078
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1791",
-            "text": "AdTech",
-            "count": 1059
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d4",
-            "text": "Personal Finance",
-            "count": 1030
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a9",
-            "text": "Network Technology Solutions",
-            "count": 1028
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1838",
-            "text": "Others",
-            "count": 1015
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17fd",
-            "text": "Branding",
-            "count": 1014
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d9",
-            "text": "Others",
-            "count": 981
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d7",
-            "text": "Business Finance",
-            "count": 948
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d6",
-            "text": "Advisory",
-            "count": 922
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1810",
-            "text": "Business Support Supplies",
-            "count": 919
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c0",
-            "text": "ERP",
-            "count": 906
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47bd",
-            "text": "Electric Vehicles",
-            "count": 894
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47cc",
-            "text": "Others",
-            "count": 885
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c8",
-            "text": "Event Management",
-            "count": 880
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180a",
-            "text": "Entertainment",
-            "count": 865
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47b9",
-            "text": "Others",
-            "count": 864
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47b7",
-            "text": "Others",
-            "count": 860
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17aa",
-            "text": "New-age Construction Technologies",
-            "count": 859
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c5",
-            "text": "Others",
-            "count": 841
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e0",
-            "text": "Embedded",
-            "count": 840
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1811",
-            "text": "Housing",
-            "count": 833
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179a",
-            "text": "Business Intelligence",
-            "count": 819
+            "count": 89
         },
         {
             "id": "5f48ce5f2a9bb065cdfa181e",
             "text": "Home Security solutions",
-            "count": 817
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1799",
-            "text": "NLP",
-            "count": 815
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d1",
-            "text": "Payment Platforms",
-            "count": 815
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17fb",
-            "text": "Project Management",
-            "count": 811
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17dc",
-            "text": "Accounting",
-            "count": 804
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a8",
-            "text": "Integrated communication services",
-            "count": 790
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1793",
-            "text": "Drones",
-            "count": 787
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182d",
-            "text": "Passenger Transportation Services",
-            "count": 785
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa181a",
-            "text": "Robotics Technology",
-            "count": 768
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1806",
-            "text": "Digital Media",
-            "count": 765
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ca",
-            "text": "Lifestyle",
-            "count": 763
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1822",
-            "text": "Home Care",
-            "count": 755
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ab",
-            "text": "Construction Materials",
-            "count": 749
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179c",
-            "text": "Data Science",
-            "count": 747
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47cd",
-            "text": "Others",
-            "count": 746
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1823",
-            "text": "NGO",
-            "count": 739
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1794",
-            "text": "Dairy Farming",
-            "count": 737
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c9",
-            "text": "Others",
-            "count": 735
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1815",
-            "text": "Comparison Shopping",
-            "count": 730
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a0",
-            "text": "Auto & Truck Manufacturers",
-            "count": 728
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180d",
-            "text": "Employment Services",
-            "count": 723
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47cb",
-            "text": "Others",
-            "count": 717
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47dd",
-            "text": "Others",
-            "count": 682
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d4",
-            "text": "Others",
-            "count": 679
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1833",
-            "text": "Hospitality",
-            "count": 673
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47de",
-            "text": "Others",
-            "count": 657
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f2",
-            "text": "Wearables",
-            "count": 654
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a5",
-            "text": "Specialty Chemicals",
-            "count": 653
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa181d",
-            "text": "Cyber Security",
-            "count": 636
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f4",
-            "text": "BPO",
-            "count": 629
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c6",
-            "text": "Others",
-            "count": 629
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c1",
-            "text": "Others",
-            "count": 607
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d2",
-            "text": "Trading",
-            "count": 598
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180b",
-            "text": "Environmental Services & Equipment",
-            "count": 596
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa181b",
-            "text": "Robotics Application",
-            "count": 596
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1792",
-            "text": "Online Classified",
-            "count": 587
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d7",
-            "text": "Others",
-            "count": 572
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ad",
-            "text": "Construction Supplies & Fixtures",
-            "count": 570
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47e5",
-            "text": "Others",
-            "count": 568
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17cf",
-            "text": "Mobile wallets  Payments",
-            "count": 567
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1828",
-            "text": "Non- Leather Textiles Goods",
-            "count": 564
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c6",
-            "text": "Enterprise Mobility",
-            "count": 555
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d5",
-            "text": "Insurance",
-            "count": 544
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17da",
-            "text": "Microfinance",
-            "count": 543
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1801",
-            "text": "Market Research",
-            "count": 542
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179b",
-            "text": "Big Data",
-            "count": 539
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ee",
-            "text": "Talent Management",
-            "count": 537
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47db",
-            "text": "Others",
-            "count": 527
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1826",
-            "text": "Sports Promotion and Networking",
-            "count": 526
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a7",
-            "text": "Wireless",
-            "count": 525
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47be",
-            "text": "Others",
-            "count": 514
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183b",
-            "text": "Others",
-            "count": 512
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47bf",
-            "text": "Others",
-            "count": 512
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c4",
-            "text": "Collaboration",
-            "count": 502
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d9",
-            "text": "Bitcoin and Blockchain",
-            "count": 496
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d0",
-            "text": "Point of Sales",
-            "count": 483
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1802",
-            "text": "Digital Media News",
-            "count": 481
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c4",
-            "text": "Others",
-            "count": 477
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d6",
-            "text": "Others",
-            "count": 457
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d8",
-            "text": "P2P Lending",
-            "count": 453
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17d3",
-            "text": "Billing and Invoicing",
-            "count": 452
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ce",
-            "text": "Crowdfunding",
-            "count": 451
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c9",
-            "text": "Fashion Technology",
-            "count": 450
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17df",
-            "text": "Microbrewery",
-            "count": 449
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1834",
-            "text": "Facility Management",
-            "count": 449
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa181c",
-            "text": "Personal Security",
-            "count": 438
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e3",
-            "text": "3d printing",
-            "count": 432
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182f",
-            "text": "Holiday Rentals",
-            "count": 428
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1817",
-            "text": "Home Improvement Products & Services Retailers",
-            "count": 426
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47da",
-            "text": "Others",
-            "count": 418
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1803",
-            "text": "Digital Media Video",
-            "count": 417
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47ba",
-            "text": "Others",
-            "count": 417
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47b8",
-            "text": "Others",
-            "count": 413
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c5",
-            "text": "Location Based",
-            "count": 407
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d2",
-            "text": "Others",
-            "count": 407
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17db",
-            "text": "Foreign Exchange",
-            "count": 399
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c0",
-            "text": "Others",
-            "count": 398
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d8",
-            "text": "Others",
-            "count": 396
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1832",
-            "text": "Ticketing",
-            "count": 393
-        },
-        {
-            "id": "5f8434395874226324bd45fe",
-            "text": "Horticulture",
-            "count": 392
+            "count": 33
         },
         {
             "id": "5f48ce5f2a9bb065cdfa17af",
             "text": "Web Design",
-            "count": 390
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ba",
-            "text": "Renewable Wind Energy",
-            "count": 389
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c3",
-            "text": "Customer Support",
-            "count": 387
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183a",
-            "text": "Others",
-            "count": 385
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ff",
-            "text": "Discovery",
-            "count": 384
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17cd",
-            "text": "Jewellery",
-            "count": 381
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1805",
-            "text": "Digital Media Publishing",
-            "count": 378
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f5",
-            "text": "KPO",
-            "count": 374
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17fc",
-            "text": "Loyalty",
-            "count": 374
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c1",
-            "text": "CXM",
-            "count": 371
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182e",
-            "text": "Transport Infrastructure",
-            "count": 371
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c2",
-            "text": "SCM",
-            "count": 370
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1824",
-            "text": "Corporate Social Responsibility",
-            "count": 369
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17f9",
-            "text": "Testing",
-            "count": 365
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ae",
-            "text": "Homebuilding",
-            "count": 356
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17e1",
-            "text": "Semiconductor",
-            "count": 355
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ec",
-            "text": "Training",
-            "count": 353
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47dc",
-            "text": "Others",
-            "count": 353
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ed",
-            "text": "Skills Assessment",
-            "count": 348
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d0",
-            "text": "Others",
-            "count": 343
-        },
-        {
-            "id": "5f6309cd2643793f541c77af",
-            "text": "Manufacture of Electrical Equipment",
-            "count": 337
-        },
-        {
-            "id": "5f8434535874226324bd4600",
-            "text": "Animal Husbandry",
-            "count": 333
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa180c",
-            "text": "Commercial Printing Services",
-            "count": 330
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1830",
-            "text": "Hotel",
-            "count": 325
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1812",
-            "text": "Coworking Spaces",
-            "count": 322
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179d",
-            "text": "Handicraft",
-            "count": 321
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1835",
-            "text": "Others",
-            "count": 314
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179e",
-            "text": "Art",
-            "count": 312
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1809",
-            "text": "Social Media",
-            "count": 308
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1807",
-            "text": "Movies",
-            "count": 307
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b7",
-            "text": "Oil Related Services and Equipment",
-            "count": 301
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a3",
-            "text": "Commodity Chemicals",
-            "count": 293
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a6",
-            "text": "Diversified Chemicals",
-            "count": 293
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a2",
-            "text": "Tires & Rubber Products",
-            "count": 290
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa179f",
-            "text": "Photography",
-            "count": 287
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17bb",
-            "text": "Renewable Nuclear Energy",
-            "count": 284
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c8",
-            "text": "Others",
-            "count": 278
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1819",
-            "text": "Computer & Electronics Retailers",
-            "count": 271
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47d5",
-            "text": "Others",
-            "count": 271
-        },
-        {
-            "id": "5f8434465874226324bd45ff",
-            "text": "Fisheries",
-            "count": 266
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c3",
-            "text": "Others",
-            "count": 252
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17a4",
-            "text": "Agricultural Chemicals",
-            "count": 245
-        },
-        {
-            "id": "5f89b9b361334048016290ef",
-            "text": "Public Citizen Security Solutions",
-            "count": 238
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47c7",
-            "text": "Others",
-            "count": 233
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1816",
-            "text": "Auto Vehicles, Parts & Service Retailers",
-            "count": 229
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b5",
-            "text": "Oil & Gas Exploration and Production",
-            "count": 225
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17c7",
-            "text": "Weddings",
-            "count": 225
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1825",
-            "text": "Fantasy Sports",
-            "count": 220
-        },
-        {
-            "id": "5f6309be2643793f541c77ae",
-            "text": "Manufacture of Machinery and Equipment",
-            "count": 219
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17ef",
-            "text": "Internships",
-            "count": 213
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1804",
-            "text": "Digital Media Blogging",
-            "count": 212
+            "count": 24
         },
         {
             "id": "5f48ce5f2a9bb065cdfa1820",
             "text": "Laundry",
-            "count": 212
+            "count": 12
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1818",
-            "text": "Home Furnishings Retailers",
-            "count": 209
-        },
-        {
-            "id": "5f844bbd5874226324bd4633",
-            "text": "Aviation & Others",
-            "count": 209
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa181f",
-            "text": "Personal Care",
-            "count": 208
-        },
-        {
-            "id": "5f8433db5874226324bd45fd",
-            "text": "Defence Equipment",
-            "count": 208
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1808",
-            "text": "OOH Media",
-            "count": 197
-        },
-        {
-            "id": "5fa697a5204c3d4ed00bc283",
-            "text": "Physical Toys and Games",
-            "count": 189
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1839",
+            "id": "5f48d0cb2a9bb065cdfc47db",
             "text": "Others",
-            "count": 183
+            "count": 19
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1827",
-            "text": "Leather Textiles Goods",
-            "count": 150
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17b6",
-            "text": "Oil & Gas Drilling",
-            "count": 144
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182a",
-            "text": "Leather Footwear",
-            "count": 137
-        },
-        {
-            "id": "5f8433cb5874226324bd45fc",
-            "text": "Space Technology",
-            "count": 135
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa182b",
-            "text": "Non- Leather Footwear",
-            "count": 132
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa17cc",
-            "text": "Fan Merchandise",
-            "count": 124
-        },
-        {
-            "id": "5fa697ca204c3d4ed00bc284",
-            "text": "Virtual Games",
-            "count": 121
-        },
-        {
-            "id": "5f48d0ca2a9bb065cdfc47bb",
+            "id": "5f48d0cb2a9bb065cdfc47e1",
             "text": "Others",
-            "count": 109
+            "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1840",
-            "text": "E-Commerce",
-            "count": 96
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47e4",
+            "id": "5f48d0cb2a9bb065cdfc47d2",
             "text": "Others",
-            "count": 76
-        },
-        {
-            "id": "61261fa118746c467b35678f",
-            "text": "Assistance Technology",
-            "count": 69
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1821",
-            "text": "Baby Care",
-            "count": 66
-        },
-        {
-            "id": "5f48d0cb2a9bb065cdfc47e2",
-            "text": "Others",
-            "count": 60
-        },
-        {
-            "id": "5f8434cc5874226324bd4602",
-            "text": "Wayside Amenities",
-            "count": 51
-        },
-        {
-            "id": "5f8434b85874226324bd4601",
-            "text": "Traffic Management",
-            "count": 45
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183f",
-            "text": "Natural Language Processing",
-            "count": 32
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1843",
-            "text": "Education",
-            "count": 25
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1842",
-            "text": "Utility Services",
-            "count": 22
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa183e",
-            "text": "Media and Entertainment",
-            "count": 21
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1841",
-            "text": "Social Media",
-            "count": 20
+            "count": 34
         },
         {
             "id": "5f48ce5f2a9bb065cdfa178f",
             "text": "Others",
-            "count": 5
+            "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1778",
-            "text": "IT Services",
-            "count": 4
+            "id": "5f48d0ca2a9bb065cdfc47c3",
+            "text": "Others",
+            "count": 17
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1777",
-            "text": "Internet / Web Services",
-            "count": 3
+            "id": "5f48ce5f2a9bb065cdfa1837",
+            "text": "Others",
+            "count": 35
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa177f",
-            "text": "Medical Devices and Equipment",
-            "count": 3
+            "id": "5f48ce5f2a9bb065cdfa17e1",
+            "text": "Semiconductor",
+            "count": 55
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1762",
-            "text": "Agriculture",
+            "id": "5f48ce5f2a9bb065cdfa17c5",
+            "text": "Location Based",
+            "count": 75
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17db",
+            "text": "Foreign Exchange",
+            "count": 74
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1797",
+            "text": "Food Processing",
+            "count": 91
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1830",
+            "text": "Hotel",
+            "count": 45
+        },
+        {
+            "id": "5f8434535874226324bd4600",
+            "text": "Animal Husbandry",
+            "count": 6
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c8",
+            "text": "Others",
+            "count": 26
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa181a",
+            "text": "Robotics Technology",
+            "count": 83
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d5",
+            "text": "Insurance",
+            "count": 83
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e5",
+            "text": "Health & Wellness",
+            "count": 174
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d9",
+            "text": "Bitcoin and Blockchain",
+            "count": 86
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47de",
+            "text": "Others",
+            "count": 37
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa180b",
+            "text": "Environmental Services & Equipment",
+            "count": 49
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182d",
+            "text": "Passenger Transportation Services",
+            "count": 62
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182e",
+            "text": "Transport Infrastructure",
+            "count": 40
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c6",
+            "text": "Others",
+            "count": 73
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c6",
+            "text": "Enterprise Mobility",
+            "count": 87
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17fe",
+            "text": "Digital Marketing (SEO Automation)",
+            "count": 81
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e7",
+            "text": "Biotechnology",
+            "count": 116
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa179c",
+            "text": "Data Science",
+            "count": 87
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f5",
+            "text": "KPO",
+            "count": 56
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17eb",
+            "text": "Recruitment Jobs",
+            "count": 75
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b7",
+            "text": "Others",
+            "count": 52
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1818",
+            "text": "Home Furnishings Retailers",
+            "count": 13
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d0",
+            "text": "Point of Sales",
+            "count": 83
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17df",
+            "text": "Microbrewery",
+            "count": 59
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182a",
+            "text": "Leather Footwear",
+            "count": 16
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ca",
+            "text": "Lifestyle",
+            "count": 36
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa181d",
+            "text": "Cyber Security",
+            "count": 44
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1824",
+            "text": "Corporate Social Responsibility",
+            "count": 17
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c9",
+            "text": "Fashion Technology",
+            "count": 43
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f0",
+            "text": "Smart Home",
+            "count": 140
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c8",
+            "text": "Event Management",
+            "count": 49
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182f",
+            "text": "Holiday Rentals",
+            "count": 52
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1834",
+            "text": "Facility Management",
+            "count": 51
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d7",
+            "text": "Others",
+            "count": 31
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47dd",
+            "text": "Others",
+            "count": 54
+        },
+        {
+            "id": "5f844ba45874226324bd4632",
+            "text": "Food Technology/Food Delivery",
+            "count": 7
+        },
+        {
+            "id": "61261fa118746c467b35678f",
+            "text": "Assistance Technology",
             "count": 2
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1767",
-            "text": "Clean Technology",
-            "count": 2
+            "id": "5f48ce5f2a9bb065cdfa17e2",
+            "text": "Electronics",
+            "count": 112
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa176a",
-            "text": "Consulting",
-            "count": 2
+            "id": "5f48d0ca2a9bb065cdfc47ca",
+            "text": "Others",
+            "count": 80
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa176d",
-            "text": "Digital Marketing",
-            "count": 2
+            "id": "5f48ce5f2a9bb065cdfa181b",
+            "text": "Robotics Application",
+            "count": 53
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1831",
+            "text": "Experiential Travel",
+            "count": 60
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1829",
+            "text": "Apparel & Accessories",
+            "count": 60
         },
         {
             "id": "5f48ce5f2a9bb065cdfa1770",
             "text": "Fashion",
-            "count": 2
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa1776",
-            "text": "Industrial/Energy",
-            "count": 2
-        },
-        {
-            "id": "5f48ce5f2a9bb065cdfa176b",
-            "text": "Consumer Products",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa176c",
-            "text": "Consumer Services",
+            "id": "5f8434395874226324bd45fe",
+            "text": "Horticulture",
+            "count": 7
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c3",
+            "text": "Customer Support",
+            "count": 69
+        },
+        {
+            "id": "5f844bbd5874226324bd4633",
+            "text": "Aviation & Others",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa176f",
-            "text": "Electronics / Instrumentation",
+            "id": "5f48ce5f2a9bb065cdfa1804",
+            "text": "Digital Media Blogging",
+            "count": 45
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17bf",
+            "text": "Cloud",
+            "count": 117
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa183a",
+            "text": "Others",
+            "count": 40
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1810",
+            "text": "Business Support Supplies",
+            "count": 45
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17dc",
+            "text": "Accounting",
+            "count": 85
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d5",
+            "text": "Others",
+            "count": 48
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a2",
+            "text": "Tires & Rubber Products",
+            "count": 30
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1799",
+            "text": "NLP",
+            "count": 90
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47be",
+            "text": "Others",
+            "count": 19
+        },
+        {
+            "id": "5fa697ca204c3d4ed00bc284",
+            "text": "Virtual Games",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1772",
-            "text": "Fintech",
+            "id": "5f48ce5f2a9bb065cdfa17d8",
+            "text": "P2P Lending",
+            "count": 82
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17be",
+            "text": "Clean Tech",
+            "count": 142
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ae",
+            "text": "Homebuilding",
+            "count": 17
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1809",
+            "text": "Social Media",
+            "count": 48
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f6",
+            "text": "Web Development",
+            "count": 149
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47e2",
+            "text": "Others",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1773",
-            "text": "Food and Beverage",
+            "id": "5f48ce5f2a9bb065cdfa17b3",
+            "text": "Skill Development",
+            "count": 168
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ba",
+            "text": "Renewable Wind Energy",
+            "count": 52
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d6",
+            "text": "Advisory",
+            "count": 93
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17de",
+            "text": "Food Processing",
+            "count": 133
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d4",
+            "text": "Others",
+            "count": 26
+        },
+        {
+            "id": "5f8434cc5874226324bd4602",
+            "text": "Wayside Amenities",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1779",
-            "text": "Legal",
-            "count": 1
+            "id": "5f48d0cb2a9bb065cdfc47ce",
+            "text": "Others",
+            "count": 137
         },
         {
             "id": "5f48ce5f2a9bb065cdfa177d",
@@ -1595,48 +710,808 @@
             "count": 1
         },
         {
+            "id": "5f48ce5f2a9bb065cdfa17fc",
+            "text": "Loyalty",
+            "count": 53
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1827",
+            "text": "Leather Textiles Goods",
+            "count": 19
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ad",
+            "text": "Construction Supplies & Fixtures",
+            "count": 22
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d3",
+            "text": "Others",
+            "count": 52
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f7",
+            "text": "Product Development",
+            "count": 224
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa180e",
+            "text": "Business Support Services",
+            "count": 114
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c0",
+            "text": "Others",
+            "count": 19
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f4",
+            "text": "BPO",
+            "count": 66
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a6",
+            "text": "Diversified Chemicals",
+            "count": 20
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa179f",
+            "text": "Photography",
+            "count": 18
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c2",
+            "text": "SCM",
+            "count": 70
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa183d",
+            "text": "Manufacturing",
+            "count": 6
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e0",
+            "text": "Embedded",
+            "count": 98
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa179d",
+            "text": "Handicraft",
+            "count": 23
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d4",
+            "text": "Personal Finance",
+            "count": 108
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1835",
+            "text": "Others",
+            "count": 28
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1838",
+            "text": "Others",
+            "count": 53
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d1",
+            "text": "Others",
+            "count": 65
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17aa",
+            "text": "New-age Construction Technologies",
+            "count": 29
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1817",
+            "text": "Home Improvement Products & Services Retailers",
+            "count": 21
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17cc",
+            "text": "Fan Merchandise",
+            "count": 21
+        },
+        {
+            "id": "5f89b9b361334048016290ef",
+            "text": "Public Citizen Security Solutions",
+            "count": 1
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17fb",
+            "text": "Project Management",
+            "count": 76
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1798",
+            "text": "Machine Learning",
+            "count": 146
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b0",
+            "text": "Industrial Design",
+            "count": 63
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1814",
+            "text": "Social Commerce",
+            "count": 68
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17bb",
+            "text": "Renewable Nuclear Energy",
+            "count": 40
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17fa",
+            "text": "IT Management",
+            "count": 79
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b6",
+            "text": "Oil & Gas Drilling",
+            "count": 12
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa183c",
+            "text": "Others",
+            "count": 117
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e3",
+            "text": "3d printing",
+            "count": 67
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17fd",
+            "text": "Branding",
+            "count": 71
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17da",
+            "text": "Microfinance",
+            "count": 80
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1795",
+            "text": "Organic Agriculture",
+            "count": 137
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1843",
+            "text": "Education",
+            "count": 1
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a1",
+            "text": "Auto, Truck & Motorcycle Parts",
+            "count": 54
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1832",
+            "text": "Ticketing",
+            "count": 46
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b2",
+            "text": "Education Technology",
+            "count": 199
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c4",
+            "text": "Collaboration",
+            "count": 75
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47bb",
+            "text": "Others",
+            "count": 13
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b9",
+            "text": "Renewable Solar Energy",
+            "count": 139
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c9",
+            "text": "Others",
+            "count": 87
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1819",
+            "text": "Computer & Electronics Retailers",
+            "count": 16
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d6",
+            "text": "Others",
+            "count": 14
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1828",
+            "text": "Non- Leather Textiles Goods",
+            "count": 28
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47bd",
+            "text": "Electric Vehicles",
+            "count": 3
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa180a",
+            "text": "Entertainment",
+            "count": 53
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa180c",
+            "text": "Commercial Printing Services",
+            "count": 42
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47ba",
+            "text": "Others",
+            "count": 58
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d8",
+            "text": "Others",
+            "count": 15
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1807",
+            "text": "Movies",
+            "count": 46
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1805",
+            "text": "Digital Media Publishing",
+            "count": 52
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47e3",
+            "text": "Others",
+            "count": 4
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ee",
+            "text": "Talent Management",
+            "count": 36
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1811",
+            "text": "Housing",
+            "count": 37
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa181c",
+            "text": "Personal Security",
+            "count": 14
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1803",
+            "text": "Digital Media Video",
+            "count": 50
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1806",
+            "text": "Digital Media",
+            "count": 57
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa179b",
+            "text": "Big Data",
+            "count": 76
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa181f",
+            "text": "Personal Care",
+            "count": 15
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a8",
+            "text": "Integrated communication services",
+            "count": 61
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1808",
+            "text": "OOH Media",
+            "count": 41
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c7",
+            "text": "Others",
+            "count": 29
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47cb",
+            "text": "Others",
+            "count": 63
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17cf",
+            "text": "Mobile wallets  Payments",
+            "count": 95
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1794",
+            "text": "Dairy Farming",
+            "count": 82
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1812",
+            "text": "Coworking Spaces",
+            "count": 28
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17dd",
+            "text": "Restaurants",
+            "count": 79
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b1",
+            "text": "E-learning",
+            "count": 166
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f1",
+            "text": "Manufacturing & Warehouse",
+            "count": 130
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ac",
+            "text": "Construction & Engineering",
+            "count": 34
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1813",
+            "text": "Retail Technology",
+            "count": 111
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c0",
+            "text": "ERP",
+            "count": 90
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a7",
+            "text": "Wireless",
+            "count": 62
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17cd",
+            "text": "Jewellery",
+            "count": 26
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47e5",
+            "text": "Others",
+            "count": 2
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1767",
+            "text": "Clean Technology",
+            "count": 1
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47bf",
+            "text": "Others",
+            "count": 48
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f9",
+            "text": "Testing",
+            "count": 55
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ce",
+            "text": "Crowdfunding",
+            "count": 78
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47cc",
+            "text": "Others",
+            "count": 83
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa183b",
+            "text": "Others",
+            "count": 19
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1792",
+            "text": "Online Classified",
+            "count": 41
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d3",
+            "text": "Billing and Invoicing",
+            "count": 83
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ef",
+            "text": "Internships",
+            "count": 28
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b4",
+            "text": "Coaching",
+            "count": 107
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1816",
+            "text": "Auto Vehicles, Parts & Service Retailers",
+            "count": 14
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1823",
+            "text": "NGO",
+            "count": 72
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c2",
+            "text": "Others",
+            "count": 98
+        },
+        {
+            "id": "5f8434b85874226324bd4601",
+            "text": "Traffic Management",
+            "count": 2
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1836",
+            "text": "Others",
+            "count": 102
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c7",
+            "text": "Weddings",
+            "count": 28
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b9",
+            "text": "Others",
+            "count": 73
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a4",
+            "text": "Agricultural Chemicals",
+            "count": 19
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17bd",
+            "text": "Waste Management",
+            "count": 120
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b5",
+            "text": "Oil & Gas Exploration and Production",
+            "count": 14
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a5",
+            "text": "Specialty Chemicals",
+            "count": 20
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa180d",
+            "text": "Employment Services",
+            "count": 46
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f2",
+            "text": "Wearables",
+            "count": 112
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b8",
+            "text": "Oil & Gas Transportation Services",
+            "count": 14
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47b8",
+            "text": "Others",
+            "count": 33
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1776",
+            "text": "Industrial/Energy",
+            "count": 1
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ab",
+            "text": "Construction Materials",
+            "count": 21
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182c",
+            "text": "Freight & Logistics Services",
+            "count": 72
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a0",
+            "text": "Auto & Truck Manufacturers",
+            "count": 45
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1833",
+            "text": "Hospitality",
+            "count": 51
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1796",
+            "text": "Agri-Tech",
+            "count": 392
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47da",
+            "text": "Others",
+            "count": 24
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d2",
+            "text": "Trading",
+            "count": 81
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1801",
+            "text": "Market Research",
+            "count": 50
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c5",
+            "text": "Others",
+            "count": 73
+        },
+        {
             "id": "5f48ce5f2a9bb065cdfa178a",
             "text": "Software",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa178d",
-            "text": "Transportation",
+            "id": "5f6309be2643793f541c77ae",
+            "text": "Manufacture of Machinery and Equipment",
+            "count": 4
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17bc",
+            "text": "Renewable Energy Solutions",
+            "count": 98
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ff",
+            "text": "Discovery",
+            "count": 60
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e4",
+            "text": "Medical Devices Biomedical",
+            "count": 154
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a9",
+            "text": "Network Technology Solutions",
+            "count": 62
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ec",
+            "text": "Training",
+            "count": 34
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1815",
+            "text": "Comparison Shopping",
+            "count": 41
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c4",
+            "text": "Others",
+            "count": 56
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1777",
+            "text": "Internet / Web Services",
             "count": 1
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa178e",
-            "text": "Travel",
-            "count": 1
+            "id": "5f48ce5f2a9bb065cdfa180f",
+            "text": "Professional Information Services",
+            "count": 67
         },
         {
-            "id": "5f48ce5f2a9bb065cdfa1790",
-            "text": "Textile",
-            "count": 1
+            "id": "5f48ce5f2a9bb065cdfa179a",
+            "text": "Business Intelligence",
+            "count": 84
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17a3",
+            "text": "Commodity Chemicals",
+            "count": 20
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47df",
+            "text": "Others",
+            "count": 121
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1791",
+            "text": "AdTech",
+            "count": 73
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d9",
+            "text": "Others",
+            "count": 98
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1821",
+            "text": "Baby Care",
+            "count": 8
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47d0",
+            "text": "Others",
+            "count": 45
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47bc",
+            "text": "Others",
+            "count": 57
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47cf",
+            "text": "Others",
+            "count": 85
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1826",
+            "text": "Sports Promotion and Networking",
+            "count": 36
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17cb",
+            "text": "Apparel",
+            "count": 52
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17b7",
+            "text": "Oil Related Services and Equipment",
+            "count": 17
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa182b",
+            "text": "Non- Leather Footwear",
+            "count": 19
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ed",
+            "text": "Skills Assessment",
+            "count": 36
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1793",
+            "text": "Drones",
+            "count": 50
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa179e",
+            "text": "Arts",
+            "count": 18
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d1",
+            "text": "Payment Platforms",
+            "count": 101
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1839",
+            "text": "Others",
+            "count": 12
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e9",
+            "text": "Healthcare IT",
+            "count": 137
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47cd",
+            "text": "Others",
+            "count": 31
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17c1",
+            "text": "CXM",
+            "count": 67
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1822",
+            "text": "Home Care",
+            "count": 29
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e6",
+            "text": "Pharmaceutical",
+            "count": 96
+        },
+        {
+            "id": "5f89b9b361334048016290f0",
+            "text": "Others",
+            "count": 10
+        },
+        {
+            "id": "5f48d0cb2a9bb065cdfc47dc",
+            "text": "Others",
+            "count": 35
+        },
+        {
+            "id": "5f8434465874226324bd45ff",
+            "text": "Fisheries",
+            "count": 6
+        },
+        {
+            "id": "5f48d0ca2a9bb065cdfc47c1",
+            "text": "Others",
+            "count": 33
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17e8",
+            "text": "Healthcare Services",
+            "count": 142
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17d7",
+            "text": "Business Finance",
+            "count": 89
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1802",
+            "text": "Digital Media News",
+            "count": 56
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa1825",
+            "text": "Fantasy Sports",
+            "count": 21
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17ea",
+            "text": "Healthcare Technology",
+            "count": 148
+        },
+        {
+            "id": "5f48ce5f2a9bb065cdfa17f3",
+            "text": "IT Consulting",
+            "count": 200
+        },
+        {
+            "id": "5f6309cd2643793f541c77af",
+            "text": "Manufacture of Electrical Equipment",
+            "count": 4
         }
     ],
-    "TotalSector": 222990,
+    "TotalSector": 13923,
     "stage": [
-        {
-            "id": "Prototype",
-            "text": "Prototype",
-            "count": 62805
-        },
-        {
-            "id": "Validation",
-            "text": "Validation",
-            "count": 48261
-        },
         {
             "id": "EarlyTraction",
             "text": "EarlyTraction",
-            "count": 48181
+            "count": 1418
         },
         {
             "id": "Scaling",
             "text": "Scaling",
-            "count": 19931
+            "count": 420
+        },
+        {
+            "id": "Prototype",
+            "text": "Prototype",
+            "count": 1283
+        },
+        {
+            "id": "Validation",
+            "text": "Validation",
+            "count": 1745
         }
     ],
-    "TotalStage": 179178
+    "TotalStage": 4866
 }
