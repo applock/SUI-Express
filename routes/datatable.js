@@ -398,8 +398,9 @@ router.get(
         let x = v[j];
         let c = x.count;
         x = x._id;
-        if (map[x.districtId]) {
-          let countData = map[x.districtId];
+
+        if (map.has(x.districtId)) {
+          let countData = map.get(x.districtId);
           countData.statistics[key] = c;
           map.set(x.districtId, countData);
         } else {
