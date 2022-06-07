@@ -5,6 +5,7 @@ const _ = require('lodash');
 const fs = require("fs");
 const mongodb = require("../mongodb");
 const { resolve } = require("path");
+const ObjectId = require('mongodb').ObjectId;
 
 var stateStatistics = fs.readFileSync("./static/stateStatistics.json", "utf8");
 stateStatistics = JSON.parse(stateStatistics);
@@ -294,6 +295,246 @@ router.get(
 
       let stateCounts = await populateMultiFieldCountsForStateV2(stateId, req.params.from, req.params.to);
       let map = new Map();
+      let items = Object.keys(stateCounts);
+      for (let i = 0; i < items.length; i++) {
+        let key = items[i];
+        let v = stateCounts[key].length ? stateCounts[key][0] : [];
+        for (let j = 0; j < v.length; j++) {
+          let x = v[j];
+          let c = x.count;
+          x = x._id;
+
+          if (map.has(x.districtId)) {
+            let countData = map.get(x.districtId);
+            countData.statistics[key] = c;
+            map.set(x.districtId, countData);
+          } else {
+            let placeholder = JSON.parse(JSON.stringify(dataCountJson));
+            placeholder[key] = c;
+            let data = {};
+            data.districtId = x.districtId;
+            data.district = x.district;
+            data.stateId = x.stateId;
+            data.state = x.state;
+            data.statistics = placeholder;
+            map.set(x.districtId, data);
+          }
+        }
+      }
+
+      let countsArr = [];
+      for (let [key, val] of map.entries()) {
+        let district = {};
+        let count = JSON.parse(JSON.stringify(dataCountJson));
+
+        district.districtId = key;
+        district.district = val.district;
+        district.stateId = val.stateId;
+        district.state = val.state;
+
+        count.WomenLed = fillUndefined(val.statistics.WomenOwned);
+        count.TaxExempted = fillUndefined(val.statistics.TaxExempted);
+        count.ShowcasedStartups = fillUndefined(val.statistics.ShowcasedStartups);
+        count.SeedFundStartup = fillUndefined(val.statistics.SeedFunded);
+        count.FFS = fillUndefined(val.statistics.FFS);
+        count.DpiitCertified = fillUndefined(val.statistics.DpiitCertified);
+        count.PatentStartup = fillUndefined(val.statistics.PatentStartup);
+        count.Startup = fillUndefined(val.statistics.Startup);
+        count.Mentor = fillUndefined(val.statistics.Mentor);
+        count.Incubator = fillUndefined(val.statistics.Incubator);
+        count.Investor = fillUndefined(val.statistics.Investor);
+        count.Individual = fillUndefined(val.statistics.Individual);
+        count.GovernmentBody = fillUndefined(val.statistics.GovernmentBody);
+        count.Accelerator = fillUndefined(val.statistics.Accelerator);
+
+        district.statistics = count;
+        countsArr.push(district);
+      }
+      output.data = countsArr;
+      resp.status(200).send(output);
+    } else {
+      // City/District level
+    }
+  }
+);
+
+router.post(
+  "/v2/statistics/:geographicalEntity/:entityId/:from/:to",
+  async (req, resp) => {
+    // #swagger.tags = ['Data Tables']
+    // #swagger.path = '/data/v2/statistics/{geographicalEntity}/{entityId}/{from}/{to}'
+    // #swagger.exmaple = '/data/v2/statistics/country/5f02e38c6f3de87babe20cd2/{from}/{to}'
+    // #swagger.description = 'State-wise data table'
+    /*  #swagger.parameters['obj'] = {
+        in: 'body',
+        description: 'Schema for query to filter based on criteria',
+        schema: {
+          "$industries": [],
+          "$sectors": [],
+          "$stages": ["Scaling", "EarlyTraction", "Validation"],
+        }
+    } */
+    console.log("Data Table request - " + JSON.stringify(req.body));
+
+    var output = {};
+    output.from = req.params.from;
+    output.to = req.params.to;
+
+    if ((!_.isEmpty(req.params.from) && !_.isEmpty(req.params.to)) ||
+      moment(req.params.from, "YYYY-MM-DD", true).isValid() && moment(req.params.to, "YYYY-MM-DD", true).isValid()) {
+      console.log("Valid dates passed.")
+    } else {
+      resp.status(500).json({ message: 'Invalid Date Format, expected in YYYY-MM-DD' });
+    }
+
+    let subQuery = {};
+    subQuery.profileRegisteredOn = {
+      "$lte": new Date(req.params.to),
+      "$gte": new Date(req.params.from),
+    };
+
+    var result = [];
+    if (req.params.geographicalEntity == "country") {
+      // Country - India level
+      let countryCounts = await populateMultiFieldCountsForCountryV3(req.params.from, req.params.to, req.body);
+
+      let map = new Map();
+      // items = states
+      let items = Object.keys(countryCounts);
+      for (let i = 0; i < items.length; i++) {
+        let key = items[i];
+        let v = countryCounts[key].length ? countryCounts[key][0] : [];
+        for (let j = 0; j < v.length; j++) {
+          let x = v[j];
+          let c = x.count;
+          x = x._id;
+
+          if (map.has(x.stateId)) {
+            let countData = map.get(x.stateId);
+            countData.statistics[key] = c;
+            map.set(x.stateId, countData);
+          } else {
+            let placeholder = JSON.parse(JSON.stringify(dataCountJson));
+            placeholder[key] = c;
+            let data = {};
+            data.stateId = x.stateId;
+            data.state = x.state;
+            data.statistics = placeholder;
+            map.set(x.stateId, data);
+          }
+        }
+      }
+
+      let countsArr = [];
+      for (let [key, val] of map.entries()) {
+        let state = {};
+        let count = JSON.parse(JSON.stringify(dataCountJson));
+
+        state.stateId = key;
+        state.state = val.state;
+
+        count.WomenLed = fillUndefined(val.statistics.WomenOwned);
+        count.TaxExempted = fillUndefined(val.statistics.TaxExempted);
+        count.ShowcasedStartups = fillUndefined(val.statistics.ShowcasedStartups);
+        count.SeedFundStartup = fillUndefined(val.statistics.SeedFunded);
+        count.FFS = fillUndefined(val.statistics.FFS);
+        count.DpiitCertified = fillUndefined(val.statistics.DpiitCertified);
+        count.PatentStartup = fillUndefined(val.statistics.PatentStartup);
+        count.Startup = fillUndefined(val.statistics.Startup);
+        count.Mentor = fillUndefined(val.statistics.Mentor);
+        count.Incubator = fillUndefined(val.statistics.Incubator);
+        count.Investor = fillUndefined(val.statistics.Investor);
+        count.Individual = fillUndefined(val.statistics.Individual);
+        count.GovernmentBody = fillUndefined(val.statistics.GovernmentBody);
+        count.Accelerator = fillUndefined(val.statistics.Accelerator);
+
+        state.statistics = count;
+        countsArr.push(state);
+      }
+      output.data = countsArr;
+      resp.status(200).send(output);
+
+      // ==============================================
+      /*
+      let wos = await populateWomenLedStartup(req.params.from, req.params.to);
+      let txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
+      let drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
+      let pss = await populatePatentedStartup(req.params.from, req.params.to);
+      let scs = await populateShowcasedStartup(req.params.from, req.params.to);
+      let sfs = await populateSeedFundedStartup(req.params.from, req.params.to);
+      let ffs = await populateFundOfFundStartup(req.params.from, req.params.to);
+
+      try {
+        await mongodb
+          .getDb()
+          .collection("digitalMapUser")
+          .aggregate([
+            {
+              "$match": subQuery,
+            },
+            {
+              "$group": {
+                "_id": {
+                  "role": "$role",
+                  "stateId": "$stateId",
+                  "state": "$stateName",
+                },
+                "count": { "$count": {} },
+              },
+            },
+            {
+              "$group": {
+                "_id": "$_id.stateId",
+                "roles": {
+                  "$push": { "role": "$_id.role", "state": "$_id.state", "count": "$count" },
+                },
+              },
+            },
+          ]).toArray((err, result) => {
+            if (err) throw err;
+
+            let countsArr = [];
+            for (let i = 0; i < result.length; i++) {
+              let stateData = result[i];
+              let stateId = stateData._id;
+              let state = {};
+              let count = JSON.parse(JSON.stringify(dataCountJson));
+
+              state.id = stateId;
+              state.name = stateData.roles[0].state;
+              state.text = stateData.roles[0].state;
+              state.isUnionTerritory = false;
+
+              for (let j = 0; j < stateData.roles.length; j++) {
+                let role = stateData.roles[j];
+                count[role.role] = role.count;
+              }
+              count.WomenLed = wos.hasOwnProperty(stateId) ? wos[stateId] : 0;
+              count.TaxExempted = txs.hasOwnProperty(stateId) ? txs[stateId] : 0;
+              count.DpiitCertified = drs.hasOwnProperty(stateId) ? drs[stateId] : 0;
+              count.PatentStartup = pss.hasOwnProperty(stateId) ? pss[stateId] : 0;
+              count.ShowcasedStartups = scs.hasOwnProperty(stateId) ? scs[stateId] : 0;
+              count.SeedFundStartup = sfs.hasOwnProperty(stateId) ? sfs[stateId] : 0;
+              count.FFS = ffs.hasOwnProperty(stateId) ? ffs[stateId] : 0;
+
+              state.statistics = count;
+              countsArr.push(state);
+            }
+            output.data = countsArr;
+            resp.status(200).send(output);
+          });
+      } catch (err) {
+        resp.status(500).json({ message: err.message });
+      }
+      */
+    } else if (req.params.geographicalEntity == "state") {
+      // State level
+      let stateId = req.params.entityId;
+
+      let stateCounts = await populateMultiFieldCountsForStateV3(stateId, req.params.from, req.params.to, req.body);
+
+      let map = new Map();
+      // items = districts
       let items = Object.keys(stateCounts);
       for (let i = 0; i < items.length; i++) {
         let key = items[i];
@@ -1001,6 +1242,302 @@ async function populateMultiFieldCountsForStateV2(stateId, from, to) {
     });
 }
 
+async function populateMultiFieldCountsForStateV3(stateId, from, to, body) {
+  let startupQ = { "role": { "$eq": 'Startup' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  startupQ = addAdditionalMatchConditions(startupQ, body);
+
+  let investorQ = { "role": { "$eq": 'Investor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  investorQ = addAdditionalMatchConditions(investorQ, body);
+
+  let acceleratorQ = { "role": { "$eq": 'Accelerator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  acceleratorQ = addAdditionalMatchConditions(acceleratorQ, body);
+
+  let individualQ = { "role": { "$eq": 'Individual' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  individualQ = addAdditionalMatchConditions(individualQ, body);
+
+  let mentorQ = { "role": { "$eq": 'Mentor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  mentorQ = addAdditionalMatchConditions(mentorQ, body);
+
+  let govBodyQ = { "role": { "$eq": 'GovernmentBody' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  govBodyQ = addAdditionalMatchConditions(govBodyQ, body);
+
+  let incubatorQ = { "role": { "$eq": 'Incubator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  incubatorQ = addAdditionalMatchConditions(incubatorQ, body);
+
+  let womenOwnedQ = { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  womenOwnedQ = addAdditionalMatchConditions(womenOwnedQ, body);
+
+  let seedFundedQ = { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  seedFundedQ = addAdditionalMatchConditions(seedFundedQ, body);
+
+  let taxExemptedQ = { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  taxExemptedQ = addAdditionalMatchConditions(taxExemptedQ, body);
+
+  let dpiitCertifiedQ = { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  dpiitCertifiedQ = addAdditionalMatchConditions(dpiitCertifiedQ, body);
+
+  let ffsQ = { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  ffsQ = addAdditionalMatchConditions(ffsQ, body);
+
+  let showcasedQ = { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  showcasedQ = addAdditionalMatchConditions(showcasedQ, body);
+
+  let patentedQ = { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  patentedQ = addAdditionalMatchConditions(patentedQ, body);
+
+  let query = [
+    {
+      "$facet": {
+        "Startup": [
+          { "$match": startupQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "Investor": [
+          { "$match": investorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "Accelerator": [
+          { "$match": acceleratorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "Individual": [
+          { "$match": individualQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "Mentor": [
+          { "$match": mentorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "GovernmentBody": [
+          { "$match": govBodyQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "Incubator": [
+          { "$match": incubatorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "WomenOwned": [
+          { "$match": womenOwnedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "SeedFunded": [
+          { "$match": seedFundedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "TaxExempted": [
+          { "$match": taxExemptedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "DpiitCertified": [
+          { "$match": dpiitCertifiedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "FFS": [
+          { "$match": ffsQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "ShowcasedStartups": [
+          { "$match": showcasedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ],
+        "PatentStartup": [
+          { "$match": patentedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+        ]
+      }
+    },
+    {
+      "$project": {
+        "Startup": ["$Startup"],
+        "Investor": ["$Investor"],
+        "Accelerator": ["$Accelerator"],
+        "Individual": ["$Individual"],
+        "Mentor": ["$Mentor"],
+        "GovernmentBody": ["$GovernmentBody"],
+        "Incubator": ["$Incubator"],
+        "WomenOwned": ["$WomenOwned"],
+        "SeedFunded": ["$SeedFunded"],
+        "TaxExempted": ["$TaxExempted"],
+        "DpiitCertified": ["$DpiitCertified"],
+        "ShowcasedStartups": ["$ShowcasedStartups"],
+        "PatentStartup": ["$PatentStartup"],
+        "FFS": ["$FFS"]
+      }
+    }
+  ];
+
+  let promAllV3 = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate(query).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await result[0];
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateMultiFieldCountsForStateV3 :: ' + err.message);
+    }
+  });
+  return Promise.all([promAllV3])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
+async function populateMultiFieldCountsForCountryV3(from, to, body) {
+  let startupQ = { "role": { "$eq": 'Startup' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  startupQ = addAdditionalMatchConditions(startupQ, body);
+
+  let investorQ = { "role": { "$eq": 'Investor' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  investorQ = addAdditionalMatchConditions(investorQ, body);
+
+  let acceleratorQ = { "role": { "$eq": 'Accelerator' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  acceleratorQ = addAdditionalMatchConditions(acceleratorQ, body);
+
+  let individualQ = { "role": { "$eq": 'Individual' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  individualQ = addAdditionalMatchConditions(individualQ, body);
+
+  let mentorQ = { "role": { "$eq": 'Mentor' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  mentorQ = addAdditionalMatchConditions(mentorQ, body);
+
+  let govBodyQ = { "role": { "$eq": 'GovernmentBody' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  govBodyQ = addAdditionalMatchConditions(govBodyQ, body);
+
+  let incubatorQ = { "role": { "$eq": 'Incubator' }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  incubatorQ = addAdditionalMatchConditions(incubatorQ, body);
+
+  let womenOwnedQ = { "womenOwned": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  womenOwnedQ = addAdditionalMatchConditions(womenOwnedQ, body);
+
+  let seedFundedQ = { "seedFunded": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  seedFundedQ = addAdditionalMatchConditions(seedFundedQ, body);
+
+  let taxExemptedQ = { "taxExempted": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  taxExemptedQ = addAdditionalMatchConditions(taxExemptedQ, body);
+
+  let dpiitCertifiedQ = { "dpiitCertified": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  dpiitCertifiedQ = addAdditionalMatchConditions(dpiitCertifiedQ, body);
+
+  let ffsQ = { "fundOfFunds": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  ffsQ = addAdditionalMatchConditions(ffsQ, body);
+
+  let showcasedQ = { "showcased": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  showcasedQ = addAdditionalMatchConditions(showcasedQ, body);
+
+  let patentedQ = { "patented": { "$eq": true }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } };
+  patentedQ = addAdditionalMatchConditions(patentedQ, body);
+
+  let query = [
+    {
+      "$facet": {
+        "Startup": [
+          { "$match": startupQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "Investor": [
+          { "$match": investorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "Accelerator": [
+          { "$match": acceleratorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "Individual": [
+          { "$match": individualQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "Mentor": [
+          { "$match": mentorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "GovernmentBody": [
+          { "$match": govBodyQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "Incubator": [
+          { "$match": incubatorQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "WomenOwned": [
+          { "$match": womenOwnedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "SeedFunded": [
+          { "$match": seedFundedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "TaxExempted": [
+          { "$match": taxExemptedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "DpiitCertified": [
+          { "$match": dpiitCertifiedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "FFS": [
+          { "$match": ffsQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "ShowcasedStartups": [
+          { "$match": showcasedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ],
+        "PatentStartup": [
+          { "$match": patentedQ },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName" }, "count": { "$count": {} }, }, },
+        ]
+      }
+    },
+    {
+      "$project": {
+        "Startup": ["$Startup"],
+        "Investor": ["$Investor"],
+        "Accelerator": ["$Accelerator"],
+        "Individual": ["$Individual"],
+        "Mentor": ["$Mentor"],
+        "GovernmentBody": ["$GovernmentBody"],
+        "Incubator": ["$Incubator"],
+        "WomenOwned": ["$WomenOwned"],
+        "SeedFunded": ["$SeedFunded"],
+        "TaxExempted": ["$TaxExempted"],
+        "DpiitCertified": ["$DpiitCertified"],
+        "ShowcasedStartups": ["$ShowcasedStartups"],
+        "PatentStartup": ["$PatentStartup"],
+        "FFS": ["$FFS"]
+      }
+    }
+  ];
+
+  let promAllCV3 = new Promise((resolve, rej) => {
+    try {
+      mongodb
+        .getDb()
+        .collection("digitalMapUser")
+        .aggregate(query).toArray(async (err, result) => {
+          if (err) throw err;
+          let output = await result[0];
+          resolve(output);
+        });
+    } catch (err) {
+      console.error('populateMultiFieldCountsForCountryV3 :: ' + err.message);
+    }
+  });
+  return Promise.all([promAllCV3])
+    .then((values) => {
+      console.log("All promises resolved - " + JSON.stringify(values));
+      return values[0];
+    })
+    .catch((reason) => {
+      console.log(reason);
+    });
+}
+
 async function populateMultiFieldCountsForCountry(from, to) {
   let query = [
     {
@@ -1114,6 +1651,36 @@ async function processStatewiseResults(data) {
     o[obj._id.StateId] = obj.count;
   }
   return o;
+}
+
+function addAdditionalMatchConditions(subQuery, data) {
+  if (data.hasOwnProperty('stages') && data.stages.length) {
+    subQuery.stage = {
+      "$in": data.stages
+    }
+  }
+
+  if (data.hasOwnProperty('industries') && data.industries.length) {
+    let inds = [];
+    for (let ind of data.industries) {
+      inds.push(new ObjectId(ind));
+    }
+    subQuery['industry._id'] = {
+      "$in": inds,
+    }
+  }
+
+  if (data.hasOwnProperty('sectors') && data.sectors.length) {
+    let secs = [];
+    for (let sec of data.sectors) {
+      secs.push(new ObjectId(sec));
+    }
+    subQuery['sector._id'] = {
+      "$in": secs,
+    }
+  }
+
+  return subQuery;
 }
 
 function fillUndefined(value) {
