@@ -419,6 +419,9 @@ router.post(
             let data = {};
             data.stateId = x.stateId;
             data.state = x.state;
+            data.name = x.state;
+            data.text = x.state;
+            data.id = x.stateId;
             data.statistics = placeholder;
             map.set(x.stateId, data);
           }
@@ -454,79 +457,6 @@ router.post(
       output.data = countsArr;
       resp.status(200).send(output);
 
-      // ==============================================
-      /*
-      let wos = await populateWomenLedStartup(req.params.from, req.params.to);
-      let txs = await populateTaxExemptedStartup(req.params.from, req.params.to);
-      let drs = await populateDpiitRecognizedStartup(req.params.from, req.params.to);
-      let pss = await populatePatentedStartup(req.params.from, req.params.to);
-      let scs = await populateShowcasedStartup(req.params.from, req.params.to);
-      let sfs = await populateSeedFundedStartup(req.params.from, req.params.to);
-      let ffs = await populateFundOfFundStartup(req.params.from, req.params.to);
-
-      try {
-        await mongodb
-          .getDb()
-          .collection("digitalMapUser")
-          .aggregate([
-            {
-              "$match": subQuery,
-            },
-            {
-              "$group": {
-                "_id": {
-                  "role": "$role",
-                  "stateId": "$stateId",
-                  "state": "$stateName",
-                },
-                "count": { "$count": {} },
-              },
-            },
-            {
-              "$group": {
-                "_id": "$_id.stateId",
-                "roles": {
-                  "$push": { "role": "$_id.role", "state": "$_id.state", "count": "$count" },
-                },
-              },
-            },
-          ]).toArray((err, result) => {
-            if (err) throw err;
-
-            let countsArr = [];
-            for (let i = 0; i < result.length; i++) {
-              let stateData = result[i];
-              let stateId = stateData._id;
-              let state = {};
-              let count = JSON.parse(JSON.stringify(dataCountJson));
-
-              state.id = stateId;
-              state.name = stateData.roles[0].state;
-              state.text = stateData.roles[0].state;
-              state.isUnionTerritory = false;
-
-              for (let j = 0; j < stateData.roles.length; j++) {
-                let role = stateData.roles[j];
-                count[role.role] = role.count;
-              }
-              count.WomenLed = wos.hasOwnProperty(stateId) ? wos[stateId] : 0;
-              count.TaxExempted = txs.hasOwnProperty(stateId) ? txs[stateId] : 0;
-              count.DpiitCertified = drs.hasOwnProperty(stateId) ? drs[stateId] : 0;
-              count.PatentStartup = pss.hasOwnProperty(stateId) ? pss[stateId] : 0;
-              count.ShowcasedStartups = scs.hasOwnProperty(stateId) ? scs[stateId] : 0;
-              count.SeedFundStartup = sfs.hasOwnProperty(stateId) ? sfs[stateId] : 0;
-              count.FFS = ffs.hasOwnProperty(stateId) ? ffs[stateId] : 0;
-
-              state.statistics = count;
-              countsArr.push(state);
-            }
-            output.data = countsArr;
-            resp.status(200).send(output);
-          });
-      } catch (err) {
-        resp.status(500).json({ message: err.message });
-      }
-      */
     } else if (req.params.geographicalEntity == "state") {
       // State level
       let stateId = req.params.entityId;
