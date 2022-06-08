@@ -419,9 +419,6 @@ router.post(
             let data = {};
             data.stateId = x.stateId;
             data.state = x.state;
-            data.name = x.state;
-            data.text = x.state;
-            data.id = x.stateId;
             data.statistics = placeholder;
             map.set(x.stateId, data);
           }
@@ -434,7 +431,10 @@ router.post(
         let count = JSON.parse(JSON.stringify(dataCountJson));
 
         state.stateId = key;
+        state.id = key;
         state.state = val.state;
+        state.name = val.state;
+        state.text = val.state;
 
         count.WomenLed = fillUndefined(val.statistics.WomenOwned);
         count.TaxExempted = fillUndefined(val.statistics.TaxExempted);
