@@ -538,6 +538,7 @@ router.get(
     let allIndiaDistrictStats = {};
     allIndiaDistrictStats.from = req.params.from;
     allIndiaDistrictStats.to = req.params.to;
+    allIndiaDistrictStats.max = JSON.parse(JSON.stringify(dataCountJson));
 
     if ((!_.isEmpty(req.params.from) && !_.isEmpty(req.params.to)) ||
       moment(req.params.from, "YYYY-MM-DD", true).isValid() && moment(req.params.to, "YYYY-MM-DD", true).isValid()) {
@@ -573,6 +574,10 @@ router.get(
           data.state = x.state;
           data.statistics = placeholder;
           map.set(x.districtId, data);
+        }
+
+        if (c > allIndiaDistrictStats.max[key]) {
+          allIndiaDistrictStats.max[key] = c;
         }
       }
     }
