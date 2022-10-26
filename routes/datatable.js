@@ -1005,31 +1005,31 @@ async function populateMultiFieldCountsForState(stateId, from, to) {
     {
       "$facet": {
         "WomenOwned": [
-          { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "WomenOwned" }
         ],
         "SeedFunded": [
-          { "$match": { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "SeedFunded" }
         ],
         "TaxExempted": [
-          { "$match": { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "TaxExempted" }
         ],
         "DpiitCertified": [
-          { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "DpiitCertified" }
         ],
         "FFS": [
-          { "$match": { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "FFS" }
         ],
         "ShowcasedStartups": [
-          { "$match": { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "ShowcasedStartups" }
         ],
         "PatentStartup": [
-          { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
+          { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
           { "$count": "PatentStartup" }
         ]
       }
