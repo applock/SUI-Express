@@ -11,7 +11,6 @@ var mdb;
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
 const cronJobs = require("./routes/jobs");
-const config = require("./config.js");
 
 var options = {
   key: fs.readFileSync("./certs/ssl-key.pem"),
@@ -52,18 +51,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // Router and routes
 const landingRouter = require("./routes/landing");
-app.use("/maps/startup", landingRouter);
+app.use("/startup", landingRouter);
 const datatableRouter = require("./routes/datatable");
-app.use("/maps/data", datatableRouter);
+app.use("/data", datatableRouter);
 const staticDataRouter = require("./routes/staticData");
-app.use("/maps/static", staticDataRouter);
+app.use("/static", staticDataRouter);
 const insightsRouter = require("./routes/insights");
-app.use("/maps/insight", insightsRouter);
+app.use("/insight", insightsRouter);
 const policyRouter = require("./routes/policy");
-app.use("/maps/policy", policyRouter);
+app.use("/policy", policyRouter);
 const jobsRouter = require("./routes/jobs");
 const { request } = require("http");
-app.use("/maps/jobs", jobsRouter);
+app.use("/jobs", jobsRouter);
 
 // Starting the server
 https.createServer(options, app).listen(8443, () => {
@@ -94,15 +93,15 @@ app.listen(80, () => {
 app.use("/maps/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Redirect basepath to Swagger
-indexRouter.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.redirect("/doc");
 });
 
-indexRouter.get("/health", (req, res) => {
+app.get("/maps/health", (req, res) => {
 	res.send({'status':'UP'});
 });
 
-indexRouter.get(
+app.get(
   "/.well-known/acme-challenge/Bk36vQraWCLb2GiQZajzxWn4zLGMqXHru9pHWhbGKNc",
   (req, res) => {
     res.send(
