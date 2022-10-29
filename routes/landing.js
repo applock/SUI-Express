@@ -524,7 +524,7 @@ router.post("/filter/v2/defaults", async (req, resp) => {
       "_id": {
         "Role": "$role",
       },
-      "count": { "$count": {} },
+      "count": { "$sum": 1 },
     },
   });
 
@@ -743,7 +743,7 @@ router.post("/v2/filter", async (req, resp) => {
             "_id": {
               "Role": "$role",
             },
-            "count": { "$count": {} },
+            "count": { "$sum": 1 },
           },
         },
       ]).toArray((err, result) => {
@@ -1041,7 +1041,7 @@ router.get("/v2/districts/:stateId", async (req, resp) => {
               "stateId": "$stateId",
               "state": "$stateName",
             },
-            "count": { "$count": {} },
+            "count": { "$sum": 1 },
           },
         },
         {
@@ -1096,7 +1096,7 @@ router.get("/v2/districts", async (req, resp) => {
             "stateId": "$stateId",
             "state": "$stateName",
           },
-          "count": { "$count": {} },
+          "count": { "$sum": 1 },
         },
       },
       {
