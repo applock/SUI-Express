@@ -40,7 +40,7 @@ var dataCountJson = {
   SeedFundStartup: 0,
   ShowcasedStartups: 0,
 };
-
+router.get('/test', (req, res)=> { res.json({status: "ok"}) })
 router.get(
   "/statistics/:geographicalEntity/:entityId/:from/:to",
   (req, resp) => {
@@ -242,14 +242,14 @@ router.get(
                   "stateId": "$stateId",
                   "state": "$stateName",
                 },
-                "count": { "$count": {} },
+                "count": { "$sum": 1 },
               },
             },
             {
               "$group": {
                 "_id": "$_id.stateId",
                 "roles": {
-                  "$push": { "role": "$_id.role", "state": "$_id.state", "count": "$count" },
+                  "$push": { "role": "$_id.role", "state": "$_id.state", "count": "count" },
                 },
               },
             },
@@ -1076,60 +1076,60 @@ async function populateMultiFieldCountsForStateV2(stateId, from, to) {
     {
       "$facet": {
         "Startup": [
-          { "$match": { "role": { "$eq": 'Startup' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Startup' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1  }, }, },
         ],
         "Investor": [
-          { "$match": { "role": { "$eq": 'Investor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Investor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "Accelerator": [
-          { "$match": { "role": { "$eq": 'Accelerator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Accelerator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1  }, }, },
         ],
         "Individual": [
-          { "$match": { "role": { "$eq": 'Individual' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Individual' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "Mentor": [
-          { "$match": { "role": { "$eq": 'Mentor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Mentor' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "GovernmentBody": [
-          { "$match": { "role": { "$eq": 'GovernmentBody' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'GovernmentBody' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "Incubator": [
-          { "$match": { "role": { "$eq": 'Incubator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "role": { "$eq": 'Incubator' }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "WomenOwned": [
-          { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "SeedFunded": [
-          { "$match": { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "seedFunded": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "TaxExempted": [
-          { "$match": { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "taxExempted": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "DpiitCertified": [
-          { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "dpiitCertified": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "FFS": [
-          { "$match": { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "fundOfFunds": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "ShowcasedStartups": [
-          { "$match": { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "showcased": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ],
         "PatentStartup": [
-          { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": new Date(to), "$gte": new Date(from), } } },
-          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$count": {} }, }, },
+          { "$match": { "patented": { "$eq": true }, "stateId": { "$eq": stateId }, "profileRegisteredOn": { "$lte": (to), "$gte": (from), } } },
+          { "$group": { "_id": { "stateId": "$stateId", "state": "$stateName", "districtId": "$districtId", "district": "$districtName" }, "count": { "$sum": 1 }, }, },
         ]
       }
     },
