@@ -68,18 +68,18 @@ app.use("/maps/jobs", jobsRouter);
 // Starting the server
 https.createServer(options, app).listen(8443, () => {
   console.log("listening on port 8443");
-	request(
-    "http://localhost:443/jobs/triggerCron",
-    { json: true },
-    (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(
-        "Response after triggering all crons - " + JSON.stringify(body)
-      );
-    }
-  );
+	// request(
+  //   "http://localhost:443/jobs/triggerCron",
+  //   { json: true },
+  //   (err, res, body) => {
+  //     if (err) {
+  //       return console.log(err);
+  //     }
+  //     console.log(
+  //       "Response after triggering all crons - " + JSON.stringify(body)
+  //     );
+  //   }
+  // );
 });
 
 /*
