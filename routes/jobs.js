@@ -275,7 +275,7 @@ async function populateWomenLedStartupMapV2() {
           "$group": {
             "_id": {
               "StateId": "$stateId",
-            }, "count": { "$count": {} },
+            }, "count": { "$sum": 1 },
           },
         },
       ]).toArray((err, result) => {
@@ -314,7 +314,7 @@ async function populateTaxExemptedStartupMap() {
           "$group": {
             "_id": {
               "StateId": "$stateId",
-            }, "count": { "$count": {} },
+            }, "count": { "$sum": 1 },
           },
         },
       ]).toArray((err, result) => {
@@ -353,7 +353,7 @@ async function populateDpiitRecognizedStartupMap() {
           "$group": {
             "_id": {
               "StateId": "$stateId",
-            }, "count": { "$count": {} },
+            }, "count": { "$sum": 1 },
           },
         },
       ]).toArray((err, result) => {
@@ -906,16 +906,16 @@ async function populateMultiFieldCountsForStateWithoutDate(stateId) {
         "Industry": [
           { "$match": { "stateId": { "$eq": stateId }, } },
           { "$unwind": "$industry" },
-          { "$group": { "_id": { "industry": "$industry", "stateId": "$stateId", "state": "$stateName", }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "industry": "$industry", "stateId": "$stateId", "state": "$stateName", }, "count": { "$sum": 1 }, }, },
         ],
         "Sector": [
           { "$match": { "stateId": { "$eq": stateId }, } },
           { "$unwind": "$sector" },
-          { "$group": { "_id": { "sector": "$sector", "stateId": "$stateId", "state": "$stateName", }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "sector": "$sector", "stateId": "$stateId", "state": "$stateName", }, "count": { "$sum": 1 }, }, },
         ],
         "Stage": [
           { "$match": { "stateId": { "$eq": stateId }, "stage": { "$nin": ["", null] } } },
-          { "$group": { "_id": { "stage": "$stage", "stateId": "$stateId", "state": "$stateName", }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "stage": "$stage", "stateId": "$stateId", "state": "$stateName", }, "count": { "$sum": 1 }, }, },
         ],
         "WomenOwned": [
           { "$match": { "womenOwned": { "$eq": true }, "stateId": { "$eq": stateId }, } },
@@ -1028,15 +1028,15 @@ async function populateMultiFieldCountsForIndiaWithoutDate() {
         ],
         "Industry": [
           { "$unwind": "$industry" },
-          { "$group": { "_id": { "industry": "$industry" }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "industry": "$industry" }, "count": { "$sum": 1 }, }, },
         ],
         "Sector": [
           { "$unwind": "$sector" },
-          { "$group": { "_id": { "sector": "$sector" }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "sector": "$sector" }, "count": { "$sum": 1 }, }, },
         ],
         "Stage": [
           { "$match": { "stage": { "$nin": ["", null] } } },
-          { "$group": { "_id": { "stage": "$stage" }, "count": { "$count": {} }, }, },
+          { "$group": { "_id": { "stage": "$stage" }, "count": { "$sum": 1 }, }, },
         ],
         "WomenOwned": [
           { "$match": { "womenOwned": { "$eq": true }, } },
