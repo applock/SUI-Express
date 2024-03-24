@@ -18,6 +18,367 @@
     "application/json"
   ],
   "paths": {
+    "/data/statistics/{geographicalEntity}/{entityId}/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "geographicalEntity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/data/v2/statistics/{geographicalEntity}/{entityId}/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "geographicalEntity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "geographicalEntity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "industries": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "sectors": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "stages": {
+                  "type": "array",
+                  "example": [
+                    "Scaling",
+                    "EarlyTraction",
+                    "Validation"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "industries",
+                "sectors",
+                "stages"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/data/v2/statistics/allDistricts/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "District-wise data table for whole country",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/data/stateStatisticsLive/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise data table",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/data/startups/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "State-wise startups table",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/data/startup/{id}": {
+      "get": {
+        "tags": [
+          "Data Tables"
+        ],
+        "description": "Start up details by Start up Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/insight/{geographicalEntity}/{entityId}/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Insights"
+        ],
+        "description": "Insights",
+        "parameters": [
+          {
+            "name": "geographicalEntity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/jobs/triggerCron": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Trigger all crons",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/populateStateIdNameMap": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to populate StateId-Name Map",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/prepareStateWiseCounts": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare State-Wise Counts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/populateWomenLedStartupMap": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare State-Wise Women Led startup Counts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/populateTaxExemptedStartupMap": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare State-Wise Tax Exmpted startup Counts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/populateDpiitRecognizedStartupMap": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare State-Wise Dpiit Certified startup Counts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/prepareIndiaLevelCounts": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare India level Counts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/jobs/prepareStateCityMap": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "DO NOT USE - Manual Job to prepare State to City Map",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/startup/count/{from}/{to}": {
       "get": {
         "tags": [
@@ -53,6 +414,406 @@
         "description": "Get India level startup count from inception",
         "parameters": [],
         "responses": {}
+      }
+    },
+    "/startup/filter": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get filtered multi-level startup details",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "industries": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "sectors": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "states": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "stages": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "badges": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "roles": {
+                  "type": "array",
+                  "example": [
+                    "Startup",
+                    "Mentor",
+                    "Investor",
+                    "GovernmentBody",
+                    "Incubator",
+                    "Accelerator"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "industries",
+                "sectors",
+                "states",
+                "stages",
+                "badges",
+                "roles"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/startup/filter/defaults": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get all filterable items",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/startup/v2_workingBackup/filter": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get filtered multi-level startup details",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "industries": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "sectors": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "states": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "stages": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "badges": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "roles": {
+                  "type": "array",
+                  "example": [
+                    "Startup",
+                    "Mentor",
+                    "Investor",
+                    "GovernmentBody",
+                    "Incubator",
+                    "Accelerator"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "registrationFrom": {
+                  "type": "string",
+                  "example": ""
+                },
+                "registrationTo": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "industries",
+                "sectors",
+                "states",
+                "stages",
+                "badges",
+                "roles",
+                "registrationFrom",
+                "registrationTo"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/startup/filter/v2_workingBackup/defaults": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get all filterable items",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "registrationFrom": {
+                  "type": "string",
+                  "example": ""
+                },
+                "registrationTo": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "registrationFrom",
+                "registrationTo"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/startup/filter/v2/defaults": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get all filterable items",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "registrationFrom": {
+                  "type": "string",
+                  "example": ""
+                },
+                "registrationTo": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "registrationFrom",
+                "registrationTo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/startup/v3/filter": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get filtered multi-level startup details",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "industries": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "sectors": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "stages": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "badges": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "roles": {
+                  "type": "array",
+                  "example": [
+                    "Startup",
+                    "Mentor",
+                    "Investor",
+                    "GovernmentBody",
+                    "Incubator",
+                    "Accelerator"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "registrationFrom": {
+                  "type": "string",
+                  "example": ""
+                },
+                "registrationTo": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "industries",
+                "sectors",
+                "stages",
+                "badges",
+                "roles",
+                "registrationFrom",
+                "registrationTo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/startup/v2/filter": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "description": "Get filtered multi-level startup details",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Schema for query to filter based on criteria",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "industries": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "sectors": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "stages": {
+                  "type": "array",
+                  "example": [
+                    "Scaling",
+                    "EarlyTraction",
+                    "Validation"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "states": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "badges": {
+                  "type": "array",
+                  "example": [
+                    "true"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "roles": {
+                  "type": "array",
+                  "example": [
+                    "Startup",
+                    "Mentor",
+                    "Investor",
+                    "GovernmentBody",
+                    "Incubator",
+                    "Accelerator"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "registrationFrom": {
+                  "type": "string",
+                  "example": ""
+                },
+                "registrationTo": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "industries",
+                "sectors",
+                "stages",
+                "states",
+                "badges",
+                "roles",
+                "registrationFrom",
+                "registrationTo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/startup/stages/{state}": {
@@ -99,6 +860,84 @@
         "responses": {}
       }
     },
+    "/startup/startupCount/{type}": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "Count for a given startup type",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/startup/startupCount/{geoType}/{geoIdType}/{geoIdValue}/{entityType}/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "Count for a given startup type at given geography details with date range",
+        "parameters": [
+          {
+            "name": "geoType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geoIdType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geoIdValue",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entityType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/startup/dpiit/states": {
       "get": {
         "tags": [
@@ -107,6 +946,47 @@
         "description": "List of all dpiit states",
         "parameters": [],
         "responses": {}
+      }
+    },
+    "/startup/dpiit/count/all": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "Count of India level dpiit startups",
+        "parameters": [],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/startup/dpiit/count/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "Count of India level dpiit startups with date range",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/startup/states": {
@@ -134,6 +1014,47 @@
           }
         ],
         "responses": {}
+      }
+    },
+    "/startup/v2/districts/{stateId}": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "List of all districts by state id with counts",
+        "parameters": [
+          {
+            "name": "stateId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/startup/v2/districts": {
+      "get": {
+        "tags": [
+          "Counts"
+        ],
+        "description": "List of all districts with counts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/startup/industry/all": {
@@ -173,21 +1094,15 @@
         "responses": {}
       }
     },
-    "/data/table/{from}/{to}": {
+    "/policy/byStateName/{state}": {
       "get": {
         "tags": [
-          "Data Tables"
+          "Policy"
         ],
-        "description": "State-wise data table",
+        "description": "State Policy by state name",
         "parameters": [
           {
-            "name": "from",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "to",
+            "name": "state",
             "in": "path",
             "required": true,
             "type": "string"
@@ -196,26 +1111,50 @@
         "responses": {}
       }
     },
-    "/data/startups/{from}/{to}": {
+    "/policy/byStateId/{stateId}": {
       "get": {
         "tags": [
-          "Data Tables"
+          "Policy"
         ],
-        "description": "State-wise startups table",
+        "description": "State Policy by state id",
         "parameters": [
           {
-            "name": "from",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "to",
+            "name": "stateId",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
+        "responses": {}
+      }
+    },
+    "/static/districtData": {
+      "get": {
+        "tags": [
+          "Static Data"
+        ],
+        "description": "Static data of Districts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/static/startupTypes": {
+      "get": {
+        "tags": [
+          "Static Data"
+        ],
+        "description": "Static data of Startup Types",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/static/searchDateRanges": {
+      "get": {
+        "tags": [
+          "Static Data"
+        ],
+        "description": "Date ranges for getting count",
+        "parameters": [],
         "responses": {}
       }
     }
